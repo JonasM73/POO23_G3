@@ -1367,20 +1367,58 @@ namespace ProjetPOOG3 {
 		this->dataGridView1->Refresh();
 		DateTime DateNN, DatePahat;
 		int codePostalL, codePostalF;
-		try {			 DateNN = System::Convert::ToDateTime(DNN->Text);
-						 DatePahat = System::Convert::ToDateTime(Date_Pachat_client->Text);		}
-		catch (FormatException^ e) {MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);}
-		try {			codePostalL = System::Convert::ToInt32(CP_L->Text);
-						codePostalF = System::Convert::ToInt32(CP_F->Text);		}
-		catch (FormatException^ e) { MessageBox::Show("Erreur dans les Codes postals", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information); }
+		if (!DateTime::TryParse(DNN->Text, DateNN) || !DateTime::TryParse(Date_Pachat_client->Text, DatePahat)) {
+			MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return; }
+		if (!Int32::TryParse(CP_L->Text, codePostalL) || !Int32::TryParse(CP_F->Text, codePostalF)) {
+			MessageBox::Show("Erreur dans les Codes postaux", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return; }
+		if (String::IsNullOrWhiteSpace(numero_client->Text)||String::IsNullOrWhiteSpace(prenom->Text)||String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
+			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 		this->oSvc->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
 		this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
 		this->dataGridView1->DataSource = this->oDs;
 		this->dataGridView1->DataMember = "Rsl";
 		}
 	}
-	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {}
-	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {}
+	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {
+		if (b == 2) {
+			DateTime DateNN;
+			if (!DateTime::TryParse(DNN->Text, DateNN)) {
+				MessageBox::Show("Erreur dans les Dates ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return; 
+			}
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text)) {
+				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvc->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
+			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
+	}
+	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		DateTime DateNN, DatePahat;
+		int codePostalL, codePostalF;
+		if (!DateTime::TryParse(DNN->Text, DateNN) || !DateTime::TryParse(Date_Pachat_client->Text, DatePahat)) {
+			MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;		}
+		if (!Int32::TryParse(CP_L->Text, codePostalL) || !Int32::TryParse(CP_F->Text, codePostalF)) {
+			MessageBox::Show("Erreur dans le code postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;		}
+		if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
+			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;		}	
+		this->oSvc->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+		this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	
+	}
 
 
 

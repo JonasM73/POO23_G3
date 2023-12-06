@@ -35,20 +35,6 @@ namespace NS_Comp_MappageClient
 		void setAP_F_client(System::String^);
 		void setCP_L_client(int);
 		void setCP_F_client(int);
-		//
-		//
-		//int GetId_client(void);
-		//System::String^ Getnumero_client(void);
-		//System::String^ Setnom_client(void);
-		//System::DateTime^ GetDNN_client(void);
-		//System::DateTime^ GetDate_Pchat_client(void);
-		//System::String^ GetvilleL_client(void);
-		//System::String^ GetvilleF_client(void);
-		//System::String^ GetAP_L_client(void);
-		//System::String^ GetAP_F_client(void);
-		//int GetCP_L_client(void);
-		//int GetCP_F_client(void);
-
 
 	};
 }
