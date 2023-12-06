@@ -1,6 +1,6 @@
 #pragma once
-#include "CLserviceClient.h"
-/// MAHIR
+#include "CLserviceStock.h"
+#include "CLcad.h"
 
 namespace ProjetPOOG3 {
 
@@ -22,7 +22,7 @@ namespace ProjetPOOG3 {
 		{
 			InitializeComponent();
 			//
-			//TODO: ajoutez ici le code du constructeur/
+			//TODO: ajoutez ici le code du constructeur
 			//
 		}
 
@@ -38,9 +38,6 @@ namespace ProjetPOOG3 {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: NS_Comp_SvcClient::CLservices^ oSvc;
-	private: System::Data::DataSet^ oDs;
-
 	protected:
 
 	private: System::Windows::Forms::Button^ btn_GestionPersonnel;
@@ -144,6 +141,53 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_maj_article_stock;
 	private: System::Windows::Forms::Button^ btn_sup_article_stock;
 	private: System::Windows::Forms::Button^ btn_afficher_article_stock;
+	private: System::Windows::Forms::Label^ txt_id_article;
+	private: System::Windows::Forms::TextBox^ id_article_stock;
+	private: System::Windows::Forms::Label^ txt_nom_article;
+	private: System::Windows::Forms::TextBox^ nom_article_stock;
+	private: System::Windows::Forms::Label^ txt_stock_article;
+	private: System::Windows::Forms::TextBox^ valeur_en_stock;
+	private: System::Windows::Forms::Label^ txt_taux_tva_article;
+	private: System::Windows::Forms::TextBox^ taux_tva_article_stock;
+	private: System::Windows::Forms::Label^ txt_prix_ht_article;
+	private: System::Windows::Forms::TextBox^ prix_ht_article_stock;
+	private: System::Windows::Forms::Label^ txt_seuil_reapprovisionnement;
+	private: System::Windows::Forms::TextBox^ seuil_reapprovisionnement_stock;
+	private: System::Windows::Forms::Label^ txt_couleur_article;
+	private: System::Windows::Forms::TextBox^ couleur_article_stock;
+	private: NS_SvcStock::CLserviceStock^ oSvc;
+	private: System::Data::DataSet^ oDs;
+	private: System::Windows::Forms::Button^ btn_supp_commande;
+	private: System::Windows::Forms::Button^ btn_afficher_commande;
+	private: System::Windows::Forms::Button^ btn_maj_commande;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -244,6 +288,23 @@ namespace ProjetPOOG3 {
 			this->btn_maj_article_stock = (gcnew System::Windows::Forms::Button());
 			this->btn_sup_article_stock = (gcnew System::Windows::Forms::Button());
 			this->btn_afficher_article_stock = (gcnew System::Windows::Forms::Button());
+			this->txt_id_article = (gcnew System::Windows::Forms::Label());
+			this->id_article_stock = (gcnew System::Windows::Forms::TextBox());
+			this->txt_nom_article = (gcnew System::Windows::Forms::Label());
+			this->nom_article_stock = (gcnew System::Windows::Forms::TextBox());
+			this->txt_stock_article = (gcnew System::Windows::Forms::Label());
+			this->valeur_en_stock = (gcnew System::Windows::Forms::TextBox());
+			this->txt_taux_tva_article = (gcnew System::Windows::Forms::Label());
+			this->taux_tva_article_stock = (gcnew System::Windows::Forms::TextBox());
+			this->txt_prix_ht_article = (gcnew System::Windows::Forms::Label());
+			this->prix_ht_article_stock = (gcnew System::Windows::Forms::TextBox());
+			this->txt_seuil_reapprovisionnement = (gcnew System::Windows::Forms::Label());
+			this->seuil_reapprovisionnement_stock = (gcnew System::Windows::Forms::TextBox());
+			this->txt_couleur_article = (gcnew System::Windows::Forms::Label());
+			this->couleur_article_stock = (gcnew System::Windows::Forms::TextBox());
+			this->btn_supp_commande = (gcnew System::Windows::Forms::Button());
+			this->btn_afficher_commande = (gcnew System::Windows::Forms::Button());
+			this->btn_maj_commande = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -334,8 +395,7 @@ namespace ProjetPOOG3 {
 			this->btn_add->TabIndex = 25;
 			this->btn_add->Text = L"Ajouter";
 			this->btn_add->UseVisualStyleBackColor = false;
-			this->btn_add->Click += gcnew System::EventHandler(this, &MyForm::btn_add_click);
-
+			this->btn_add->Click += gcnew System::EventHandler(this, &MyForm::btn_add_Click);
 			// 
 			// btn_supp
 			// 
@@ -347,10 +407,8 @@ namespace ProjetPOOG3 {
 			this->btn_supp->Name = L"btn_supp";
 			this->btn_supp->Size = System::Drawing::Size(227, 152);
 			this->btn_supp->TabIndex = 26;
-			this->btn_supp->Text = L"Suppresion ";
+			this->btn_supp->Text = L"Supprimer ";
 			this->btn_supp->UseVisualStyleBackColor = false;
-			this->btn_supp->Click += gcnew System::EventHandler(this, &MyForm::btn_del_click);
-
 			// 
 			// btn_upd
 			// 
@@ -361,10 +419,8 @@ namespace ProjetPOOG3 {
 			this->btn_upd->Name = L"btn_upd";
 			this->btn_upd->Size = System::Drawing::Size(212, 142);
 			this->btn_upd->TabIndex = 27;
-			this->btn_upd->Text = L"Update";
+			this->btn_upd->Text = L"Mettre a jour";
 			this->btn_upd->UseVisualStyleBackColor = false;
-			this->btn_upd->Click += gcnew System::EventHandler(this, &MyForm::btn_update_click);
-
 			// 
 			// btn_afficher
 			// 
@@ -377,128 +433,126 @@ namespace ProjetPOOG3 {
 			this->btn_afficher->TabIndex = 28;
 			this->btn_afficher->Text = L"Afficher";
 			this->btn_afficher->UseVisualStyleBackColor = false;
-			this->btn_afficher->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_click);
-
 			// 
 			// numero_client
 			// 
-			this->numero_client->Location = System::Drawing::Point(792, 423);
+			this->numero_client->Location = System::Drawing::Point(700, 420);
 			this->numero_client->Multiline = true;
 			this->numero_client->Name = L"numero_client";
-			this->numero_client->Size = System::Drawing::Size(347, 30);
+			this->numero_client->Size = System::Drawing::Size(300, 30);
 			this->numero_client->TabIndex = 13;
 			this->numero_client->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// nom
 			// 
-			this->nom->Location = System::Drawing::Point(792, 489);
+			this->nom->Location = System::Drawing::Point(700, 460);
 			this->nom->Multiline = true;
 			this->nom->Name = L"nom";
-			this->nom->Size = System::Drawing::Size(347, 30);
+			this->nom->Size = System::Drawing::Size(300, 30);
 			this->nom->TabIndex = 10;
 			this->nom->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// prenom
 			// 
-			this->prenom->Location = System::Drawing::Point(792, 568);
+			this->prenom->Location = System::Drawing::Point(700, 510);
 			this->prenom->Multiline = true;
 			this->prenom->Name = L"prenom";
-			this->prenom->Size = System::Drawing::Size(347, 30);
+			this->prenom->Size = System::Drawing::Size(300, 30);
 			this->prenom->TabIndex = 11;
 			this->prenom->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// DNN
 			// 
-			this->DNN->Location = System::Drawing::Point(792, 629);
+			this->DNN->Location = System::Drawing::Point(700, 560);
 			this->DNN->Multiline = true;
 			this->DNN->Name = L"DNN";
-			this->DNN->Size = System::Drawing::Size(347, 30);
+			this->DNN->Size = System::Drawing::Size(300, 30);
 			this->DNN->TabIndex = 12;
 			this->DNN->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// Date_Pachat_client
 			// 
-			this->Date_Pachat_client->Location = System::Drawing::Point(792, 691);
+			this->Date_Pachat_client->Location = System::Drawing::Point(700, 610);
 			this->Date_Pachat_client->Multiline = true;
 			this->Date_Pachat_client->Name = L"Date_Pachat_client";
-			this->Date_Pachat_client->Size = System::Drawing::Size(347, 30);
+			this->Date_Pachat_client->Size = System::Drawing::Size(300, 30);
 			this->Date_Pachat_client->TabIndex = 14;
 			this->Date_Pachat_client->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// AP_F
 			// 
-			this->AP_F->Location = System::Drawing::Point(1205, 431);
+			this->AP_F->Location = System::Drawing::Point(1005, 610);
 			this->AP_F->Multiline = true;
 			this->AP_F->Name = L"AP_F";
-			this->AP_F->Size = System::Drawing::Size(347, 30);
+			this->AP_F->Size = System::Drawing::Size(300, 30);
 			this->AP_F->TabIndex = 16;
 			this->AP_F->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// CP_F
 			// 
-			this->CP_F->Location = System::Drawing::Point(1205, 474);
+			this->CP_F->Location = System::Drawing::Point(1000, 660);
 			this->CP_F->Multiline = true;
 			this->CP_F->Name = L"CP_F";
-			this->CP_F->Size = System::Drawing::Size(347, 30);
+			this->CP_F->Size = System::Drawing::Size(300, 30);
 			this->CP_F->TabIndex = 17;
 			this->CP_F->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// ville_F
 			// 
-			this->ville_F->Location = System::Drawing::Point(1205, 522);
+			this->ville_F->Location = System::Drawing::Point(1000, 710);
 			this->ville_F->Multiline = true;
 			this->ville_F->Name = L"ville_F";
-			this->ville_F->Size = System::Drawing::Size(347, 30);
+			this->ville_F->Size = System::Drawing::Size(300, 30);
 			this->ville_F->TabIndex = 18;
 			this->ville_F->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->ville_F->UseSystemPasswordChar = true;
 			// 
 			// AP_L
 			// 
-			this->AP_L->Location = System::Drawing::Point(1205, 598);
+			this->AP_L->Location = System::Drawing::Point(1005, 420);
 			this->AP_L->Multiline = true;
 			this->AP_L->Name = L"AP_L";
-			this->AP_L->Size = System::Drawing::Size(347, 30);
+			this->AP_L->Size = System::Drawing::Size(300, 30);
 			this->AP_L->TabIndex = 19;
 			this->AP_L->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// CP_L
 			// 
-			this->CP_L->Location = System::Drawing::Point(1205, 645);
+			this->CP_L->Location = System::Drawing::Point(1005, 460);
 			this->CP_L->Multiline = true;
 			this->CP_L->Name = L"CP_L";
-			this->CP_L->Size = System::Drawing::Size(347, 30);
+			this->CP_L->Size = System::Drawing::Size(300, 30);
 			this->CP_L->TabIndex = 20;
 			this->CP_L->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// ville_L
 			// 
-			this->ville_L->Location = System::Drawing::Point(1205, 691);
+			this->ville_L->Location = System::Drawing::Point(1005, 510);
 			this->ville_L->Multiline = true;
 			this->ville_L->Name = L"ville_L";
-			this->ville_L->Size = System::Drawing::Size(347, 30);
+			this->ville_L->Size = System::Drawing::Size(300, 30);
 			this->ville_L->TabIndex = 21;
 			this->ville_L->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// txt_AdresseF
 			// 
 			this->txt_AdresseF->AutoSize = true;
-			this->txt_AdresseF->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txt_AdresseF->Location = System::Drawing::Point(1317, 395);
+			this->txt_AdresseF->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->txt_AdresseF->Location = System::Drawing::Point(1100, 560);
 			this->txt_AdresseF->Name = L"txt_AdresseF";
-			this->txt_AdresseF->Size = System::Drawing::Size(127, 16);
+			this->txt_AdresseF->Size = System::Drawing::Size(115, 15);
 			this->txt_AdresseF->TabIndex = 22;
 			this->txt_AdresseF->Text = L"Adresse Facturation";
 			// 
 			// txt_adresseL
 			// 
 			this->txt_adresseL->AutoSize = true;
-			this->txt_adresseL->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txt_adresseL->Location = System::Drawing::Point(1317, 561);
+			this->txt_adresseL->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.2F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->txt_adresseL->Location = System::Drawing::Point(1100, 370);
 			this->txt_adresseL->Name = L"txt_adresseL";
-			this->txt_adresseL->Size = System::Drawing::Size(115, 16);
+			this->txt_adresseL->Size = System::Drawing::Size(115, 15);
 			this->txt_adresseL->TabIndex = 23;
 			this->txt_adresseL->Text = L"Adresse Livraison";
 			// 
@@ -507,9 +561,9 @@ namespace ProjetPOOG3 {
 			this->txt_nom->AutoSize = true;
 			this->txt_nom->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_nom->Location = System::Drawing::Point(799, 480);
+			this->txt_nom->Location = System::Drawing::Point(700, 450);
 			this->txt_nom->Name = L"txt_nom";
-			this->txt_nom->Size = System::Drawing::Size(90, 16);
+			this->txt_nom->Size = System::Drawing::Size(200, 20);
 			this->txt_nom->TabIndex = 29;
 			this->txt_nom->Text = L"Entrez un nom";
 			this->txt_nom->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -519,9 +573,9 @@ namespace ProjetPOOG3 {
 			this->txt_DNN->AutoSize = true;
 			this->txt_DNN->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_DNN->Location = System::Drawing::Point(799, 619);
+			this->txt_DNN->Location = System::Drawing::Point(700, 540);
 			this->txt_DNN->Name = L"txt_DNN";
-			this->txt_DNN->Size = System::Drawing::Size(160, 16);
+			this->txt_DNN->Size = System::Drawing::Size(200, 20);
 			this->txt_DNN->TabIndex = 32;
 			this->txt_DNN->Text = L"Entrez Date de naissance";
 			// 
@@ -530,9 +584,9 @@ namespace ProjetPOOG3 {
 			this->txt_Pachat->AutoSize = true;
 			this->txt_Pachat->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_Pachat->Location = System::Drawing::Point(798, 681);
+			this->txt_Pachat->Location = System::Drawing::Point(700, 590);
 			this->txt_Pachat->Name = L"txt_Pachat";
-			this->txt_Pachat->Size = System::Drawing::Size(179, 16);
+			this->txt_Pachat->Size = System::Drawing::Size(200, 20);
 			this->txt_Pachat->TabIndex = 33;
 			this->txt_Pachat->Text = L"Entrez Date du premier achat";
 			// 
@@ -541,9 +595,9 @@ namespace ProjetPOOG3 {
 			this->txt_prenom->AutoSize = true;
 			this->txt_prenom->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_prenom->Location = System::Drawing::Point(798, 562);
+			this->txt_prenom->Location = System::Drawing::Point(700, 490);
 			this->txt_prenom->Name = L"txt_prenom";
-			this->txt_prenom->Size = System::Drawing::Size(110, 16);
+			this->txt_prenom->Size = System::Drawing::Size(200, 20);
 			this->txt_prenom->TabIndex = 34;
 			this->txt_prenom->Text = L"Entrez un prenom";
 			this->txt_prenom->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -553,9 +607,9 @@ namespace ProjetPOOG3 {
 			this->txt_numeroclient->AutoSize = true;
 			this->txt_numeroclient->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_numeroclient->Location = System::Drawing::Point(798, 420);
+			this->txt_numeroclient->Location = System::Drawing::Point(700, 400);
 			this->txt_numeroclient->Name = L"txt_numeroclient";
-			this->txt_numeroclient->Size = System::Drawing::Size(147, 16);
+			this->txt_numeroclient->Size = System::Drawing::Size(200, 20);
 			this->txt_numeroclient->TabIndex = 35;
 			this->txt_numeroclient->Text = L"Entrez un numero_client";
 			this->txt_numeroclient->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -565,73 +619,73 @@ namespace ProjetPOOG3 {
 			this->txt_AP_F->AutoSize = true;
 			this->txt_AP_F->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_AP_F->Location = System::Drawing::Point(1214, 423);
+			this->txt_AP_F->Location = System::Drawing::Point(1000, 590);
 			this->txt_AP_F->Name = L"txt_AP_F";
-			this->txt_AP_F->Size = System::Drawing::Size(97, 16);
+			this->txt_AP_F->Size = System::Drawing::Size(200, 20);
 			this->txt_AP_F->TabIndex = 36;
-			this->txt_AP_F->Text = L"adresse postal";
+			this->txt_AP_F->Text = L"adresse postal de facturation";
 			// 
 			// txt_AP_L
 			// 
 			this->txt_AP_L->AutoSize = true;
 			this->txt_AP_L->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_AP_L->Location = System::Drawing::Point(1214, 589);
+			this->txt_AP_L->Location = System::Drawing::Point(1000, 400);
 			this->txt_AP_L->Name = L"txt_AP_L";
-			this->txt_AP_L->Size = System::Drawing::Size(98, 16);
+			this->txt_AP_L->Size = System::Drawing::Size(200, 20);
 			this->txt_AP_L->TabIndex = 37;
-			this->txt_AP_L->Text = L"Adresse postal";
+			this->txt_AP_L->Text = L"Adresse postal de livraison";
 			// 
 			// txt_CP_F
 			// 
 			this->txt_CP_F->AutoSize = true;
 			this->txt_CP_F->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_CP_F->Location = System::Drawing::Point(1214, 464);
+			this->txt_CP_F->Location = System::Drawing::Point(1000, 640);
 			this->txt_CP_F->Name = L"txt_CP_F";
-			this->txt_CP_F->Size = System::Drawing::Size(86, 16);
+			this->txt_CP_F->Size = System::Drawing::Size(200, 20);
 			this->txt_CP_F->TabIndex = 38;
-			this->txt_CP_F->Text = L"code postale";
+			this->txt_CP_F->Text = L"code postale de facturation";
 			// 
 			// txt_CP_L
 			// 
 			this->txt_CP_L->AutoSize = true;
 			this->txt_CP_L->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_CP_L->Location = System::Drawing::Point(1214, 635);
+			this->txt_CP_L->Location = System::Drawing::Point(1000, 450);
 			this->txt_CP_L->Name = L"txt_CP_L";
-			this->txt_CP_L->Size = System::Drawing::Size(80, 16);
+			this->txt_CP_L->Size = System::Drawing::Size(200, 20);
 			this->txt_CP_L->TabIndex = 39;
-			this->txt_CP_L->Text = L"Code postal";
+			this->txt_CP_L->Text = L"Code postal de livraison";
 			// 
 			// txt_ville_L
 			// 
 			this->txt_ville_L->AutoSize = true;
 			this->txt_ville_L->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_ville_L->Location = System::Drawing::Point(1214, 681);
+			this->txt_ville_L->Location = System::Drawing::Point(1005, 490);
 			this->txt_ville_L->Name = L"txt_ville_L";
-			this->txt_ville_L->Size = System::Drawing::Size(33, 16);
+			this->txt_ville_L->Size = System::Drawing::Size(200, 20);
 			this->txt_ville_L->TabIndex = 40;
-			this->txt_ville_L->Text = L"Ville";
+			this->txt_ville_L->Text = L"Ville de livraison";
 			// 
 			// txt_ville_F
 			// 
 			this->txt_ville_F->AutoSize = true;
 			this->txt_ville_F->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_ville_F->Location = System::Drawing::Point(1214, 513);
+			this->txt_ville_F->Location = System::Drawing::Point(1005, 690);
 			this->txt_ville_F->Name = L"txt_ville_F";
-			this->txt_ville_F->Size = System::Drawing::Size(33, 16);
+			this->txt_ville_F->Size = System::Drawing::Size(200, 20);
 			this->txt_ville_F->TabIndex = 41;
-			this->txt_ville_F->Text = L"Ville";
+			this->txt_ville_F->Text = L"Ville de facturation";
 			// 
 			// nom_personnel
 			// 
 			this->nom_personnel->Location = System::Drawing::Point(764, 403);
 			this->nom_personnel->Multiline = true;
 			this->nom_personnel->Name = L"nom_personnel";
-			this->nom_personnel->Size = System::Drawing::Size(371, 59);
+			this->nom_personnel->Size = System::Drawing::Size(300, 30);
 			this->nom_personnel->TabIndex = 29;
 			// 
 			// txt_nom_personnel
@@ -641,7 +695,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_nom_personnel->Location = System::Drawing::Point(761, 394);
 			this->txt_nom_personnel->Name = L"txt_nom_personnel";
-			this->txt_nom_personnel->Size = System::Drawing::Size(96, 16);
+			this->txt_nom_personnel->Size = System::Drawing::Size(200, 20);
 			this->txt_nom_personnel->TabIndex = 30;
 			this->txt_nom_personnel->Text = L"nom personnel";
 			// 
@@ -652,7 +706,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_prenom_personnel->Location = System::Drawing::Point(761, 465);
 			this->txt_prenom_personnel->Name = L"txt_prenom_personnel";
-			this->txt_prenom_personnel->Size = System::Drawing::Size(116, 16);
+			this->txt_prenom_personnel->Size = System::Drawing::Size(200, 20);
 			this->txt_prenom_personnel->TabIndex = 32;
 			this->txt_prenom_personnel->Text = L"prenom personnel";
 			// 
@@ -663,7 +717,7 @@ namespace ProjetPOOG3 {
 			this->prenom_personnel->Location = System::Drawing::Point(764, 474);
 			this->prenom_personnel->Multiline = true;
 			this->prenom_personnel->Name = L"prenom_personnel";
-			this->prenom_personnel->Size = System::Drawing::Size(371, 57);
+			this->prenom_personnel->Size = System::Drawing::Size(300, 30);
 			this->prenom_personnel->TabIndex = 31;
 			// 
 			// txt_AP_personnel
@@ -673,7 +727,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_AP_personnel->Location = System::Drawing::Point(761, 536);
 			this->txt_AP_personnel->Name = L"txt_AP_personnel";
-			this->txt_AP_personnel->Size = System::Drawing::Size(102, 16);
+			this->txt_AP_personnel->Size = System::Drawing::Size(200, 20);
 			this->txt_AP_personnel->TabIndex = 34;
 			this->txt_AP_personnel->Text = L"Adresse prostal";
 			// 
@@ -682,7 +736,7 @@ namespace ProjetPOOG3 {
 			this->AP_personnel->Location = System::Drawing::Point(764, 545);
 			this->AP_personnel->Multiline = true;
 			this->AP_personnel->Name = L"AP_personnel";
-			this->AP_personnel->Size = System::Drawing::Size(371, 50);
+			this->AP_personnel->Size = System::Drawing::Size(300, 30);
 			this->AP_personnel->TabIndex = 33;
 			// 
 			// txt_CP_personnel
@@ -692,7 +746,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_CP_personnel->Location = System::Drawing::Point(761, 614);
 			this->txt_CP_personnel->Name = L"txt_CP_personnel";
-			this->txt_CP_personnel->Size = System::Drawing::Size(80, 16);
+			this->txt_CP_personnel->Size = System::Drawing::Size(200, 20);
 			this->txt_CP_personnel->TabIndex = 36;
 			this->txt_CP_personnel->Text = L"Code postal";
 			// 
@@ -701,7 +755,7 @@ namespace ProjetPOOG3 {
 			this->CP_personnel->Location = System::Drawing::Point(764, 623);
 			this->CP_personnel->Multiline = true;
 			this->CP_personnel->Name = L"CP_personnel";
-			this->CP_personnel->Size = System::Drawing::Size(371, 55);
+			this->CP_personnel->Size = System::Drawing::Size(300, 30);
 			this->CP_personnel->TabIndex = 35;
 			// 
 			// txt_ville_personnel
@@ -711,7 +765,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_ville_personnel->Location = System::Drawing::Point(761, 696);
 			this->txt_ville_personnel->Name = L"txt_ville_personnel";
-			this->txt_ville_personnel->Size = System::Drawing::Size(94, 16);
+			this->txt_ville_personnel->Size = System::Drawing::Size(200, 20);
 			this->txt_ville_personnel->TabIndex = 38;
 			this->txt_ville_personnel->Text = L"ville personnel";
 			// 
@@ -720,15 +774,14 @@ namespace ProjetPOOG3 {
 			this->ville_personnel->Location = System::Drawing::Point(764, 705);
 			this->ville_personnel->Multiline = true;
 			this->ville_personnel->Name = L"ville_personnel";
-			this->ville_personnel->Size = System::Drawing::Size(371, 59);
-			this->ville_personnel->TabIndex = 37;
+			this->ville_personnel->Size = System::Drawing::Size(300, 30);
 			// 
 			// id_superieur
 			// 
 			this->id_superieur->Location = System::Drawing::Point(1169, 524);
 			this->id_superieur->Multiline = true;
 			this->id_superieur->Name = L"id_superieur";
-			this->id_superieur->Size = System::Drawing::Size(371, 43);
+			this->id_superieur->Size = System::Drawing::Size(300, 30);
 			this->id_superieur->TabIndex = 39;
 			// 
 			// txt_id_superieur
@@ -738,16 +791,16 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_id_superieur->Location = System::Drawing::Point(1166, 515);
 			this->txt_id_superieur->Name = L"txt_id_superieur";
-			this->txt_id_superieur->Size = System::Drawing::Size(122, 16);
+			this->txt_id_superieur->Size = System::Drawing::Size(200, 20);
 			this->txt_id_superieur->TabIndex = 40;
 			this->txt_id_superieur->Text = L"identifiant superieur";
 			// 
 			// ref_commande
 			// 
-			this->ref_commande->Location = System::Drawing::Point(229, 378);
+			this->ref_commande->Location = System::Drawing::Point(700, 378);
 			this->ref_commande->Multiline = true;
 			this->ref_commande->Name = L"ref_commande";
-			this->ref_commande->Size = System::Drawing::Size(294, 31);
+			this->ref_commande->Size = System::Drawing::Size(300, 30);
 			this->ref_commande->TabIndex = 29;
 			// 
 			// txt_ref_commande
@@ -755,9 +808,9 @@ namespace ProjetPOOG3 {
 			this->txt_ref_commande->AutoSize = true;
 			this->txt_ref_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_ref_commande->Location = System::Drawing::Point(229, 364);
+			this->txt_ref_commande->Location = System::Drawing::Point(700, 364);
 			this->txt_ref_commande->Name = L"txt_ref_commande";
-			this->txt_ref_commande->Size = System::Drawing::Size(97, 16);
+			this->txt_ref_commande->Size = System::Drawing::Size(200, 20);
 			this->txt_ref_commande->TabIndex = 30;
 			this->txt_ref_commande->Text = L"ref_commande";
 			// 
@@ -766,26 +819,28 @@ namespace ProjetPOOG3 {
 			this->txt_id_client_commande->AutoSize = true;
 			this->txt_id_client_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_id_client_commande->Location = System::Drawing::Point(229, 419);
+			this->txt_id_client_commande->Location = System::Drawing::Point(700, 419);
 			this->txt_id_client_commande->Name = L"txt_id_client_commande";
-			this->txt_id_client_commande->Size = System::Drawing::Size(167, 16);
+			this->txt_id_client_commande->Size = System::Drawing::Size(200, 20);
 			this->txt_id_client_commande->TabIndex = 32;
 			this->txt_id_client_commande->Text = L"id_client (voir gestionclient)";
 			// 
 			// id_client_commande
 			// 
-			this->id_client_commande->Location = System::Drawing::Point(229, 433);
+			this->id_client_commande->Location = System::Drawing::Point(700, 433);
 			this->id_client_commande->Multiline = true;
 			this->id_client_commande->Name = L"id_client_commande";
-			this->id_client_commande->Size = System::Drawing::Size(294, 31);
+			this->id_client_commande->Size = System::Drawing::Size(300, 30);
 			this->id_client_commande->TabIndex = 31;
 			// 
 			// add_commande
 			// 
-			this->add_commande->BackColor = System::Drawing::Color::PaleGreen;
-			this->add_commande->Location = System::Drawing::Point(569, 483);
+			this->add_commande->BackColor = System::Drawing::Color::LightGreen;
+			this->add_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->add_commande->Location = System::Drawing::Point(212, 407);
 			this->add_commande->Name = L"add_commande";
-			this->add_commande->Size = System::Drawing::Size(253, 85);
+			this->add_commande->Size = System::Drawing::Size(212, 152);
 			this->add_commande->TabIndex = 35;
 			this->add_commande->Text = L"Ajouter une commande";
 			this->add_commande->UseVisualStyleBackColor = false;
@@ -795,18 +850,18 @@ namespace ProjetPOOG3 {
 			this->txt_date_emision_commande->AutoSize = true;
 			this->txt_date_emision_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_date_emision_commande->Location = System::Drawing::Point(229, 469);
+			this->txt_date_emision_commande->Location = System::Drawing::Point(700, 470);
 			this->txt_date_emision_commande->Name = L"txt_date_emision_commande";
-			this->txt_date_emision_commande->Size = System::Drawing::Size(171, 16);
+			this->txt_date_emision_commande->Size = System::Drawing::Size(200, 20);
 			this->txt_date_emision_commande->TabIndex = 37;
 			this->txt_date_emision_commande->Text = L"date d\'emision (aujourd\'hui)";
 			// 
 			// Date_emision_commande
 			// 
-			this->Date_emision_commande->Location = System::Drawing::Point(229, 483);
+			this->Date_emision_commande->Location = System::Drawing::Point(700, 483);
 			this->Date_emision_commande->Multiline = true;
 			this->Date_emision_commande->Name = L"Date_emision_commande";
-			this->Date_emision_commande->Size = System::Drawing::Size(294, 31);
+			this->Date_emision_commande->Size = System::Drawing::Size(300, 30);
 			this->Date_emision_commande->TabIndex = 36;
 			// 
 			// txt_date_livraison_commande
@@ -814,18 +869,18 @@ namespace ProjetPOOG3 {
 			this->txt_date_livraison_commande->AutoSize = true;
 			this->txt_date_livraison_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_date_livraison_commande->Location = System::Drawing::Point(229, 525);
+			this->txt_date_livraison_commande->Location = System::Drawing::Point(700, 525);
 			this->txt_date_livraison_commande->Name = L"txt_date_livraison_commande";
-			this->txt_date_livraison_commande->Size = System::Drawing::Size(167, 16);
+			this->txt_date_livraison_commande->Size = System::Drawing::Size(200, 20);
 			this->txt_date_livraison_commande->TabIndex = 39;
 			this->txt_date_livraison_commande->Text = L"Date livraison (AAAA-MM-JJ)";
 			// 
 			// Date_livraison_commande
 			// 
-			this->Date_livraison_commande->Location = System::Drawing::Point(229, 539);
+			this->Date_livraison_commande->Location = System::Drawing::Point(700, 539);
 			this->Date_livraison_commande->Multiline = true;
 			this->Date_livraison_commande->Name = L"Date_livraison_commande";
-			this->Date_livraison_commande->Size = System::Drawing::Size(294, 31);
+			this->Date_livraison_commande->Size = System::Drawing::Size(300, 30);
 			this->Date_livraison_commande->TabIndex = 38;
 			// 
 			// txt_id_article_commande
@@ -833,18 +888,18 @@ namespace ProjetPOOG3 {
 			this->txt_id_article_commande->AutoSize = true;
 			this->txt_id_article_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_id_article_commande->Location = System::Drawing::Point(229, 581);
+			this->txt_id_article_commande->Location = System::Drawing::Point(700, 581);
 			this->txt_id_article_commande->Name = L"txt_id_article_commande";
-			this->txt_id_article_commande->Size = System::Drawing::Size(151, 16);
+			this->txt_id_article_commande->Size = System::Drawing::Size(200, 20);
 			this->txt_id_article_commande->TabIndex = 41;
 			this->txt_id_article_commande->Text = L"ID d\'article (gestion stock)";
 			// 
 			// id_article_commande
 			// 
-			this->id_article_commande->Location = System::Drawing::Point(229, 595);
+			this->id_article_commande->Location = System::Drawing::Point(700, 595);
 			this->id_article_commande->Multiline = true;
 			this->id_article_commande->Name = L"id_article_commande";
-			this->id_article_commande->Size = System::Drawing::Size(294, 31);
+			this->id_article_commande->Size = System::Drawing::Size(300, 30);
 			this->id_article_commande->TabIndex = 40;
 			// 
 			// txt_quantite_article_commande
@@ -852,18 +907,18 @@ namespace ProjetPOOG3 {
 			this->txt_quantite_article_commande->AutoSize = true;
 			this->txt_quantite_article_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_quantite_article_commande->Location = System::Drawing::Point(229, 641);
+			this->txt_quantite_article_commande->Location = System::Drawing::Point(700, 641);
 			this->txt_quantite_article_commande->Name = L"txt_quantite_article_commande";
-			this->txt_quantite_article_commande->Size = System::Drawing::Size(144, 16);
+			this->txt_quantite_article_commande->Size = System::Drawing::Size(200, 20);
 			this->txt_quantite_article_commande->TabIndex = 43;
 			this->txt_quantite_article_commande->Text = L"Quantite d\'articles";
 			// 
 			// quantite_article_commande
 			// 
-			this->quantite_article_commande->Location = System::Drawing::Point(229, 655);
+			this->quantite_article_commande->Location = System::Drawing::Point(700, 655);
 			this->quantite_article_commande->Multiline = true;
 			this->quantite_article_commande->Name = L"quantite_article_commande";
-			this->quantite_article_commande->Size = System::Drawing::Size(294, 31);
+			this->quantite_article_commande->Size = System::Drawing::Size(300, 30);
 			this->quantite_article_commande->TabIndex = 42;
 			// 
 			// panier_moyen_stats
@@ -1040,9 +1095,9 @@ namespace ProjetPOOG3 {
 			this->btn_ajouter_article_stock->BackColor = System::Drawing::Color::LightGreen;
 			this->btn_ajouter_article_stock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_ajouter_article_stock->Location = System::Drawing::Point(297, 475);
+			this->btn_ajouter_article_stock->Location = System::Drawing::Point(212, 407);
 			this->btn_ajouter_article_stock->Name = L"btn_ajouter_article_stock";
-			this->btn_ajouter_article_stock->Size = System::Drawing::Size(195, 106);
+			this->btn_ajouter_article_stock->Size = System::Drawing::Size(212, 152);
 			this->btn_ajouter_article_stock->TabIndex = 11;
 			this->btn_ajouter_article_stock->Text = L"Ajouter un article";
 			this->btn_ajouter_article_stock->UseVisualStyleBackColor = false;
@@ -1052,9 +1107,9 @@ namespace ProjetPOOG3 {
 			this->btn_maj_article_stock->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->btn_maj_article_stock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_maj_article_stock->Location = System::Drawing::Point(297, 604);
+			this->btn_maj_article_stock->Location = System::Drawing::Point(212, 565);
 			this->btn_maj_article_stock->Name = L"btn_maj_article_stock";
-			this->btn_maj_article_stock->Size = System::Drawing::Size(195, 108);
+			this->btn_maj_article_stock->Size = System::Drawing::Size(212, 152);
 			this->btn_maj_article_stock->TabIndex = 12;
 			this->btn_maj_article_stock->Text = L"Mettre a jour un article";
 			this->btn_maj_article_stock->UseVisualStyleBackColor = false;
@@ -1065,9 +1120,9 @@ namespace ProjetPOOG3 {
 				static_cast<System::Int32>(static_cast<System::Byte>(75)), static_cast<System::Int32>(static_cast<System::Byte>(75)));
 			this->btn_sup_article_stock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_sup_article_stock->Location = System::Drawing::Point(498, 475);
+			this->btn_sup_article_stock->Location = System::Drawing::Point(430, 407);
 			this->btn_sup_article_stock->Name = L"btn_sup_article_stock";
-			this->btn_sup_article_stock->Size = System::Drawing::Size(193, 106);
+			this->btn_sup_article_stock->Size = System::Drawing::Size(212, 152);
 			this->btn_sup_article_stock->TabIndex = 13;
 			this->btn_sup_article_stock->Text = L"Supprimer un article";
 			this->btn_sup_article_stock->UseVisualStyleBackColor = false;
@@ -1077,12 +1132,178 @@ namespace ProjetPOOG3 {
 			// 
 			this->btn_afficher_article_stock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_afficher_article_stock->Location = System::Drawing::Point(498, 604);
+			this->btn_afficher_article_stock->Location = System::Drawing::Point(430, 565);
 			this->btn_afficher_article_stock->Name = L"btn_afficher_article_stock";
-			this->btn_afficher_article_stock->Size = System::Drawing::Size(195, 108);
+			this->btn_afficher_article_stock->Size = System::Drawing::Size(212, 152);
 			this->btn_afficher_article_stock->TabIndex = 14;
 			this->btn_afficher_article_stock->Text = L"Afficher un article";
 			this->btn_afficher_article_stock->UseVisualStyleBackColor = true;
+			// 
+			// txt_id_article
+			// 
+			this->txt_id_article->AutoSize = true;
+			this->txt_id_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_id_article->Location = System::Drawing::Point(785, 407);
+			this->txt_id_article->Name = L"txt_id_article";
+			this->txt_id_article->Size = System::Drawing::Size(180, 60);
+			this->txt_id_article->TabIndex = 11;
+			this->txt_id_article->Text = L"ID de l\'article";
+			// 
+			// id_article_stock
+			// 
+			this->id_article_stock->Location = System::Drawing::Point(790, 430);
+			this->id_article_stock->Name = L"id_article_stock";
+			this->id_article_stock->Size = System::Drawing::Size(293, 22);
+			this->id_article_stock->TabIndex = 12;
+			// 
+			// txt_nom_article
+			// 
+			this->txt_nom_article->AutoSize = true;
+			this->txt_nom_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_nom_article->Location = System::Drawing::Point(785, 460);
+			this->txt_nom_article->Name = L"txt_nom_article";
+			this->txt_nom_article->Size = System::Drawing::Size(180, 60);
+			this->txt_nom_article->TabIndex = 13;
+			this->txt_nom_article->Text = L"Nom de l\'article";
+			this->txt_nom_article->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
+			// 
+			// nom_article_stock
+			// 
+			this->nom_article_stock->Location = System::Drawing::Point(790, 480);
+			this->nom_article_stock->Name = L"nom_article_stock";
+			this->nom_article_stock->Size = System::Drawing::Size(293, 22);
+			this->nom_article_stock->TabIndex = 14;
+			// 
+			// txt_stock_article
+			// 
+			this->txt_stock_article->AutoSize = true;
+			this->txt_stock_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_stock_article->Location = System::Drawing::Point(785, 510);
+			this->txt_stock_article->Name = L"txt_stock_article";
+			this->txt_stock_article->Size = System::Drawing::Size(180, 60);
+			this->txt_stock_article->TabIndex = 15;
+			this->txt_stock_article->Text = L"Valeur du stock de l\'article";
+			// 
+			// valeur_en_stock
+			// 
+			this->valeur_en_stock->Location = System::Drawing::Point(790, 530);
+			this->valeur_en_stock->Name = L"valeur_en_stock";
+			this->valeur_en_stock->Size = System::Drawing::Size(293, 22);
+			this->valeur_en_stock->TabIndex = 16;
+			// 
+			// txt_taux_tva_article
+			// 
+			this->txt_taux_tva_article->AutoSize = true;
+			this->txt_taux_tva_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_taux_tva_article->Location = System::Drawing::Point(785, 560);
+			this->txt_taux_tva_article->Name = L"txt_taux_tva_article";
+			this->txt_taux_tva_article->Size = System::Drawing::Size(180, 60);
+			this->txt_taux_tva_article->TabIndex = 17;
+			this->txt_taux_tva_article->Text = L"Taux de TVA de l\'article";
+			// 
+			// taux_tva_article_stock
+			// 
+			this->taux_tva_article_stock->Location = System::Drawing::Point(790, 580);
+			this->taux_tva_article_stock->Name = L"taux_tva_article_stock";
+			this->taux_tva_article_stock->Size = System::Drawing::Size(293, 22);
+			this->taux_tva_article_stock->TabIndex = 18;
+			// 
+			// txt_prix_ht_article
+			// 
+			this->txt_prix_ht_article->AutoSize = true;
+			this->txt_prix_ht_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_prix_ht_article->Location = System::Drawing::Point(785, 610);
+			this->txt_prix_ht_article->Name = L"txt_prix_ht_article";
+			this->txt_prix_ht_article->Size = System::Drawing::Size(180, 60);
+			this->txt_prix_ht_article->TabIndex = 19;
+			this->txt_prix_ht_article->Text = L"Prix HT de l\'article";
+			// 
+			// prix_ht_article_stock
+			// 
+			this->prix_ht_article_stock->Location = System::Drawing::Point(790, 630);
+			this->prix_ht_article_stock->Name = L"prix_ht_article_stock";
+			this->prix_ht_article_stock->Size = System::Drawing::Size(293, 22);
+			this->prix_ht_article_stock->TabIndex = 20;
+			// 
+			// txt_seuil_reapprovisionnement
+			// 
+			this->txt_seuil_reapprovisionnement->AutoSize = true;
+			this->txt_seuil_reapprovisionnement->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->txt_seuil_reapprovisionnement->Location = System::Drawing::Point(785, 650);
+			this->txt_seuil_reapprovisionnement->Name = L"txt_seuil_reapprovisionnement";
+			this->txt_seuil_reapprovisionnement->Size = System::Drawing::Size(180, 60);
+			this->txt_seuil_reapprovisionnement->TabIndex = 21;
+			this->txt_seuil_reapprovisionnement->Text = L"Seuil de reapprovisionnement";
+			this->txt_seuil_reapprovisionnement->Click += gcnew System::EventHandler(this, &MyForm::label1_Click_1);
+			// 
+			// seuil_reapprovisionnement_stock
+			// 
+			this->seuil_reapprovisionnement_stock->Location = System::Drawing::Point(790, 670);
+			this->seuil_reapprovisionnement_stock->Name = L"seuil_reapprovisionnement_stock";
+			this->seuil_reapprovisionnement_stock->Size = System::Drawing::Size(293, 22);
+			this->seuil_reapprovisionnement_stock->TabIndex = 22;
+			// 
+			// txt_couleur_article
+			// 
+			this->txt_couleur_article->AutoSize = true;
+			this->txt_couleur_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_couleur_article->Location = System::Drawing::Point(785, 700);
+			this->txt_couleur_article->Name = L"txt_couleur_article";
+			this->txt_couleur_article->Size = System::Drawing::Size(180, 60);
+			this->txt_couleur_article->TabIndex = 23;
+			this->txt_couleur_article->Text = L"Couleur de l\'article";
+			// 
+			// couleur_article_stock
+			// 
+			this->couleur_article_stock->Location = System::Drawing::Point(790, 720);
+			this->couleur_article_stock->Name = L"couleur_article_stock";
+			this->couleur_article_stock->Size = System::Drawing::Size(293, 22);
+			this->couleur_article_stock->TabIndex = 24;
+			// 
+			// btn_supp_commande
+			// 
+			this->btn_supp_commande->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(75)),
+				static_cast<System::Int32>(static_cast<System::Byte>(75)));
+			this->btn_supp_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_supp_commande->Location = System::Drawing::Point(430, 407);
+			this->btn_supp_commande->Name = L"btn_supp";
+			this->btn_supp_commande->Size = System::Drawing::Size(227, 152);
+			this->btn_supp_commande->TabIndex = 26;
+			this->btn_supp_commande->Text = L"Supprimer ";
+			this->btn_supp_commande->UseVisualStyleBackColor = false;
+			// 
+			// btn_afficher_commande
+			// 
+			this->btn_afficher_commande->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->btn_afficher_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_afficher_commande->Location = System::Drawing::Point(430, 565);
+			this->btn_afficher_commande->Name = L"btn_afficher";
+			this->btn_afficher_commande->Size = System::Drawing::Size(227, 142);
+			this->btn_afficher_commande->TabIndex = 28;
+			this->btn_afficher_commande->Text = L"Afficher";
+			this->btn_afficher_commande->UseVisualStyleBackColor = false;
+
+			// 
+			// btn_maj_commande
+			// 
+			this->btn_maj_commande->BackColor = System::Drawing::Color::CornflowerBlue;
+			this->btn_maj_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_maj_commande->Location = System::Drawing::Point(212, 565);
+			this->btn_maj_commande->Name = L"btn_upd";
+			this->btn_maj_commande->Size = System::Drawing::Size(212, 142);
+			this->btn_maj_commande->TabIndex = 27;
+			this->btn_maj_commande->Text = L"Mettre a jour";
+			this->btn_maj_commande->UseVisualStyleBackColor = false;
 			// 
 			// MyForm
 			// 
@@ -1096,22 +1317,13 @@ namespace ProjetPOOG3 {
 			this->Controls->Add(this->btn_GestionCommande);
 			this->Controls->Add(this->btn_GestionClient);
 			this->Controls->Add(this->btn_GestionPersonnel);
-			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
-
-		private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
-		{
-			this->oSvc = gcnew NS_Comp_SvcClient::CLservices();
-		}
-
 
 	private: System::Void btn_GestionPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
 		b = 1;
@@ -1256,6 +1468,23 @@ namespace ProjetPOOG3 {
 				   this->Controls->Remove(this->btn_sup_article_stock);
 				   this->Controls->Remove(this->btn_maj_article_stock);
 				   this->Controls->Remove(this->btn_ajouter_article_stock);
+				   this->Controls->Remove(this->couleur_article_stock);
+				   this->Controls->Remove(this->txt_couleur_article);
+				   this->Controls->Remove(this->seuil_reapprovisionnement_stock);
+				   this->Controls->Remove(this->txt_seuil_reapprovisionnement);
+				   this->Controls->Remove(this->prix_ht_article_stock);
+				   this->Controls->Remove(this->txt_prix_ht_article);
+				   this->Controls->Remove(this->taux_tva_article_stock);
+				   this->Controls->Remove(this->txt_taux_tva_article);
+				   this->Controls->Remove(this->valeur_en_stock);
+				   this->Controls->Remove(this->txt_stock_article);
+				   this->Controls->Remove(this->nom_article_stock);
+				   this->Controls->Remove(this->txt_nom_article);
+				   this->Controls->Remove(this->id_article_stock);
+				   this->Controls->Remove(this->txt_id_article);
+				   this->Controls->Remove(this->btn_maj_commande);
+				   this->Controls->Remove(this->btn_afficher_commande);
+				   this->Controls->Remove(this->btn_supp_commande);
 				   break;
 
 			   case 1:
@@ -1320,12 +1549,29 @@ namespace ProjetPOOG3 {
 				   this->Controls->Add(this->id_client_commande);
 				   this->Controls->Add(this->txt_ref_commande);
 				   this->Controls->Add(this->ref_commande);
+				   this->Controls->Add(this->btn_maj_commande);
+				   this->Controls->Add(this->btn_afficher_commande);
+				   this->Controls->Add(this->btn_supp_commande);
 				   break;
 			   case 4:
 				   this->Controls->Add(this->btn_afficher_article_stock);
 				   this->Controls->Add(this->btn_sup_article_stock);
 				   this->Controls->Add(this->btn_maj_article_stock);
 				   this->Controls->Add(this->btn_ajouter_article_stock);
+				   this->Controls->Add(this->couleur_article_stock);
+				   this->Controls->Add(this->txt_couleur_article);
+				   this->Controls->Add(this->seuil_reapprovisionnement_stock);
+				   this->Controls->Add(this->txt_seuil_reapprovisionnement);
+				   this->Controls->Add(this->prix_ht_article_stock);
+				   this->Controls->Add(this->txt_prix_ht_article);
+				   this->Controls->Add(this->taux_tva_article_stock);
+				   this->Controls->Add(this->txt_taux_tva_article);
+				   this->Controls->Add(this->valeur_en_stock);
+				   this->Controls->Add(this->txt_stock_article);
+				   this->Controls->Add(this->nom_article_stock);
+				   this->Controls->Add(this->txt_nom_article);
+				   this->Controls->Add(this->id_article_stock);
+				   this->Controls->Add(this->txt_id_article);
 				   break;
 			   case 5:
 				   this->Controls->Add(this->panier_moyen_stats);
@@ -1350,39 +1596,11 @@ namespace ProjetPOOG3 {
 
 
 
-		  
 
-	private: System::Void btn_afficher_click(System::Object^ sender, System::EventArgs^ e) {
-		//affichage personnel
-		if (b == 2) {
-			this->dataGridView1->Refresh();
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
-			this->dataGridView1->DataSource = this->oDs;
-			this->dataGridView1->DataMember = "Rsl";
-			
-		}
-	}
-	private: System::Void btn_add_click(System::Object^ sender, System::EventArgs^ e) {
-		//affichage personnel
-		if (b == 2) {
-		this->dataGridView1->Refresh();
-		DateTime DateNN, DatePahat;
-		int codePostalL, codePostalF;
-		try {			 DateNN = System::Convert::ToDateTime(DNN->Text);
-						 DatePahat = System::Convert::ToDateTime(Date_Pachat_client->Text);		}
-		catch (FormatException^ e) {MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);}
-		try {			codePostalL = System::Convert::ToInt32(CP_L->Text);
-						codePostalF = System::Convert::ToInt32(CP_F->Text);		}
-		catch (FormatException^ e) { MessageBox::Show("Erreur dans les Codes postals", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information); }
-		this->oSvc->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
-		this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
-		}
-	}
-	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {}
-	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {}
 
+	private: System::Void btn_add_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	}
 
 
 	private: System::Void panier_moyen_stats_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1447,6 +1665,15 @@ namespace ProjetPOOG3 {
 	}
 
 	private: System::Void btn_afficher_article_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvc->ChargerTousArticles("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+
+	}
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	}
 	};
 }

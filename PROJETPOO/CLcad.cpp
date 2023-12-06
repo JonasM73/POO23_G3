@@ -1,9 +1,8 @@
 #include "CLcad.h"
-//test git
 
 NS_Comp_Data::CLcad::CLcad(void)
 {
-	this->sCnx = "Data Source = PCMAHIR\\MSSQL_POO;Initial Catalog = PooG3;User ID =Mahir; Password=0506";
+	this->sCnx = "Data Source=PCMAHIR\\MSSQL_POO;Initial Catalog=PooG3;Persist Security Info=True;User ID=MahirAdmin;Password=0506";
 
 	this->sSql = "Rien";
 
