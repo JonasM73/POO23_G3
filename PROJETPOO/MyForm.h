@@ -21,7 +21,7 @@ namespace ProjetPOOG3 {
 		{
 			InitializeComponent();
 			//
-			//TODO: ajoutez ici le code du constructeur
+			//TODO: ajoutez ici le code du constructeur/
 			//
 		}
 
