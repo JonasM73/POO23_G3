@@ -8,3 +8,5 @@ System::Data::DataSet^ NS_SvcStock::ChargerTousArticles(System::String^ dataTabl
 	sql = this->oMapStock->Select();
 	return this->oCad->getRows(sql, dataTableName);
 	}
+
+//
