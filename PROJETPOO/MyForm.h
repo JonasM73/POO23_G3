@@ -1,7 +1,7 @@
 #pragma once
 #include "CLserviceStock.h"
 #include "CLcad.h"
-
+#include "CLmapClient.h"
 namespace ProjetPOOG3 {
 
 	int b;
@@ -38,6 +38,7 @@ namespace ProjetPOOG3 {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
 	protected:
 
 	private: System::Windows::Forms::Button^ btn_GestionPersonnel;
@@ -46,6 +47,8 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_GestionStock;
 	private: System::Windows::Forms::Button^ btn_GestionStatistique;
 	private: System::Windows::Forms::TextBox^ nom;
+	private: NS_SvcStock::CLserviceStock^ oSvc;
+	private: System::Data::DataSet^ oDs;
 
 	private: System::Windows::Forms::TextBox^ prenom;
 	private: System::Windows::Forms::TextBox^ DNN;
@@ -155,8 +158,6 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::TextBox^ seuil_reapprovisionnement_stock;
 	private: System::Windows::Forms::Label^ txt_couleur_article;
 	private: System::Windows::Forms::TextBox^ couleur_article_stock;
-	private: NS_SvcStock::CLserviceStock^ oSvc;
-	private: System::Data::DataSet^ oDs;
 	private: System::Windows::Forms::Button^ btn_supp_commande;
 	private: System::Windows::Forms::Button^ btn_afficher_commande;
 	private: System::Windows::Forms::Button^ btn_maj_commande;
@@ -1057,7 +1058,6 @@ namespace ProjetPOOG3 {
 			this->lab_prenom_client_stats->Size = System::Drawing::Size(180, 60);
 			this->lab_prenom_client_stats->TabIndex = 11;
 			this->lab_prenom_client_stats->Text = L"Prenom du client";
-			this->lab_prenom_client_stats->Click += gcnew System::EventHandler(this, &MyForm::lab_prenom_client_stats_Click);
 			// 
 			// ddn_client_stats
 			// 
@@ -1101,6 +1101,7 @@ namespace ProjetPOOG3 {
 			this->btn_ajouter_article_stock->TabIndex = 11;
 			this->btn_ajouter_article_stock->Text = L"Ajouter un article";
 			this->btn_ajouter_article_stock->UseVisualStyleBackColor = false;
+			this->btn_ajouter_article_stock->Click += gcnew System::EventHandler(this, &MyForm::btn_ajouter_article_Click);
 			// 
 			// btn_maj_article_stock
 			// 
@@ -1113,6 +1114,7 @@ namespace ProjetPOOG3 {
 			this->btn_maj_article_stock->TabIndex = 12;
 			this->btn_maj_article_stock->Text = L"Mettre a jour un article";
 			this->btn_maj_article_stock->UseVisualStyleBackColor = false;
+			this->btn_maj_article_stock->Click += gcnew System::EventHandler(this, &MyForm::btn_maj_article_Click);
 			// 
 			// btn_sup_article_stock
 			// 
@@ -1126,7 +1128,7 @@ namespace ProjetPOOG3 {
 			this->btn_sup_article_stock->TabIndex = 13;
 			this->btn_sup_article_stock->Text = L"Supprimer un article";
 			this->btn_sup_article_stock->UseVisualStyleBackColor = false;
-			this->btn_sup_article_stock->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_article_Click);
+			this->btn_sup_article_stock->Click += gcnew System::EventHandler(this, &MyForm::btn_sup_article_Click);
 			// 
 			// btn_afficher_article_stock
 			// 
@@ -1138,6 +1140,7 @@ namespace ProjetPOOG3 {
 			this->btn_afficher_article_stock->TabIndex = 14;
 			this->btn_afficher_article_stock->Text = L"Afficher un article";
 			this->btn_afficher_article_stock->UseVisualStyleBackColor = true;
+			this->btn_afficher_article_stock->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_article_Click);
 			// 
 			// txt_id_article
 			// 
@@ -1167,7 +1170,6 @@ namespace ProjetPOOG3 {
 			this->txt_nom_article->Size = System::Drawing::Size(180, 60);
 			this->txt_nom_article->TabIndex = 13;
 			this->txt_nom_article->Text = L"Nom de l\'article";
-			this->txt_nom_article->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// nom_article_stock
 			// 
@@ -1240,7 +1242,6 @@ namespace ProjetPOOG3 {
 			this->txt_seuil_reapprovisionnement->Size = System::Drawing::Size(180, 60);
 			this->txt_seuil_reapprovisionnement->TabIndex = 21;
 			this->txt_seuil_reapprovisionnement->Text = L"Seuil de reapprovisionnement";
-			this->txt_seuil_reapprovisionnement->Click += gcnew System::EventHandler(this, &MyForm::label1_Click_1);
 			// 
 			// seuil_reapprovisionnement_stock
 			// 
@@ -1374,6 +1375,7 @@ namespace ProjetPOOG3 {
 		this->dataGridView1->Refresh();
 		windformaffiche(b);
 	}
+
 
 
 
@@ -1572,6 +1574,7 @@ namespace ProjetPOOG3 {
 				   this->Controls->Add(this->txt_nom_article);
 				   this->Controls->Add(this->id_article_stock);
 				   this->Controls->Add(this->txt_id_article);
+				   this->oSvc = gcnew NS_SvcStock::CLserviceStock();
 				   break;
 			   case 5:
 				   this->Controls->Add(this->panier_moyen_stats);
@@ -1593,6 +1596,7 @@ namespace ProjetPOOG3 {
 				   break;
 			   }
 		   }
+
 
 
 
@@ -1651,6 +1655,7 @@ namespace ProjetPOOG3 {
 	}
 
 
+
 	private: System::Void articles_plus_vendus_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void articles_moins_vendus_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1661,8 +1666,7 @@ namespace ProjetPOOG3 {
 	}
 	private: System::Void lab_nom_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void lab_prenom_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 
 	private: System::Void btn_afficher_article_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
@@ -1671,9 +1675,26 @@ namespace ProjetPOOG3 {
 		this->dataGridView1->DataMember = "Rsl";
 
 	}
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void btn_ajouter_article_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oSvc->InsererUnArticle(this->nom_article_stock->Text, this->valeur_en_stock->Text, this->taux_tva_article_stock->Text, this->prix_ht_article_stock->Text, this->seuil_reapprovisionnement_stock->Text, this->couleur_article_stock->Text);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+
 	}
-	private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void btn_maj_article_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oSvc->ModifierUnArticle(this->nom_article_stock->Text, this->valeur_en_stock->Text, this->taux_tva_article_stock->Text, this->prix_ht_article_stock->Text, this->seuil_reapprovisionnement_stock->Text);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
+	private: System::Void btn_sup_article_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oSvc->SupprimerUnArticle(this->nom_article_stock->Text);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+
+
 	};
 }

@@ -9,6 +9,9 @@ namespace NS_SvcStock {
 		NS_Comp_MappageStock::CLmapStock^ oMapStock;
 	public:
 		CLserviceStock(void);
-		System::Data::DataSet^ ChargerTousArticles(System::String^);
+		System::Data::DataSet^ ChargerTousArticles(System::String^ dataTableName);
+		void InsererUnArticle(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
+		void ModifierUnArticle(System::String^, System::String^, System::String^, System::String^, System::String^);
+		void SupprimerUnArticle(System::String^);
 	};
 }
