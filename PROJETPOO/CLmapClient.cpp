@@ -1,7 +1,7 @@
 #include "CLmapClient.h"
 
 
-System::String^ NS_Comp_MappageClient::CLmapTB::Select(void)
+System::String^ NS_Comp_MappageClient::CLmapTBClient::Select(void)
 {
 	return "SELECT [c].[Numéro_Client],[c].[nom_client],[c].[prenom_client],[c].[DNN_CLient], [c].[Date_Pachat_Client]," +
 		"[adresse_facturation].[AP_adresse] AS AP_facturation, [adresse_facturation].[CP_adresse] AS CP_facturation," +
@@ -14,7 +14,7 @@ System::String^ NS_Comp_MappageClient::CLmapTB::Select(void)
 		"JOIN [Ville] ville_livraison ON [adresse_livraison].[id_ville] = [ville_livraison].[id_ville]";
 
 }
-System::String^ NS_Comp_MappageClient::CLmapTB::Insert(void){
+System::String^ NS_Comp_MappageClient::CLmapTBClient::Insert(void){
 		
 	return "DECLARE @NomVilleF NVARCHAR(100) " +
 		"SET @NomVilleF = '" + this->villeF_client + "' " +
@@ -29,7 +29,7 @@ System::String^ NS_Comp_MappageClient::CLmapTB::Insert(void){
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_F_client + " AND AP_adresse = '" + this->AP_F_client + "'), " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_L_client + " AND AP_adresse = '" + this->AP_L_client + "'))";
 }
-System::String^ NS_Comp_MappageClient::CLmapTB::Update(void) {
+System::String^ NS_Comp_MappageClient::CLmapTBClient::Update(void) {
 	
 	
 	return "UPDATE Client " +
@@ -42,7 +42,7 @@ System::String^ NS_Comp_MappageClient::CLmapTB::Update(void) {
 		"SET AP_adresse = '" + this->AP_L_client + "', CP_adresse = " + this->CP_L_client + " " +
 		"WHERE id_adresse = (SELECT adresse_L from Client where nom_client = '" + this->nom_client + "' AND prenom_client = '" + this->prenom_client + "' AND DNN_client = '" + this->DNN_client + "')";
 }
-System::String^ NS_Comp_MappageClient::CLmapTB::Delete(void) {
+System::String^ NS_Comp_MappageClient::CLmapTBClient::Delete(void) {
 	return  "DELETE FROM [Paiement] " +
 		"WHERE [id_commande] IN (SELECT [id_commande] FROM [Commande] WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [Numéro_Client] = '" + this->numero_client + "')); " +
 		"DELETE FROM [Commande_Article] " +
@@ -58,15 +58,15 @@ System::String^ NS_Comp_MappageClient::CLmapTB::Delete(void) {
 
 
 
-void NS_Comp_MappageClient::CLmapTB::setId_client(int a){							this->Id_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setnumero_client(System::String^ a){			this->numero_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setnom_client(System::String^ a){				this->nom_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setprenom_client(System::String^ a){			this->prenom_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setDNN_client(System::DateTime^ a){			this->DNN_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setDate_Pchat_client(System::DateTime^ a){		this->Date_Pchat_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setvilleL_client(System::String^a){			this->villeL_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setvilleF_client(System::String^a){			this->villeF_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setAP_L_client(System::String^a){				this->AP_L_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setAP_F_client(System::String^a){				this->AP_F_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setCP_L_client(int a){							this->CP_L_client = a;}
-void NS_Comp_MappageClient::CLmapTB::setCP_F_client(int a){							this->CP_F_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setId_client(int a){							this->Id_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setnumero_client(System::String^ a){			this->numero_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setnom_client(System::String^ a){				this->nom_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setprenom_client(System::String^ a){			this->prenom_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setDNN_client(System::DateTime^ a){			this->DNN_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setDate_Pchat_client(System::DateTime^ a){		this->Date_Pchat_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setvilleL_client(System::String^a){			this->villeL_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setvilleF_client(System::String^a){			this->villeF_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setAP_L_client(System::String^a){				this->AP_L_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setAP_F_client(System::String^a){				this->AP_F_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setCP_L_client(int a){							this->CP_L_client = a;}
+void NS_Comp_MappageClient::CLmapTBClient::setCP_F_client(int a){							this->CP_F_client = a;}

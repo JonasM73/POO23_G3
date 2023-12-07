@@ -1,6 +1,6 @@
 #pragma once
 #include "CLserviceClient.h"
-
+#include "CLserviceCommande.h"
 namespace ProjetPOOG3 {
 
 	int b;
@@ -37,7 +37,9 @@ namespace ProjetPOOG3 {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: NS_Comp_SvcClient::CLservices^ oSvc;
+	private: NS_Comp_SvcClient::CLservicesClient^ oSvcClient;
+	private: NS_Comp_SvcCommande::CLservicesCommande^ osvcCommande;
+
 	private: System::Data::DataSet^ oDs;
 
 	protected:
@@ -143,6 +145,29 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_maj_article_stock;
 	private: System::Windows::Forms::Button^ btn_sup_article_stock;
 	private: System::Windows::Forms::Button^ btn_afficher_article_stock;
+private: System::Windows::Forms::Button^ afficher_commandepaiement;
+
+	private: System::Windows::Forms::Button^ supp_commande;
+private: System::Windows::Forms::Button^ update_commande;
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::TextBox^ info_paiement;
+private: System::Windows::Forms::Label^ txt_moyen_paiement1;
+private: System::Windows::Forms::TextBox^ moyen_paiement1;
+private: System::Windows::Forms::Label^ label2;
+private: System::Windows::Forms::TextBox^ Date_paiement1;
+private: System::Windows::Forms::Label^ txt_Date_S1;
+private: System::Windows::Forms::TextBox^ Date_S1;
+private: System::Windows::Forms::Label^ txt_Date_S2;
+private: System::Windows::Forms::TextBox^ Date_S2;
+private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::TextBox^ Date_paiement2;
+private: System::Windows::Forms::Label^ txt_moyen_paiement2;
+private: System::Windows::Forms::TextBox^ moyen_paiement2;
+private: System::Windows::Forms::Button^ afficher_commandearticle;
+
+
+
+
 
 
 
@@ -243,6 +268,24 @@ namespace ProjetPOOG3 {
 			this->btn_maj_article_stock = (gcnew System::Windows::Forms::Button());
 			this->btn_sup_article_stock = (gcnew System::Windows::Forms::Button());
 			this->btn_afficher_article_stock = (gcnew System::Windows::Forms::Button());
+			this->afficher_commandepaiement = (gcnew System::Windows::Forms::Button());
+			this->supp_commande = (gcnew System::Windows::Forms::Button());
+			this->update_commande = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->info_paiement = (gcnew System::Windows::Forms::TextBox());
+			this->txt_moyen_paiement1 = (gcnew System::Windows::Forms::Label());
+			this->moyen_paiement1 = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->Date_paiement1 = (gcnew System::Windows::Forms::TextBox());
+			this->txt_Date_S1 = (gcnew System::Windows::Forms::Label());
+			this->Date_S1 = (gcnew System::Windows::Forms::TextBox());
+			this->txt_Date_S2 = (gcnew System::Windows::Forms::Label());
+			this->Date_S2 = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->Date_paiement2 = (gcnew System::Windows::Forms::TextBox());
+			this->txt_moyen_paiement2 = (gcnew System::Windows::Forms::Label());
+			this->moyen_paiement2 = (gcnew System::Windows::Forms::TextBox());
+			this->afficher_commandearticle = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -334,7 +377,6 @@ namespace ProjetPOOG3 {
 			this->btn_add->Text = L"Ajouter";
 			this->btn_add->UseVisualStyleBackColor = false;
 			this->btn_add->Click += gcnew System::EventHandler(this, &MyForm::btn_add_click);
-
 			// 
 			// btn_supp
 			// 
@@ -349,7 +391,6 @@ namespace ProjetPOOG3 {
 			this->btn_supp->Text = L"Suppresion ";
 			this->btn_supp->UseVisualStyleBackColor = false;
 			this->btn_supp->Click += gcnew System::EventHandler(this, &MyForm::btn_del_click);
-
 			// 
 			// btn_upd
 			// 
@@ -363,7 +404,6 @@ namespace ProjetPOOG3 {
 			this->btn_upd->Text = L"Update";
 			this->btn_upd->UseVisualStyleBackColor = false;
 			this->btn_upd->Click += gcnew System::EventHandler(this, &MyForm::btn_update_click);
-
 			// 
 			// btn_afficher
 			// 
@@ -377,7 +417,6 @@ namespace ProjetPOOG3 {
 			this->btn_afficher->Text = L"Afficher";
 			this->btn_afficher->UseVisualStyleBackColor = false;
 			this->btn_afficher->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_click);
-
 			// 
 			// numero_client
 			// 
@@ -756,7 +795,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->txt_ref_commande->Location = System::Drawing::Point(229, 364);
 			this->txt_ref_commande->Name = L"txt_ref_commande";
-			this->txt_ref_commande->Size = System::Drawing::Size(97, 16);
+			this->txt_ref_commande->Size = System::Drawing::Size(132, 20);
 			this->txt_ref_commande->TabIndex = 30;
 			this->txt_ref_commande->Text = L"ref_commande";
 			// 
@@ -767,7 +806,7 @@ namespace ProjetPOOG3 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->txt_id_client_commande->Location = System::Drawing::Point(229, 419);
 			this->txt_id_client_commande->Name = L"txt_id_client_commande";
-			this->txt_id_client_commande->Size = System::Drawing::Size(167, 16);
+			this->txt_id_client_commande->Size = System::Drawing::Size(244, 20);
 			this->txt_id_client_commande->TabIndex = 32;
 			this->txt_id_client_commande->Text = L"id_client (voir gestionclient)";
 			// 
@@ -782,12 +821,15 @@ namespace ProjetPOOG3 {
 			// add_commande
 			// 
 			this->add_commande->BackColor = System::Drawing::Color::PaleGreen;
+			this->add_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->add_commande->Location = System::Drawing::Point(569, 483);
 			this->add_commande->Name = L"add_commande";
 			this->add_commande->Size = System::Drawing::Size(253, 85);
 			this->add_commande->TabIndex = 35;
 			this->add_commande->Text = L"Ajouter une commande";
 			this->add_commande->UseVisualStyleBackColor = false;
+			this->add_commande->Click += gcnew System::EventHandler(this, &MyForm::btn_add_commande);
 			// 
 			// txt_date_emision_commande
 			// 
@@ -796,7 +838,7 @@ namespace ProjetPOOG3 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->txt_date_emision_commande->Location = System::Drawing::Point(229, 469);
 			this->txt_date_emision_commande->Name = L"txt_date_emision_commande";
-			this->txt_date_emision_commande->Size = System::Drawing::Size(171, 16);
+			this->txt_date_emision_commande->Size = System::Drawing::Size(243, 20);
 			this->txt_date_emision_commande->TabIndex = 37;
 			this->txt_date_emision_commande->Text = L"date d\'emision (aujourd\'hui)";
 			// 
@@ -815,7 +857,7 @@ namespace ProjetPOOG3 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->txt_date_livraison_commande->Location = System::Drawing::Point(229, 525);
 			this->txt_date_livraison_commande->Name = L"txt_date_livraison_commande";
-			this->txt_date_livraison_commande->Size = System::Drawing::Size(167, 16);
+			this->txt_date_livraison_commande->Size = System::Drawing::Size(258, 20);
 			this->txt_date_livraison_commande->TabIndex = 39;
 			this->txt_date_livraison_commande->Text = L"Date livraison (AAAA-MM-JJ)";
 			// 
@@ -834,7 +876,7 @@ namespace ProjetPOOG3 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->txt_id_article_commande->Location = System::Drawing::Point(229, 581);
 			this->txt_id_article_commande->Name = L"txt_id_article_commande";
-			this->txt_id_article_commande->Size = System::Drawing::Size(151, 16);
+			this->txt_id_article_commande->Size = System::Drawing::Size(234, 20);
 			this->txt_id_article_commande->TabIndex = 41;
 			this->txt_id_article_commande->Text = L"ID d\'article (gestion stock)";
 			// 
@@ -853,7 +895,7 @@ namespace ProjetPOOG3 {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->txt_quantite_article_commande->Location = System::Drawing::Point(229, 641);
 			this->txt_quantite_article_commande->Name = L"txt_quantite_article_commande";
-			this->txt_quantite_article_commande->Size = System::Drawing::Size(144, 16);
+			this->txt_quantite_article_commande->Size = System::Drawing::Size(164, 20);
 			this->txt_quantite_article_commande->TabIndex = 43;
 			this->txt_quantite_article_commande->Text = L"Quantite d\'articles";
 			// 
@@ -1083,6 +1125,190 @@ namespace ProjetPOOG3 {
 			this->btn_afficher_article_stock->Text = L"Afficher un article";
 			this->btn_afficher_article_stock->UseVisualStyleBackColor = true;
 			// 
+			// afficher_commandepaiement
+			// 
+			this->afficher_commandepaiement->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->afficher_commandepaiement->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F));
+			this->afficher_commandepaiement->Location = System::Drawing::Point(567, 419);
+			this->afficher_commandepaiement->Name = L"afficher_commandepaiement";
+			this->afficher_commandepaiement->Size = System::Drawing::Size(253, 56);
+			this->afficher_commandepaiement->TabIndex = 11;
+			this->afficher_commandepaiement->Text = L"Afficher Commandes/paiements";
+			this->afficher_commandepaiement->UseVisualStyleBackColor = false;
+			this->afficher_commandepaiement->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_commande);
+			// 
+			// supp_commande
+			// 
+			this->supp_commande->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(75)),
+				static_cast<System::Int32>(static_cast<System::Byte>(75)));
+			this->supp_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->supp_commande->Location = System::Drawing::Point(566, 590);
+			this->supp_commande->Name = L"supp_commande";
+			this->supp_commande->Size = System::Drawing::Size(253, 85);
+			this->supp_commande->TabIndex = 11;
+			this->supp_commande->Text = L"Suprimer une commande";
+			this->supp_commande->UseVisualStyleBackColor = false;
+			this->supp_commande->Click += gcnew System::EventHandler(this, &MyForm::btn_supp_commande);
+			// 
+			// update_commande
+			// 
+			this->update_commande->BackColor = System::Drawing::Color::CornflowerBlue;
+			this->update_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->update_commande->Location = System::Drawing::Point(566, 700);
+			this->update_commande->Name = L"update_commande";
+			this->update_commande->Size = System::Drawing::Size(253, 85);
+			this->update_commande->TabIndex = 12;
+			this->update_commande->Text = L"Update une commande";
+			this->update_commande->UseVisualStyleBackColor = false;
+			this->update_commande->Click += gcnew System::EventHandler(this, &MyForm::btn_update_commande);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(893, 382);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(399, 20);
+			this->label1->TabIndex = 47;
+			this->label1->Text = L"en combient de fois voulez vous payer\? (1 / 2)";
+			// 
+			// info_paiement
+			// 
+			this->info_paiement->Location = System::Drawing::Point(893, 396);
+			this->info_paiement->Multiline = true;
+			this->info_paiement->Name = L"info_paiement";
+			this->info_paiement->Size = System::Drawing::Size(294, 31);
+			this->info_paiement->TabIndex = 46;
+			// 
+			// txt_moyen_paiement1
+			// 
+			this->txt_moyen_paiement1->AutoSize = true;
+			this->txt_moyen_paiement1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_moyen_paiement1->Location = System::Drawing::Point(897, 469);
+			this->txt_moyen_paiement1->Name = L"txt_moyen_paiement1";
+			this->txt_moyen_paiement1->Size = System::Drawing::Size(161, 20);
+			this->txt_moyen_paiement1->TabIndex = 49;
+			this->txt_moyen_paiement1->Text = L"Moyen paiement 1";
+			// 
+			// moyen_paiement1
+			// 
+			this->moyen_paiement1->Location = System::Drawing::Point(897, 483);
+			this->moyen_paiement1->Multiline = true;
+			this->moyen_paiement1->Name = L"moyen_paiement1";
+			this->moyen_paiement1->Size = System::Drawing::Size(294, 31);
+			this->moyen_paiement1->TabIndex = 48;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(897, 548);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(147, 20);
+			this->label2->TabIndex = 51;
+			this->label2->Text = L"Date paiement 1";
+			// 
+			// Date_paiement1
+			// 
+			this->Date_paiement1->Location = System::Drawing::Point(897, 562);
+			this->Date_paiement1->Multiline = true;
+			this->Date_paiement1->Name = L"Date_paiement1";
+			this->Date_paiement1->Size = System::Drawing::Size(294, 31);
+			this->Date_paiement1->TabIndex = 50;
+			// 
+			// txt_Date_S1
+			// 
+			this->txt_Date_S1->AutoSize = true;
+			this->txt_Date_S1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_Date_S1->Location = System::Drawing::Point(897, 629);
+			this->txt_Date_S1->Name = L"txt_Date_S1";
+			this->txt_Date_S1->Size = System::Drawing::Size(264, 20);
+			this->txt_Date_S1->TabIndex = 53;
+			this->txt_Date_S1->Text = L"Date enregistrement du sold 1";
+			// 
+			// Date_S1
+			// 
+			this->Date_S1->Location = System::Drawing::Point(897, 643);
+			this->Date_S1->Multiline = true;
+			this->Date_S1->Name = L"Date_S1";
+			this->Date_S1->Size = System::Drawing::Size(294, 31);
+			this->Date_S1->TabIndex = 52;
+			// 
+			// txt_Date_S2
+			// 
+			this->txt_Date_S2->AutoSize = true;
+			this->txt_Date_S2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_Date_S2->Location = System::Drawing::Point(1291, 629);
+			this->txt_Date_S2->Name = L"txt_Date_S2";
+			this->txt_Date_S2->Size = System::Drawing::Size(274, 20);
+			this->txt_Date_S2->TabIndex = 59;
+			this->txt_Date_S2->Text = L"Date enregistrement du solde 2";
+			// 
+			// Date_S2
+			// 
+			this->Date_S2->Location = System::Drawing::Point(1291, 643);
+			this->Date_S2->Multiline = true;
+			this->Date_S2->Name = L"Date_S2";
+			this->Date_S2->Size = System::Drawing::Size(294, 31);
+			this->Date_S2->TabIndex = 58;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(1291, 548);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(147, 20);
+			this->label6->TabIndex = 57;
+			this->label6->Text = L"Date paiement 2";
+			// 
+			// Date_paiement2
+			// 
+			this->Date_paiement2->Location = System::Drawing::Point(1291, 562);
+			this->Date_paiement2->Multiline = true;
+			this->Date_paiement2->Name = L"Date_paiement2";
+			this->Date_paiement2->Size = System::Drawing::Size(294, 31);
+			this->Date_paiement2->TabIndex = 56;
+			// 
+			// txt_moyen_paiement2
+			// 
+			this->txt_moyen_paiement2->AutoSize = true;
+			this->txt_moyen_paiement2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_moyen_paiement2->Location = System::Drawing::Point(1291, 469);
+			this->txt_moyen_paiement2->Name = L"txt_moyen_paiement2";
+			this->txt_moyen_paiement2->Size = System::Drawing::Size(161, 20);
+			this->txt_moyen_paiement2->TabIndex = 55;
+			this->txt_moyen_paiement2->Text = L"Moyen paiement 2";
+			// 
+			// moyen_paiement2
+			// 
+			this->moyen_paiement2->Location = System::Drawing::Point(1291, 483);
+			this->moyen_paiement2->Multiline = true;
+			this->moyen_paiement2->Name = L"moyen_paiement2";
+			this->moyen_paiement2->Size = System::Drawing::Size(294, 31);
+			this->moyen_paiement2->TabIndex = 54;
+			// 
+			// afficher_commandearticle
+			// 
+			this->afficher_commandearticle->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->afficher_commandearticle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F));
+			this->afficher_commandearticle->Location = System::Drawing::Point(567, 348);
+			this->afficher_commandearticle->Name = L"afficher_commandearticle";
+			this->afficher_commandearticle->Size = System::Drawing::Size(253, 65);
+			this->afficher_commandearticle->TabIndex = 12;
+			this->afficher_commandearticle->Text = L"Afficher commandes/articles";
+			this->afficher_commandearticle->UseVisualStyleBackColor = false;
+			this->afficher_commandearticle->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_commandearticle);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -1101,14 +1327,14 @@ namespace ProjetPOOG3 {
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
 
 		private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 		{
-			this->oSvc = gcnew NS_Comp_SvcClient::CLservices();
+			this->oSvcClient = gcnew NS_Comp_SvcClient::CLservicesClient();
+			this->osvcCommande = gcnew NS_Comp_SvcCommande::CLservicesCommande();
 		}
 
 
@@ -1184,6 +1410,7 @@ namespace ProjetPOOG3 {
 			   switch (a)
 			   {
 			   case 0:
+				  
 				   this->Controls->Remove(this->txt_ville_F);
 				   this->Controls->Remove(this->txt_ville_L);
 				   this->Controls->Remove(this->txt_CP_L);
@@ -1224,19 +1451,6 @@ namespace ProjetPOOG3 {
 				   this->Controls->Remove(this->btn_upd);
 				   this->Controls->Remove(this->btn_supp);
 				   this->Controls->Remove(this->btn_add);
-				   this->Controls->Remove(this->txt_quantite_article_commande);
-				   this->Controls->Remove(this->quantite_article_commande);
-				   this->Controls->Remove(this->txt_id_article_commande);
-				   this->Controls->Remove(this->id_article_commande);
-				   this->Controls->Remove(this->txt_date_livraison_commande);
-				   this->Controls->Remove(this->Date_livraison_commande);
-				   this->Controls->Remove(this->txt_date_emision_commande);
-				   this->Controls->Remove(this->Date_emision_commande);
-				   this->Controls->Remove(this->add_commande);
-				   this->Controls->Remove(this->txt_id_client_commande);
-				   this->Controls->Remove(this->id_client_commande);
-				   this->Controls->Remove(this->txt_ref_commande);
-				   this->Controls->Remove(this->ref_commande);
 				   this->Controls->Remove(this->panier_moyen_stats);
 				   this->Controls->Remove(this->chiffre_affaire);
 				   this->Controls->Remove(this->liste_mois_stats);
@@ -1255,6 +1469,38 @@ namespace ProjetPOOG3 {
 				   this->Controls->Remove(this->btn_sup_article_stock);
 				   this->Controls->Remove(this->btn_maj_article_stock);
 				   this->Controls->Remove(this->btn_ajouter_article_stock);
+				   this->Controls->Remove(this->txt_Date_S2);
+				   this->Controls->Remove(this->Date_S2);
+				   this->Controls->Remove(this->label6);
+				   this->Controls->Remove(this->Date_paiement2);
+				   this->Controls->Remove(this->txt_moyen_paiement2);
+				   this->Controls->Remove(this->moyen_paiement2);
+				   this->Controls->Remove(this->txt_Date_S1);
+				   this->Controls->Remove(this->Date_S1);
+				   this->Controls->Remove(this->label2);
+				   this->Controls->Remove(this->Date_paiement1);
+				   this->Controls->Remove(this->txt_moyen_paiement1);
+				   this->Controls->Remove(this->moyen_paiement1);
+				   this->Controls->Remove(this->label1);
+				   this->Controls->Remove(this->info_paiement);
+				   this->Controls->Remove(this->txt_quantite_article_commande);
+				   this->Controls->Remove(this->quantite_article_commande);
+				   this->Controls->Remove(this->txt_id_article_commande);
+				   this->Controls->Remove(this->id_article_commande);
+				   this->Controls->Remove(this->txt_date_livraison_commande);
+				   this->Controls->Remove(this->Date_livraison_commande);
+				   this->Controls->Remove(this->txt_date_emision_commande);
+				   this->Controls->Remove(this->Date_emision_commande);
+				   this->Controls->Remove(this->add_commande);
+				   this->Controls->Remove(this->txt_id_client_commande);
+				   this->Controls->Remove(this->id_client_commande);
+				   this->Controls->Remove(this->txt_ref_commande);
+				   this->Controls->Remove(this->ref_commande);
+				   this->Controls->Remove(this->afficher_commandepaiement);
+				   this->Controls->Remove(this->update_commande);
+				   this->Controls->Remove(this->supp_commande);
+				   this->Controls->Remove(this->afficher_commandearticle);
+
 				   break;
 
 			   case 1:
@@ -1306,6 +1552,21 @@ namespace ProjetPOOG3 {
 				   this->Controls->Add(this->nom);
 				   break;
 			   case 3:
+				   this->Controls->Add(this->afficher_commandearticle);
+				   this->Controls->Add(this->txt_Date_S2);
+				   this->Controls->Add(this->Date_S2);
+				   this->Controls->Add(this->label6);
+				   this->Controls->Add(this->Date_paiement2);
+				   this->Controls->Add(this->txt_moyen_paiement2);
+				   this->Controls->Add(this->moyen_paiement2);
+				   this->Controls->Add(this->txt_Date_S1);
+				   this->Controls->Add(this->Date_S1);
+				   this->Controls->Add(this->label2);
+				   this->Controls->Add(this->Date_paiement1);
+				   this->Controls->Add(this->txt_moyen_paiement1);
+				   this->Controls->Add(this->moyen_paiement1);
+				   this->Controls->Add(this->label1);
+				   this->Controls->Add(this->info_paiement);
 				   this->Controls->Add(this->txt_quantite_article_commande);
 				   this->Controls->Add(this->quantite_article_commande);
 				   this->Controls->Add(this->txt_id_article_commande);
@@ -1319,6 +1580,10 @@ namespace ProjetPOOG3 {
 				   this->Controls->Add(this->id_client_commande);
 				   this->Controls->Add(this->txt_ref_commande);
 				   this->Controls->Add(this->ref_commande);
+				   this->Controls->Add(this->afficher_commandepaiement);
+				   this->Controls->Add(this->update_commande);
+				   this->Controls->Add(this->supp_commande);
+
 				   break;
 			   case 4:
 				   this->Controls->Add(this->btn_afficher_article_stock);
@@ -1347,22 +1612,28 @@ namespace ProjetPOOG3 {
 			   }
 		   }
 
+		 
 
 
 		  
 
 	private: System::Void btn_afficher_click(System::Object^ sender, System::EventArgs^ e) {
 		//affichage personnel
+		if (b == 1){
+			
+		}
+		
+		//affichage client
 		if (b == 2) {
 			this->dataGridView1->Refresh();
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
 			
 		}
 	}
 	private: System::Void btn_add_click(System::Object^ sender, System::EventArgs^ e) {
-		//affichage personnel
+		//add client
 		if (b == 2) {
 		this->dataGridView1->Refresh();
 		DateTime DateNN, DatePahat;
@@ -1377,13 +1648,14 @@ namespace ProjetPOOG3 {
 			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			return;
 		}
-		this->oSvc->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
-		this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+		this->oSvcClient->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+		this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 		this->dataGridView1->DataSource = this->oDs;
 		this->dataGridView1->DataMember = "Rsl";
 		}
 	}
 	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {
+		//del client
 		if (b == 2) {
 			DateTime DateNN;
 			if (!DateTime::TryParse(DNN->Text, DateNN)) {
@@ -1394,13 +1666,14 @@ namespace ProjetPOOG3 {
 				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			this->oSvc->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->oSvcClient->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
+			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
 		}
 	}
 	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+		//add client
 		if (b == 2) {
 			this->dataGridView1->Refresh();
 			DateTime DateNN, DatePahat;
@@ -1417,15 +1690,107 @@ namespace ProjetPOOG3 {
 				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			this->oSvc->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->oSvcClient->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
 		}
 	
 	}
 
+	private: System::Void btn_afficher_commande(System::Object^ sender, System::EventArgs^ e) {
+	
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	private: System::Void btn_afficher_commandearticle(System::Object^ sender, System::EventArgs^ e) {
+	
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandesArticle("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+		   
+	private: System::Void btn_add_commande(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		int idclient, idarticle, qtt_article, qtt_paiement;
+		DateTime Demission, Dlivraison, Dpaiement1, Dpaiement2, D_E_S1, D_E_S2;
+		//verif des infos
+		if (!Int32::TryParse(info_paiement->Text, qtt_paiement) || !Int32::TryParse(id_client_commande->Text, idclient) || !Int32::TryParse(id_article_commande->Text, idarticle) || !Int32::TryParse(quantite_article_commande->Text, qtt_article)) {
+			MessageBox::Show("Erreur dans les id ou la quantité d'article", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;		}
+		if (!DateTime::TryParse(Date_S1->Text, D_E_S1) || !DateTime::TryParse(Date_paiement1->Text, Dpaiement1) || !DateTime::TryParse(Date_emision_commande->Text, Demission) || !DateTime::TryParse(Date_livraison_commande->Text, Dlivraison)) {
+			MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
+		if (String::IsNullOrWhiteSpace(ref_commande->Text) || String::IsNullOrWhiteSpace(moyen_paiement1->Text) ) {
+			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
+		
+		//verif des infos pour un paiement
+		if (qtt_paiement == 1) {
+			this->osvcCommande->AjouterUneCommande1(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, this->moyen_paiement1->Text, D_E_S1, idarticle, qtt_article);
+		}		//verif des infos pour 2 paiement
+		else if (qtt_paiement == 2) {
+			if (!DateTime::TryParse(Date_S2->Text, D_E_S2) || !DateTime::TryParse(Date_paiement2->Text, Dpaiement2)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+		MessageBox::Show("YO", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			this->osvcCommande->AjouterUneCommande2(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, Dpaiement2, this->moyen_paiement1->Text, this->moyen_paiement2->Text, D_E_S1, D_E_S2, idarticle, qtt_article);
+			}
+		else {MessageBox::Show("vous avez saisie un nombre de paiement incorrect", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+		}
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 
+	
+	}
+	private: System::Void btn_supp_commande(System::Object^ sender, System::EventArgs^ e) { 
+		this->dataGridView1->Refresh();
+		DateTime Demision, Dlivraison;
+		if (!DateTime::TryParse(Date_emision_commande->Text, Demision) || !DateTime::TryParse(Date_livraison_commande->Text, Dlivraison)) {
+			MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;		}//verfi des champs
+		if (String::IsNullOrWhiteSpace(ref_commande->Text)) {
+			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;		}
+
+		this->osvcCommande->DeleteUneCommande(this->ref_commande->Text, Demision, Dlivraison);
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	private: System::Void btn_update_commande(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		int id_article, qtt_article;
+		DateTime D_L;
+		if (String::IsNullOrWhiteSpace(Date_livraison_commande->Text)) {
+			if (!Int32::TryParse(quantite_article_commande->Text, qtt_article) || (String::IsNullOrWhiteSpace(ref_commande->Text)) || !Int32::TryParse(id_article_commande->Text, id_article)) {
+				MessageBox::Show("Un Champ est manquant ou incorrect", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+					}
+			this->osvcCommande->UpdateUneCommandeArticle(this->ref_commande->Text, id_article, qtt_article);
+			this->oDs = this->osvcCommande->selectionnerToutesLesCommandesArticle("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
+			
+		else {
+			if (!DateTime::TryParse(Date_livraison_commande->Text, D_L)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}	
+			this->osvcCommande->UpdateUneCommandelivraison(D_L, this->ref_commande->Text);
+			this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
+		
+	}
 
 	private: System::Void panier_moyen_stats_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
