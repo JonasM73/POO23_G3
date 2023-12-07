@@ -3,9 +3,10 @@
 
 NS_Comp_Data::CLcad::CLcad(void)
 {
-	this->sCnx = "Data Source = DESKTOP-5908F3E\\MSSQL_JONAS;Initial Catalog = Projet_POO;User ID =jonas_admin; Password=cesi";
+	this->sCnx = "Server=PC_DE_ALEXIS\\SQL_SERV_A; Database=Projet_POO; User ID=alexis_user; Password=azerty";
 
-	this->sSql = "Rien";
+
+	this->sSql = "";
 
 	this->oCnx = gcnew System::Data::SqlClient::SqlConnection(this->sCnx);
 	this->oCmd = gcnew System::Data::SqlClient::SqlCommand(this->sSql, this->oCnx);
