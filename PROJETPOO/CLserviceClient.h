@@ -14,7 +14,7 @@ namespace NS_Comp_SvcClient
 		CLservices(void);
 		System::Data::DataSet^ selectionnerToutesLesPersonnes(System::String^);
 		void AjouterUnePersonne(System::String^ , System::String^ , System::String^,  System::DateTime^, System::DateTime^, System::String^ , System::String^ ,int, int, System::String^, System::String^);
-		//void deleteuneperssonne(int);
-		//udapte une personne
+		void DeleteUnePersonne(System::String^, System::String^, System::String^, System::DateTime^);
+		void UpdateUnnePersonne(System::String^, System::String^, System::String^, System::DateTime^, System::DateTime^, System::String^, System::String^, int, int, System::String^, System::String^);
 	};
 }
