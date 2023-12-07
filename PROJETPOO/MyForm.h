@@ -1362,7 +1362,7 @@ namespace ProjetPOOG3 {
 		}
 	}
 	private: System::Void btn_add_click(System::Object^ sender, System::EventArgs^ e) {
-		//affichage personnel
+		//add client
 		if (b == 2) {
 		this->dataGridView1->Refresh();
 		DateTime DateNN, DatePahat;
@@ -1401,22 +1401,27 @@ namespace ProjetPOOG3 {
 		}
 	}
 	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		DateTime DateNN, DatePahat;
-		int codePostalL, codePostalF;
-		if (!DateTime::TryParse(DNN->Text, DateNN) || !DateTime::TryParse(Date_Pachat_client->Text, DatePahat)) {
-			MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			return;		}
-		if (!Int32::TryParse(CP_L->Text, codePostalL) || !Int32::TryParse(CP_F->Text, codePostalF)) {
-			MessageBox::Show("Erreur dans le code postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			return;		}
-		if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
-			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			return;		}	
-		this->oSvc->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
-		this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
+		if (b == 2) {
+			this->dataGridView1->Refresh();
+			DateTime DateNN, DatePahat;
+			int codePostalL, codePostalF;
+			if (!DateTime::TryParse(DNN->Text, DateNN) || !DateTime::TryParse(Date_Pachat_client->Text, DatePahat)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (!Int32::TryParse(CP_L->Text, codePostalL) || !Int32::TryParse(CP_F->Text, codePostalF)) {
+				MessageBox::Show("Erreur dans le code postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
+				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvc->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
 	
 	}
 
