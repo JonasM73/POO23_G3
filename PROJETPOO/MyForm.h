@@ -1362,7 +1362,7 @@ namespace ProjetPOOG3 {
 		}
 	}
 	private: System::Void btn_add_click(System::Object^ sender, System::EventArgs^ e) {
-		//add client
+		//affichage personnel
 		if (b == 2) {
 		this->dataGridView1->Refresh();
 		DateTime DateNN, DatePahat;
