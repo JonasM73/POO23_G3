@@ -5,13 +5,13 @@
 
 namespace NS_Comp_SvcClient
 {
-	ref class CLservices
+	ref class CLservicesClient
 	{
 	private:
 		NS_Comp_Data::CLcad^ oCad;
-		NS_Comp_MappageClient::CLmapTB^ serviceClient;
+		NS_Comp_MappageClient::CLmapTBClient^ CLmapService;
 	public:
-		CLservices(void);
+		CLservicesClient(void);
 		System::Data::DataSet^ selectionnerToutesLesPersonnes(System::String^);
 		void AjouterUnePersonne(System::String^, System::String^, System::String^, System::DateTime^, System::DateTime^, System::String^, System::String^, int, int, System::String^, System::String^);
 		void DeleteUnePersonne(System::String^, System::String^, System::String^, System::DateTime^);

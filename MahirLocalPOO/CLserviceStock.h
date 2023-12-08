@@ -10,5 +10,8 @@ namespace NS_SvcStock {
 	public:
 		CLserviceStock(void);
 		System::Data::DataSet^ ChargerTousArticles(System::String^ dataTableName);
+		void InsererUnArticle(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
+		void ModifierUnArticle(System::String^, System::String^, System::String^, System::String^, System::String^);
+		void SupprimerUnArticle(System::String^);
 	};
 }

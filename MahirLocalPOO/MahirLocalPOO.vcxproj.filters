@@ -27,10 +27,22 @@
     <ClCompile Include="CLserviceStock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CLmapClient.cpp">
+    <ClCompile Include="CLmapCommande.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLserviceCommande.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CLserviceClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLmapClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLserviceStats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLmapStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,10 +59,22 @@
     <ClInclude Include="CLserviceStock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CLmapClient.h">
+    <ClInclude Include="CLmapCommande.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLserviceCommande.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CLserviceClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLmapClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLserviceStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLmapStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

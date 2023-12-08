@@ -1,7 +1,7 @@
 #pragma once
 namespace NS_Comp_MappageClient
 {
-	ref class CLmapTB
+	ref class CLmapTBClient
 	{
 	private:
 		System::String^ sSql;
