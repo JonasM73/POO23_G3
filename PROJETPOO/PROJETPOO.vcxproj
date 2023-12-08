@@ -122,8 +122,10 @@
   <ItemGroup>
     <ClCompile Include="CLcad.cpp" />
     <ClCompile Include="CLmapClient.cpp" />
+    <ClCompile Include="CLmapStats.cpp" />
     <ClCompile Include="CLmapStock.cpp" />
     <ClCompile Include="CLserviceClient.cpp" />
+    <ClCompile Include="CLserviceStats.cpp" />
     <ClCompile Include="CLserviceStock.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
@@ -134,14 +136,21 @@
     <ClInclude Include="CLmapClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="CLmapStats.h" />
     <ClInclude Include="CLmapStock.h" />
     <ClInclude Include="CLserviceClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="CLserviceStats.h" />
     <ClInclude Include="CLserviceStock.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

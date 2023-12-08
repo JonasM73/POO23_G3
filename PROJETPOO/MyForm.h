@@ -2,6 +2,9 @@
 #include "CLserviceStock.h"
 #include "CLcad.h"
 #include "CLmapClient.h"
+#include "CLserviceStats.h"
+#include <iostream>
+#include <string>
 namespace ProjetPOOG3 {
 
 	int b;
@@ -48,6 +51,7 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_GestionStatistique;
 	private: System::Windows::Forms::TextBox^ nom;
 	private: NS_SvcStock::CLserviceStock^ oSvc;
+	private: NS_SvcStats::CLserviceStats^ oSvcStats;
 	private: System::Data::DataSet^ oDs;
 
 	private: System::Windows::Forms::TextBox^ prenom;
@@ -161,6 +165,9 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_supp_commande;
 	private: System::Windows::Forms::Button^ btn_afficher_commande;
 	private: System::Windows::Forms::Button^ btn_maj_commande;
+private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
+
+
 
 
 
@@ -306,6 +313,7 @@ namespace ProjetPOOG3 {
 			this->btn_supp_commande = (gcnew System::Windows::Forms::Button());
 			this->btn_afficher_commande = (gcnew System::Windows::Forms::Button());
 			this->btn_maj_commande = (gcnew System::Windows::Forms::Button());
+			this->btn_montant_achat_client_stats = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -776,6 +784,7 @@ namespace ProjetPOOG3 {
 			this->ville_personnel->Multiline = true;
 			this->ville_personnel->Name = L"ville_personnel";
 			this->ville_personnel->Size = System::Drawing::Size(300, 30);
+			this->ville_personnel->TabIndex = 0;
 			// 
 			// id_superieur
 			// 
@@ -1022,7 +1031,7 @@ namespace ProjetPOOG3 {
 			this->valeur_achat_stock_stats->UseVisualStyleBackColor = true;
 			this->valeur_achat_stock_stats->Click += gcnew System::EventHandler(this, &MyForm::valeur_achat_stock_Click);
 			// 
-			// nom_client_stats
+			// nom_client_stats // = NUMERO CLIENT
 			// 
 			this->nom_client_stats->Location = System::Drawing::Point(830, 430);
 			this->nom_client_stats->Name = L"nom_client_stats";
@@ -1038,7 +1047,7 @@ namespace ProjetPOOG3 {
 			this->label_nom_client_stats->Name = L"label_nom_client_stats";
 			this->label_nom_client_stats->Size = System::Drawing::Size(180, 60);
 			this->label_nom_client_stats->TabIndex = 11;
-			this->label_nom_client_stats->Text = L"Nom du client";
+			this->label_nom_client_stats->Text = L"N° du client";
 			this->label_nom_client_stats->Click += gcnew System::EventHandler(this, &MyForm::lab_nom_client_stats_Click);
 			// 
 			// prenom_client_stats
@@ -1073,7 +1082,7 @@ namespace ProjetPOOG3 {
 				static_cast<System::Byte>(0)));
 			this->lab_ddn_client_stats->Location = System::Drawing::Point(830, 515);
 			this->lab_ddn_client_stats->Name = L"lab_ddn_client_stats";
-			this->lab_ddn_client_stats->Size = System::Drawing::Size(180, 60);
+			this->lab_ddn_client_stats->Size = System::Drawing::Size(150, 60);
 			this->lab_ddn_client_stats->TabIndex = 11;
 			this->lab_ddn_client_stats->Text = L"Date de naissance du client \r\n(AAAA-MM-JJ)";
 			// 
@@ -1270,12 +1279,12 @@ namespace ProjetPOOG3 {
 			// 
 			// btn_supp_commande
 			// 
-			this->btn_supp_commande->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(75)),
-				static_cast<System::Int32>(static_cast<System::Byte>(75)));
-			this->btn_supp_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btn_supp_commande->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(252)),
+				static_cast<System::Int32>(static_cast<System::Byte>(75)), static_cast<System::Int32>(static_cast<System::Byte>(75)));
+			this->btn_supp_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->btn_supp_commande->Location = System::Drawing::Point(430, 407);
-			this->btn_supp_commande->Name = L"btn_supp";
+			this->btn_supp_commande->Name = L"btn_supp_commande";
 			this->btn_supp_commande->Size = System::Drawing::Size(227, 152);
 			this->btn_supp_commande->TabIndex = 26;
 			this->btn_supp_commande->Text = L"Supprimer ";
@@ -1284,27 +1293,38 @@ namespace ProjetPOOG3 {
 			// btn_afficher_commande
 			// 
 			this->btn_afficher_commande->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->btn_afficher_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btn_afficher_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->btn_afficher_commande->Location = System::Drawing::Point(430, 565);
-			this->btn_afficher_commande->Name = L"btn_afficher";
+			this->btn_afficher_commande->Name = L"btn_afficher_commande";
 			this->btn_afficher_commande->Size = System::Drawing::Size(227, 142);
 			this->btn_afficher_commande->TabIndex = 28;
 			this->btn_afficher_commande->Text = L"Afficher";
 			this->btn_afficher_commande->UseVisualStyleBackColor = false;
-
 			// 
 			// btn_maj_commande
 			// 
 			this->btn_maj_commande->BackColor = System::Drawing::Color::CornflowerBlue;
-			this->btn_maj_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btn_maj_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->btn_maj_commande->Location = System::Drawing::Point(212, 565);
-			this->btn_maj_commande->Name = L"btn_upd";
+			this->btn_maj_commande->Name = L"btn_maj_commande";
 			this->btn_maj_commande->Size = System::Drawing::Size(212, 142);
 			this->btn_maj_commande->TabIndex = 27;
 			this->btn_maj_commande->Text = L"Mettre a jour";
 			this->btn_maj_commande->UseVisualStyleBackColor = false;
+			// 
+			// btn_montant_achat_client_stats
+			// 
+			this->btn_montant_achat_client_stats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->btn_montant_achat_client_stats->Location = System::Drawing::Point(1040, 400);
+			this->btn_montant_achat_client_stats->Name = L"btn_montant_achat_client_stats";
+			this->btn_montant_achat_client_stats->Size = System::Drawing::Size(160, 190);
+			this->btn_montant_achat_client_stats->TabIndex = 11;
+			this->btn_montant_achat_client_stats->Text = L"Montant Total des Achats pour un client";
+			this->btn_montant_achat_client_stats->UseVisualStyleBackColor = true;
+			this->btn_montant_achat_client_stats->Click += gcnew System::EventHandler(this, &MyForm::btn_montant_client_stats_Click);
 			// 
 			// MyForm
 			// 
@@ -1487,6 +1507,7 @@ namespace ProjetPOOG3 {
 				   this->Controls->Remove(this->btn_maj_commande);
 				   this->Controls->Remove(this->btn_afficher_commande);
 				   this->Controls->Remove(this->btn_supp_commande);
+				   this->Controls->Remove(this->btn_montant_achat_client_stats);
 				   break;
 
 			   case 1:
@@ -1591,6 +1612,8 @@ namespace ProjetPOOG3 {
 				   this->Controls->Add(this->prenom_client_stats);
 				   this->Controls->Add(this->lab_ddn_client_stats);
 				   this->Controls->Add(this->ddn_client_stats);
+				   this->Controls->Add(this->btn_montant_achat_client_stats);
+				   this->oSvcStats = gcnew NS_SvcStats::CLserviceStats();
 				   break;
 			   case 6:
 				   break;
@@ -1608,61 +1631,90 @@ namespace ProjetPOOG3 {
 
 
 	private: System::Void panier_moyen_stats_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherPanierMoyen("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void liste_mois_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		int mois = -1;
 		if (this->liste_mois_stats->Text == L"Janvier") {
-
+			mois = 1;
 		}
 		if (this->liste_mois_stats->Text == L"Fevrier") {
-
+			mois = 2;
 		}
 		if (this->liste_mois_stats->Text == L"Mars") {
-
+			mois = 3;
 		}
 		if (this->liste_mois_stats->Text == L"Avril") {
-
+			mois = 4;
 		}
 		if (this->liste_mois_stats->Text == L"Mai") {
-
+			mois = 5;
 		}
 		if (this->liste_mois_stats->Text == L"Juin") {
-
+			mois = 6;
 		}
 		if (this->liste_mois_stats->Text == L"Juillet") {
-
+			mois = 7;
 		}
 		if (this->liste_mois_stats->Text == L"Aout") {
-
+			mois = 8;
 		}
 		if (this->liste_mois_stats->Text == L"Septembre") {
-
+			mois = 9;
 		}
 		if (this->liste_mois_stats->Text == L"Octobre") {
-
+			mois = 10;
 		}
 		if (this->liste_mois_stats->Text == L"Novembre") {
-
+			mois = 11;
 		}
 		if (this->liste_mois_stats->Text == L"Decembre") {
-
+			mois = 12;
 		}
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherCAMois("Rsl", mois);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void label_mois_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void produits_reapprovision_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherProduitsStockBas("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 
 
 
 	private: System::Void articles_plus_vendus_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherArticlesPlusVendus("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void articles_moins_vendus_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherArticlesMoinsVendus("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void valeur_commerciale_stock_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherValeurCommercialeStock("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void valeur_achat_stock_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherValeurAchatStock("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void lab_nom_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -1696,5 +1748,11 @@ namespace ProjetPOOG3 {
 	}
 
 
-	};
+	private: System::Void btn_montant_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcStats->AfficherMontantTotalClient("Rsl", this->nom_client_stats->Text);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+};
 }
