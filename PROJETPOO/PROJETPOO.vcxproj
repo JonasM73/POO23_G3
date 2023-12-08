@@ -122,10 +122,15 @@
   <ItemGroup>
     <ClCompile Include="CLcad.cpp" />
     <ClCompile Include="CLmapClient.cpp" />
+
     <ClCompile Include="CLmapStats.cpp" />
     <ClCompile Include="CLmapStock.cpp" />
-    <ClCompile Include="CLserviceClient.cpp" />
     <ClCompile Include="CLserviceStats.cpp" />
+=======
+    <ClCompile Include="CLmapCommande.cpp" />
+    <ClCompile Include="CLserviceClient.cpp" />
+    <ClCompile Include="CLserviceCommande.cpp" />
+
     <ClCompile Include="CLserviceStock.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
@@ -136,14 +141,27 @@
     <ClInclude Include="CLmapClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+
     <ClInclude Include="CLmapStats.h" />
     <ClInclude Include="CLmapStock.h" />
     <ClInclude Include="CLserviceClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="CLserviceStats.h" />
+
+    <ClInclude Include="CLmapCommande.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CLserviceCommande.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+
+
     <ClInclude Include="CLserviceStock.h" />
     <ClInclude Include="MyForm.h">
+      
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

@@ -27,7 +27,7 @@ System::String^ NS_Comp_MappageStock::CLmapStock::Delete(void) {
 }
 System::String^ NS_Comp_MappageStock::CLmapStock::Update(void) {
 	return "UPDATE Article SET stock_article=" + this->valeur_stock_art + ", taux_tva_article =" + this->taux_tva_art +
-		", prix_HT_article =" + this->prix_ht_art + ", seuille_reapprovisionnement =" + this->seuil_reappro_art +
+		", prix_HT_article =" + this->prix_ht_art + ", seuille_reapprovisionnement =" + this->seuil_reappro_art + " " +
 		"WHERE nom_article = '" + this->nom_article + "';";
 }
 void NS_Comp_MappageStock::CLmapStock::setNomart(System::String^ n) { this->nom_article = n; }
