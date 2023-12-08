@@ -122,7 +122,9 @@
   <ItemGroup>
     <ClCompile Include="CLcad.cpp" />
     <ClCompile Include="CLmapClient.cpp" />
+    <ClCompile Include="CLmapStock.cpp" />
     <ClCompile Include="CLserviceClient.cpp" />
+    <ClCompile Include="CLserviceStock.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +134,11 @@
     <ClInclude Include="CLmapClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="CLmapStock.h" />
     <ClInclude Include="CLserviceClient.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="CLserviceStock.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

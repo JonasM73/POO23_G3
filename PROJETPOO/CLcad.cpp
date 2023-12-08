@@ -1,9 +1,12 @@
 #include "CLcad.h"
 
-
 NS_Comp_Data::CLcad::CLcad(void)
 {
-	this->sCnx = "Data Source = DESKTOP-5908F3E\\MSSQL_JONAS;Initial Catalog = Projet_POO;User ID =jonas_admin; Password=cesi";
+	this->sCnx = "Data Source = PCMAHIR\\MSSQL_POO;" +
+		"Initial Catalog =PooG3;" +
+		"Persist Security Info=True;" +
+		"User ID =sa;" +
+		"Password =0506;";
 
 	this->sSql = "Rien";
 
