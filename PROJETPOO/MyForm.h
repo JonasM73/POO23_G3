@@ -1766,6 +1766,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 	}
 	private: System::Void btn_update_commande(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
+		//rgq
 		int id_article, qtt_article;
 		DateTime D_L;
 		if (String::IsNullOrWhiteSpace(Date_livraison_commande->Text)) {
