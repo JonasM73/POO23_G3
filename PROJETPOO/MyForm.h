@@ -1082,7 +1082,7 @@ private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
 				static_cast<System::Byte>(0)));
 			this->lab_ddn_client_stats->Location = System::Drawing::Point(830, 515);
 			this->lab_ddn_client_stats->Name = L"lab_ddn_client_stats";
-			this->lab_ddn_client_stats->Size = System::Drawing::Size(150, 60);
+			this->lab_ddn_client_stats->Size = System::Drawing::Size(130, 60);
 			this->lab_ddn_client_stats->TabIndex = 11;
 			this->lab_ddn_client_stats->Text = L"Date de naissance du client \r\n(AAAA-MM-JJ)";
 			// 
@@ -1318,7 +1318,7 @@ private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
 			// 
 			this->btn_montant_achat_client_stats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_montant_achat_client_stats->Location = System::Drawing::Point(1040, 400);
+			this->btn_montant_achat_client_stats->Location = System::Drawing::Point(1050, 400);
 			this->btn_montant_achat_client_stats->Name = L"btn_montant_achat_client_stats";
 			this->btn_montant_achat_client_stats->Size = System::Drawing::Size(160, 190);
 			this->btn_montant_achat_client_stats->TabIndex = 11;
@@ -1386,7 +1386,7 @@ private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
 		windformaffiche(0);
 		this->dataGridView1->Refresh();
 		windformaffiche(b);
-
+		
 	}
 	private: System::Void bouton_simulations_Click(System::Object^ sender, System::EventArgs^ e) {
 		b = 6;
@@ -1684,6 +1684,7 @@ private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
 	private: System::Void label_mois_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void produits_reapprovision_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->dataGridView1->ClearSelection();
 		this->dataGridView1->Refresh();
 		this->oDs = this->oSvcStats->AfficherProduitsStockBas("Rsl");
 		this->dataGridView1->DataSource = this->oDs;

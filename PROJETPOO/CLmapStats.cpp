@@ -21,18 +21,18 @@ System::String^ NS_Comp_MappageStats::CLmapStats::MontantTotalClient(void) {
 		"SELECT DISTINCT Cl.nom_client, Cl.prenom_client, Sum(Ca.TTC_commande) AS Total_Achats " +
 		"FROM Client Cl JOIN Commande C ON Cl.id_client = C.id_client " +
 		"JOIN Commande_Article Ca ON Ca.id_commande = C.id_commande " +
-		"WHERE Cl.Numéro_client = @Num GROUP BY CL.prenom_client, CL.nom_client; ";
+		"WHERE Cl.Numero_client = @Num GROUP BY CL.prenom_client, CL.nom_client; ";
 }
 
 System::String^ NS_Comp_MappageStats::CLmapStats::ArticlesPlusVendus(void) {
-	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantité_article_commande) AS total_quantity_sold " +
+	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantite_article_commande) AS total_quantity_sold " +
 		"FROM Article A JOIN Commande_Article CA ON A.id_article = CA.id_article " +
 		"GROUP BY A.id_article, A.nom_article ORDER BY total_quantity_sold DESC";
 
 }
 
 System::String^ NS_Comp_MappageStats::CLmapStats::ArticlesMoinsVendus(void) {
-	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantité_article_commande) AS total_quantity_sold " +
+	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantite_article_commande) AS total_quantity_sold " +
 		"FROM Article A JOIN Commande_Article CA ON A.id_article = CA.id_article " +
 		"GROUP BY A.id_article, A.nom_article ORDER BY total_quantity_sold ASC; ";
 }
