@@ -133,7 +133,6 @@
 
     <ClCompile Include="CLserviceStock.cpp" />
     <ClCompile Include="MyForm.cpp" />
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLcad.h">
       <FileType>CppForm</FileType>
