@@ -43,6 +43,7 @@ namespace ProjetPOOG3 {
 	private: NS_Comp_SvcClient::CLservicesClient^ oSvcClient;
 	private: NS_Comp_SvcCommande::CLservicesCommande^ osvcCommande;
 	private: System::Data::DataSet^ oDs;
+	private: NS_SvcStock::CLserviceStock^ oSvc;
 
 	protected:
 
@@ -52,8 +53,6 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_GestionStock;
 	private: System::Windows::Forms::Button^ btn_GestionStatistique;
 	private: System::Windows::Forms::TextBox^ nom;
-	private: NS_SvcStock::CLserviceStock^ oSvc;
-	private: System::Data::DataSet^ oDs;
 
 	private: System::Windows::Forms::TextBox^ prenom;
 	private: System::Windows::Forms::TextBox^ DNN;
@@ -1496,8 +1495,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 
 		private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 		{
-			this->oSvcClient = gcnew NS_Comp_SvcClient::CLservicesClient();
-			this->osvcCommande = gcnew NS_Comp_SvcCommande::CLservicesCommande();
+
 		}
 
 	private: System::Void btn_GestionPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1727,6 +1725,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 				   this->Controls->Add(this->DNN);
 				   this->Controls->Add(this->prenom);
 				   this->Controls->Add(this->nom);
+				   this->oSvcClient = gcnew NS_Comp_SvcClient::CLservicesClient();
 				   break;
 			   case 3:
 				   this->Controls->Add(this->afficher_commandearticle);
@@ -1760,7 +1759,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 				   this->Controls->Add(this->afficher_commandepaiement);
 				   this->Controls->Add(this->update_commande);
 				   this->Controls->Add(this->supp_commande);
-
+				   this->osvcCommande = gcnew NS_Comp_SvcCommande::CLservicesCommande();
 				   break;
 			   case 4:
 				   this->Controls->Add(this->btn_afficher_article_stock);

@@ -15,7 +15,7 @@ namespace NS_Comp_MappageCommande
 		System::DateTime^ date_enregistrement_solde2;
 		System::String^ moyen_paiement1;
 		System::String^ moyen_paiement2;
-		int quantité_article_commande;
+		int quantite_article_commande;
 		int id_article;
 
 	public:

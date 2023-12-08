@@ -4,7 +4,7 @@
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Select(void)
 {
     return "SELECT " +
-        "c.ref_commande, c.date_livraison_commande as Date_livraison, c.date_emission_commande as Date_emission, SUM(ca.quantité_article_commande) as quantité_darticle, " +
+        "c.ref_commande, c.date_livraison_commande as Date_livraison, c.date_emission_commande as Date_emission, SUM(ca.quantite_article_commande) as quantite_darticle, " +
         "cl.nom_client, cl.prenom_client, p.date_payement, p.montant, p.moyen_payement, p.date_enregistrement_solde " +
         "FROM Commande c " +
         "JOIN Client cl ON c.id_client = cl.id_client " +
@@ -17,7 +17,7 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Select(void)
 }
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::SelectArticle(void) {
     
-    return "SELECT Commande.ref_commande, Client.nom_client, Client.prenom_client, Article.id_article, nom_article, quantité_article_commande " +
+    return "SELECT Commande.ref_commande, Client.nom_client, Client.prenom_client, Article.id_article, nom_article, quantite_article_commande " +
         "FROM    Commande " +
         "JOIN    Client ON Commande.id_client = Client.id_client " +
         "JOIN    Commande_Article ON Commande.id_commande = Commande_Article.id_commande " +
@@ -29,12 +29,12 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert1(void) {
 
     return "INSERT INTO Commande (ref_commande, date_livraison_commande, date_emission_commande, id_client) " +
         "VALUES ('" + this->ref_commande + "', '" + this->date_livraison_commande + "', '" + this->date_emission_commande + "', '" + this->Id_client + "');" +
-        "INSERT INTO Commande_Article (id_commande, id_article, quantité_article_commande, Tva_commande, TTC_commande, HT_commande) " +
+        "INSERT INTO Commande_Article (id_commande, id_article, quantite_article_commande, Tva_commande, TTC_commande, HT_commande) " +
         "VALUES " +
-        "((SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'), '" + this->id_article + "', '" + this->quantité_article_commande + "', " +
+        "((SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'), '" + this->id_article + "', '" + this->quantite_article_commande + "', " +
         "(SELECT taux_tva_article * prix_HT_article FROM Article WHERE id_article = '" + this->id_article + "'), " +
-        "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * " + this->quantité_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'), " +
-        "(SELECT prix_HT_article * " + this->quantité_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'));" +
+        "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'), " +
+        "(SELECT prix_HT_article * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'));" +
         "INSERT INTO Paiement (date_payement, montant, moyen_payement, date_enregistrement_solde, id_commande) " +
         "VALUES " +
         "('" + this->date_payement1 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
@@ -46,12 +46,12 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert1(void) {
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert2(void) {
             return "INSERT INTO Commande (ref_commande, date_livraison_commande, date_emission_commande, id_client) " +
                 "VALUES ('" + this->ref_commande + "', '" + this->date_livraison_commande + "', '" + this->date_emission_commande + "', '" + this->Id_client + "');" +
-                "INSERT INTO Commande_Article (id_commande, id_article, quantité_article_commande, Tva_commande, TTC_commande, HT_commande) " +
+                "INSERT INTO Commande_Article (id_commande, id_article, quantite_article_commande, Tva_commande, TTC_commande, HT_commande) " +
                 "VALUES " +
-                "((SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'), '" + this->id_article + "', '" + this->quantité_article_commande + "', " +
+                "((SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'), '" + this->id_article + "', '" + this->quantite_article_commande + "', " +
                 "(SELECT taux_tva_article * prix_HT_article FROM Article WHERE id_article = '" + this->id_article + "'), " +
-                "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * " + this->quantité_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'), " +
-                "(SELECT prix_HT_article * " + this->quantité_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'));" +
+                "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'), " +
+                "(SELECT prix_HT_article * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'));" +
                 "INSERT INTO Paiement (date_payement, montant, moyen_payement, date_enregistrement_solde, id_commande) " +
                 "VALUES " +
                 "('" + this->date_payement1 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
@@ -70,17 +70,17 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Update1(void) {
         "DECLARE @id_article_a_modifier int " +
         "SET @id_article_a_modifier = " + this->id_article + "; " +
         "DECLARE @nouvelle_quantite int " +
-        "SET @nouvelle_quantite = " + this->quantité_article_commande + "; " +
+        "SET @nouvelle_quantite = " + this->quantite_article_commande + "; " +
         "MERGE INTO Commande_Article AS target " +
         "USING (SELECT id_commande FROM Commande WHERE ref_commande = @ref_commande) AS source " +
         "ON target.id_commande = source.id_commande AND target.id_article = @id_article_a_modifier " +
         "WHEN MATCHED THEN " +
-        "UPDATE SET quantité_article_commande = @nouvelle_quantite, " +
+        "UPDATE SET quantite_article_commande = @nouvelle_quantite, " +
         "Tva_commande = (SELECT taux_tva_article * prix_HT_article * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier), " +
         "TTC_commande = (SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier), " +
         "HT_commande = (SELECT prix_HT_article * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier) " +
         "WHEN NOT MATCHED THEN " +
-        "INSERT (id_commande, id_article, quantité_article_commande, Tva_commande, TTC_commande, HT_commande) " +
+        "INSERT (id_commande, id_article, quantite_article_commande, Tva_commande, TTC_commande, HT_commande) " +
         "VALUES ((SELECT id_commande FROM Commande WHERE ref_commande = @ref_commande), " +
         "@id_article_a_modifier, " +
         "@nouvelle_quantite, " +
@@ -116,7 +116,7 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Delete(void) {
 
 void NS_Comp_MappageCommande::CLmapTBCommande::setId_client(int a) { this->Id_client = a; }
 void NS_Comp_MappageCommande::CLmapTBCommande::setId_article(int a) { this->id_article = a; }
-void NS_Comp_MappageCommande::CLmapTBCommande::setquantite_article_commande(int a) { this->quantité_article_commande = a; }
+void NS_Comp_MappageCommande::CLmapTBCommande::setquantite_article_commande(int a) { this->quantite_article_commande = a; }
 void NS_Comp_MappageCommande::CLmapTBCommande::setRef_commande(System::String^ a) { this->ref_commande = a; }
 void NS_Comp_MappageCommande::CLmapTBCommande::setdate_livraison_commande(System::DateTime^ a) { this->date_livraison_commande = a; }
 void NS_Comp_MappageCommande::CLmapTBCommande::setDate_emission_commande(System::DateTime^ a) { this->date_emission_commande = a; }

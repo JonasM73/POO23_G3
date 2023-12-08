@@ -3,7 +3,7 @@
 NS_Comp_Data::CLcad::CLcad(void)
 {
 	this->sCnx = "Data Source = PCMAHIR\\MSSQL_POO;" +
-		"Initial Catalog =PooG3;" +
+		"Initial Catalog =Projet_POO;" +
 		"Persist Security Info=True;" +
 		"User ID =sa;" +
 		"Password =0506;";
