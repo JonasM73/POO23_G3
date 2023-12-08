@@ -16,7 +16,7 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Select(void)
 
 }
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::SelectArticle(void) {
-    
+
     return "SELECT Commande.ref_commande, Client.nom_client, Client.prenom_client, Article.id_article, nom_article, quantite_article_commande " +
         "FROM    Commande " +
         "JOIN    Client ON Commande.id_client = Client.id_client " +
@@ -39,30 +39,31 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert1(void) {
         "VALUES " +
         "('" + this->date_payement1 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
         "'" + this->moyen_paiement1 + "', '" + this->date_enregistrement_solde1 + "', " +
-        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));";}
+        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));";
+}
 
-  
+
 
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert2(void) {
-            return "INSERT INTO Commande (ref_commande, date_livraison_commande, date_emission_commande, id_client) " +
-                "VALUES ('" + this->ref_commande + "', '" + this->date_livraison_commande + "', '" + this->date_emission_commande + "', '" + this->Id_client + "');" +
-                "INSERT INTO Commande_Article (id_commande, id_article, quantite_article_commande, Tva_commande, TTC_commande, HT_commande) " +
-                "VALUES " +
-                "((SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'), '" + this->id_article + "', '" + this->quantite_article_commande + "', " +
-                "(SELECT taux_tva_article * prix_HT_article FROM Article WHERE id_article = '" + this->id_article + "'), " +
-                "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'), " +
-                "(SELECT prix_HT_article * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'));" +
-                "INSERT INTO Paiement (date_payement, montant, moyen_payement, date_enregistrement_solde, id_commande) " +
-                "VALUES " +
-                "('" + this->date_payement1 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
-                "'" + this->moyen_paiement1 + "', '" + this->date_enregistrement_solde1 + "', " +
-                "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'))," +
-                "('" + this->date_payement2 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
-                "'" + this->moyen_paiement2 + "', '" + this->date_enregistrement_solde2 + "', " +
-                "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));";
-        }
+    return "INSERT INTO Commande (ref_commande, date_livraison_commande, date_emission_commande, id_client) " +
+        "VALUES ('" + this->ref_commande + "', '" + this->date_livraison_commande + "', '" + this->date_emission_commande + "', '" + this->Id_client + "');" +
+        "INSERT INTO Commande_Article (id_commande, id_article, quantite_article_commande, Tva_commande, TTC_commande, HT_commande) " +
+        "VALUES " +
+        "((SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'), '" + this->id_article + "', '" + this->quantite_article_commande + "', " +
+        "(SELECT taux_tva_article * prix_HT_article FROM Article WHERE id_article = '" + this->id_article + "'), " +
+        "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'), " +
+        "(SELECT prix_HT_article * " + this->quantite_article_commande + " FROM Article WHERE id_article = '" + this->id_article + "'));" +
+        "INSERT INTO Paiement (date_payement, montant, moyen_payement, date_enregistrement_solde, id_commande) " +
+        "VALUES " +
+        "('" + this->date_payement1 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
+        "'" + this->moyen_paiement1 + "', '" + this->date_enregistrement_solde1 + "', " +
+        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'))," +
+        "('" + this->date_payement2 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
+        "'" + this->moyen_paiement2 + "', '" + this->date_enregistrement_solde2 + "', " +
+        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));";
+}
 
-   
+
 
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Update1(void) {
     return "DECLARE @ref_commande VARCHAR(100) " +
@@ -97,7 +98,7 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Update2(void) {
 
 
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Delete(void) {
-    
+
     return "DECLARE @ref_commande VARCHAR(100); " +
         "SET @ref_commande = '" + this->ref_commande + "'; " +
         "DECLARE @D_E DATE; " +
@@ -126,4 +127,3 @@ void NS_Comp_MappageCommande::CLmapTBCommande::setDate_enregistrement_solde1(Sys
 void NS_Comp_MappageCommande::CLmapTBCommande::setDate_enregistrement_solde2(System::DateTime^ a) { this->date_enregistrement_solde2 = a; }
 void NS_Comp_MappageCommande::CLmapTBCommande::setMoyen_paiement1(System::String^ a) { this->moyen_paiement1 = a; }
 void NS_Comp_MappageCommande::CLmapTBCommande::setMoyen_paiement2(System::String^ a) { this->moyen_paiement2 = a; }
-

@@ -13,7 +13,7 @@ System::Data::DataSet^ NS_Comp_SvcClient::CLservicesClient::selectionnerToutesLe
 	sql = this->CLmapService->Select();
 	return this->oCad->getRows(sql, dataTableName);
 }
-void NS_Comp_SvcClient::CLservicesClient::AjouterUnePersonne( System::String^ num, System::String^ nom, System::String^ prenom, System::DateTime^ DNN,	System::DateTime^ D_Pachat, System::String^ AP_L, System::String^ AP_F, int CP_L, int CP_F, System::String^ ville_l, System::String^ ville_f)
+void NS_Comp_SvcClient::CLservicesClient::AjouterUnePersonne(System::String^ num, System::String^ nom, System::String^ prenom, System::DateTime^ DNN, System::DateTime^ D_Pachat, System::String^ AP_L, System::String^ AP_F, int CP_L, int CP_F, System::String^ ville_l, System::String^ ville_f)
 {
 	System::String^ sql;
 	this->CLmapService->setnumero_client(num);
@@ -34,7 +34,7 @@ void NS_Comp_SvcClient::CLservicesClient::AjouterUnePersonne( System::String^ nu
 
 }
 void NS_Comp_SvcClient::CLservicesClient::DeleteUnePersonne(System::String^ num, System::String^ nom, System::String^ prenom, System::DateTime^ DNN) {
-	
+
 	System::String^ sql;
 	this->CLmapService->setnom_client(nom);
 	this->CLmapService->setprenom_client(prenom);
@@ -60,4 +60,5 @@ void NS_Comp_SvcClient::CLservicesClient::UpdateUnnePersonne(System::String^ num
 	this->CLmapService->setvilleL_client(ville_f);
 
 	sql = this->CLmapService->Update();
+	this->oCad->actionRows(sql);
 }

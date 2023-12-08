@@ -815,7 +815,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			// 
 			// ref_commande
 			// 
-			this->ref_commande->Location = System::Drawing::Point(700, 378);
+			this->ref_commande->Location = System::Drawing::Point(200, 378);
 			this->ref_commande->Multiline = true;
 			this->ref_commande->Name = L"ref_commande";
 			this->ref_commande->Size = System::Drawing::Size(300, 30);
@@ -826,7 +826,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_ref_commande->AutoSize = true;
 			this->txt_ref_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_ref_commande->Location = System::Drawing::Point(700, 364);
+			this->txt_ref_commande->Location = System::Drawing::Point(200, 364);
 			this->txt_ref_commande->Name = L"txt_ref_commande";
 			this->txt_ref_commande->Size = System::Drawing::Size(132, 20);
 			this->txt_ref_commande->TabIndex = 30;
@@ -837,7 +837,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_id_client_commande->AutoSize = true;
 			this->txt_id_client_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_id_client_commande->Location = System::Drawing::Point(700, 419);
+			this->txt_id_client_commande->Location = System::Drawing::Point(200, 419);
 			this->txt_id_client_commande->Name = L"txt_id_client_commande";
 			this->txt_id_client_commande->Size = System::Drawing::Size(244, 20);
 
@@ -846,9 +846,9 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			// 
 			// id_client_commande
 			// 
-			this->id_client_commande->Location = System::Drawing::Point(700, 433);
+			this->id_client_commande->Location = System::Drawing::Point(200, 433);
 			this->id_client_commande->Multiline = true;
-			this->id_client_commande->Name = L"id_client_commande";
+			this->id_client_commande->Name = L"N° de client";
 			this->id_client_commande->Size = System::Drawing::Size(300, 30);
 			this->id_client_commande->TabIndex = 31;
 			// 
@@ -859,7 +859,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 				static_cast<System::Byte>(0)));
 			this->add_commande->Location = System::Drawing::Point(569, 483);
 			this->add_commande->Name = L"add_commande";
-			this->add_commande->Size = System::Drawing::Size(212, 152);
+			this->add_commande->Size = System::Drawing::Size(253, 85);
 			this->add_commande->TabIndex = 35;
 			this->add_commande->Text = L"Ajouter une commande";
 			this->add_commande->UseVisualStyleBackColor = false;
@@ -870,7 +870,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_date_emision_commande->AutoSize = true;
 			this->txt_date_emision_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_date_emision_commande->Location = System::Drawing::Point(700, 470);
+			this->txt_date_emision_commande->Location = System::Drawing::Point(200, 470);
 			this->txt_date_emision_commande->Name = L"txt_date_emision_commande";
 			this->txt_date_emision_commande->Size = System::Drawing::Size(243, 20);
 
@@ -879,7 +879,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			// 
 			// Date_emision_commande
 			// 
-			this->Date_emision_commande->Location = System::Drawing::Point(700, 483);
+			this->Date_emision_commande->Location = System::Drawing::Point(200, 483);
 			this->Date_emision_commande->Multiline = true;
 			this->Date_emision_commande->Name = L"Date_emision_commande";
 			this->Date_emision_commande->Size = System::Drawing::Size(300, 30);
@@ -890,7 +890,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_date_livraison_commande->AutoSize = true;
 			this->txt_date_livraison_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_date_livraison_commande->Location = System::Drawing::Point(700, 525);
+			this->txt_date_livraison_commande->Location = System::Drawing::Point(200, 525);
 			this->txt_date_livraison_commande->Name = L"txt_date_livraison_commande";
 			this->txt_date_livraison_commande->Size = System::Drawing::Size(258, 20);
 			this->txt_date_livraison_commande->TabIndex = 39;
@@ -898,7 +898,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			// 
 			// Date_livraison_commande
 			// 
-			this->Date_livraison_commande->Location = System::Drawing::Point(700, 539);
+			this->Date_livraison_commande->Location = System::Drawing::Point(200, 539);
 			this->Date_livraison_commande->Multiline = true;
 			this->Date_livraison_commande->Name = L"Date_livraison_commande";
 			this->Date_livraison_commande->Size = System::Drawing::Size(300, 30);
@@ -909,7 +909,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_id_article_commande->AutoSize = true;
 			this->txt_id_article_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_id_article_commande->Location = System::Drawing::Point(700, 581);
+			this->txt_id_article_commande->Location = System::Drawing::Point(200, 581);
 			this->txt_id_article_commande->Name = L"txt_id_article_commande";
 			this->txt_id_article_commande->Size = System::Drawing::Size(234, 20);
 			this->txt_id_article_commande->TabIndex = 41;
@@ -917,7 +917,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			// 
 			// id_article_commande
 			// 
-			this->id_article_commande->Location = System::Drawing::Point(700, 595);
+			this->id_article_commande->Location = System::Drawing::Point(200, 595);
 			this->id_article_commande->Multiline = true;
 			this->id_article_commande->Name = L"id_article_commande";
 			this->id_article_commande->Size = System::Drawing::Size(300, 30);
@@ -928,7 +928,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_quantite_article_commande->AutoSize = true;
 			this->txt_quantite_article_commande->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->txt_quantite_article_commande->Location = System::Drawing::Point(700, 641);
+			this->txt_quantite_article_commande->Location = System::Drawing::Point(200, 641);
 			this->txt_quantite_article_commande->Name = L"txt_quantite_article_commande";
 			this->txt_quantite_article_commande->Size = System::Drawing::Size(164, 20);
 			this->txt_quantite_article_commande->TabIndex = 43;
@@ -936,7 +936,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			// 
 			// quantite_article_commande
 			// 
-			this->quantite_article_commande->Location = System::Drawing::Point(700, 655);
+			this->quantite_article_commande->Location = System::Drawing::Point(200, 655);
 			this->quantite_article_commande->Multiline = true;
 			this->quantite_article_commande->Name = L"quantite_article_commande";
 			this->quantite_article_commande->Size = System::Drawing::Size(300, 30);
@@ -1473,6 +1473,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->afficher_commandearticle->UseVisualStyleBackColor = false;
 			this->afficher_commandearticle->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_commandearticle);
 			// 
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -1908,7 +1909,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 		DateTime Demission, Dlivraison, Dpaiement1, Dpaiement2, D_E_S1, D_E_S2;
 		//verif des infos
 		if (!Int32::TryParse(info_paiement->Text, qtt_paiement) || !Int32::TryParse(id_client_commande->Text, idclient) || !Int32::TryParse(id_article_commande->Text, idarticle) || !Int32::TryParse(quantite_article_commande->Text, qtt_article)) {
-			MessageBox::Show("Erreur dans les id ou la quantit� d'article", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			MessageBox::Show("Erreur dans les id ou la quantite d'article", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			return;		}
 		if (!DateTime::TryParse(Date_S1->Text, D_E_S1) || !DateTime::TryParse(Date_paiement1->Text, Dpaiement1) || !DateTime::TryParse(Date_emision_commande->Text, Demission) || !DateTime::TryParse(Date_livraison_commande->Text, Dlivraison)) {
 			MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);

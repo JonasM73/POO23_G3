@@ -14,8 +14,8 @@ System::String^ NS_Comp_MappageClient::CLmapTBClient::Select(void)
 		"JOIN [Ville] ville_livraison ON [adresse_livraison].[id_ville] = [ville_livraison].[id_ville]";
 
 }
-System::String^ NS_Comp_MappageClient::CLmapTBClient::Insert(void){
-		
+System::String^ NS_Comp_MappageClient::CLmapTBClient::Insert(void) {
+
 	return "DECLARE @NomVilleF NVARCHAR(100) " +
 		"SET @NomVilleF = '" + this->villeF_client + "' " +
 		"DECLARE @IDVilleF INT " +
@@ -24,13 +24,13 @@ System::String^ NS_Comp_MappageClient::CLmapTBClient::Insert(void){
 		"SET @NomVilleL = '" + this->villeL_client + "' " +
 		"DECLARE @IDVilleL INT " +
 		"SELECT TOP 1 @IDVilleL = id_ville FROM Ville WHERE ville = @NomVilleL " +
-		"INSERT INTO [Projet_POO].[dbo].[Adresse] (AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_F_client + "', " + this->CP_F_client + ", @IDVilleF),('" + this->AP_L_client + "', " + this->CP_L_client + ", @IDVilleL); " +
-		"INSERT INTO [Projet_POO].[dbo].[Client] (Numero_Client, nom_client, prenom_client, DNN_client, Date_Pachat_client, adresse_F, adresse_L) VALUES ('" + this->numero_client + "', '" + this->nom_client + "', '" + this->prenom_client + "', '" + this->DNN_client + "', '" + this->Date_Pchat_client + "', " +
+		"INSERT INTO [PooG3].[dbo].[Adresse] (AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_F_client + "', " + this->CP_F_client + ", @IDVilleF),('" + this->AP_L_client + "', " + this->CP_L_client + ", @IDVilleL); " +
+		"INSERT INTO [PooG3].[dbo].[Client] (Numero_Client, nom_client, prenom_client, DNN_client, Date_Pachat_client, adresse_F, adresse_L) VALUES ('" + this->numero_client + "', '" + this->nom_client + "', '" + this->prenom_client + "', '" + this->DNN_client + "', '" + this->Date_Pchat_client + "', " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_F_client + " AND AP_adresse = '" + this->AP_F_client + "'), " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_L_client + " AND AP_adresse = '" + this->AP_L_client + "'))";
 }
 System::String^ NS_Comp_MappageClient::CLmapTBClient::Update(void) {
-	
+
 	return "UPDATE Client " +
 		"SET nom_client = '" + this->nom_client + "', prenom_client = '" + this->prenom_client + "', DNN_client = '" + this->DNN_client + "', Date_Pachat_Client = '" + this->Date_Pchat_client + "' " +
 		"WHERE Numero_Client = '" + this->numero_client + "'" +
@@ -57,16 +57,15 @@ System::String^ NS_Comp_MappageClient::CLmapTBClient::Delete(void) {
 
 
 
-void NS_Comp_MappageClient::CLmapTBClient::setId_client(int a){							this->Id_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setnumero_client(System::String^ a){			this->numero_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setnom_client(System::String^ a){				this->nom_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setprenom_client(System::String^ a){			this->prenom_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setDNN_client(System::DateTime^ a){			this->DNN_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setDate_Pchat_client(System::DateTime^ a){		this->Date_Pchat_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setvilleL_client(System::String^a){			this->villeL_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setvilleF_client(System::String^a){			this->villeF_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setAP_L_client(System::String^a){				this->AP_L_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setAP_F_client(System::String^a){				this->AP_F_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setCP_L_client(int a){							this->CP_L_client = a;}
-void NS_Comp_MappageClient::CLmapTBClient::setCP_F_client(int a){							this->CP_F_client = a;}
-
+void NS_Comp_MappageClient::CLmapTBClient::setId_client(int a) { this->Id_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setnumero_client(System::String^ a) { this->numero_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setnom_client(System::String^ a) { this->nom_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setprenom_client(System::String^ a) { this->prenom_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setDNN_client(System::DateTime^ a) { this->DNN_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setDate_Pchat_client(System::DateTime^ a) { this->Date_Pchat_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setvilleL_client(System::String^ a) { this->villeL_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setvilleF_client(System::String^ a) { this->villeF_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setAP_L_client(System::String^ a) { this->AP_L_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setAP_F_client(System::String^ a) { this->AP_F_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setCP_L_client(int a) { this->CP_L_client = a; }
+void NS_Comp_MappageClient::CLmapTBClient::setCP_F_client(int a) { this->CP_F_client = a; }
