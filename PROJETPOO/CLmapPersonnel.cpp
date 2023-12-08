@@ -3,7 +3,7 @@
 
 System::String^ NS_Comp_MappagePersonnel::CLmapPersonnel::Select(void)
 {
-	return "";
+	return "SELECT  * FROM Personnel;";
 
 }
 System::String^ NS_Comp_MappagePersonnel::CLmapPersonnel::Insert(void) {
