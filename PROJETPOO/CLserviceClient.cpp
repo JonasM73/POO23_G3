@@ -60,6 +60,4 @@ void NS_Comp_SvcClient::CLservicesClient::UpdateUnnePersonne(System::String^ num
 	this->CLmapService->setvilleL_client(ville_f);
 
 	sql = this->CLmapService->Update();
-	this->oCad->actionRows(sql);
 }
-

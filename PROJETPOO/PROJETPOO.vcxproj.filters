@@ -31,6 +31,10 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CLserviceCommande.cpp">
+    <ClCompile Include="CLmapStock.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CLserviceStock.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,6 +55,11 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CLserviceCommande.h">
+
+    <ClInclude Include="CLmapStock.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CLserviceStock.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

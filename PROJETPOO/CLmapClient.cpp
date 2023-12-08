@@ -3,7 +3,7 @@
 
 System::String^ NS_Comp_MappageClient::CLmapTBClient::Select(void)
 {
-	return "SELECT [c].[Numéro_Client],[c].[nom_client],[c].[prenom_client],[c].[DNN_CLient], [c].[Date_Pachat_Client]," +
+	return "SELECT [c].[NumÃ©ro_Client],[c].[nom_client],[c].[prenom_client],[c].[DNN_CLient], [c].[Date_Pachat_Client]," +
 		"[adresse_facturation].[AP_adresse] AS AP_facturation, [adresse_facturation].[CP_adresse] AS CP_facturation," +
 		"[ville_facturation].[ville] AS ville_facturation, [adresse_livraison].[AP_adresse] AS AP_livraison," +
 		"[adresse_livraison].[CP_adresse] AS CP_livraison, [ville_livraison].[ville] AS ville_livraison " +
@@ -25,16 +25,15 @@ System::String^ NS_Comp_MappageClient::CLmapTBClient::Insert(void){
 		"DECLARE @IDVilleL INT " +
 		"SELECT TOP 1 @IDVilleL = id_ville FROM Ville WHERE ville = @NomVilleL " +
 		"INSERT INTO [Projet_POO].[dbo].[Adresse] (AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_F_client + "', " + this->CP_F_client + ", @IDVilleF),('" + this->AP_L_client + "', " + this->CP_L_client + ", @IDVilleL); " +
-		"INSERT INTO [Projet_POO].[dbo].[Client] (Numéro_Client, nom_client, prenom_client, DNN_client, Date_Pachat_client, adresse_F, adresse_L) VALUES ('" + this->numero_client + "', '" + this->nom_client + "', '" + this->prenom_client + "', '" + this->DNN_client + "', '" + this->Date_Pchat_client + "', " +
+		"INSERT INTO [Projet_POO].[dbo].[Client] (NumÃ©ro_Client, nom_client, prenom_client, DNN_client, Date_Pachat_client, adresse_F, adresse_L) VALUES ('" + this->numero_client + "', '" + this->nom_client + "', '" + this->prenom_client + "', '" + this->DNN_client + "', '" + this->Date_Pchat_client + "', " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_F_client + " AND AP_adresse = '" + this->AP_F_client + "'), " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_L_client + " AND AP_adresse = '" + this->AP_L_client + "'))";
 }
 System::String^ NS_Comp_MappageClient::CLmapTBClient::Update(void) {
 	
-	
 	return "UPDATE Client " +
 		"SET nom_client = '" + this->nom_client + "', prenom_client = '" + this->prenom_client + "', DNN_client = '" + this->DNN_client + "', Date_Pachat_Client = '" + this->Date_Pchat_client + "' " +
-		"WHERE Numéro_Client = '" + this->numero_client + "'" +
+		"WHERE NumÃ©ro_Client = '" + this->numero_client + "'" +
 		"UPDATE Adresse " +
 		"SET AP_adresse = '" + this->AP_F_client + "', CP_adresse = " + this->CP_F_client + " " +
 		"WHERE id_adresse = (SELECT adresse_F from Client where nom_client = '" + this->nom_client + "' AND prenom_client = '" + this->prenom_client + "' AND DNN_client = '" + this->DNN_client + "')" +
@@ -44,16 +43,16 @@ System::String^ NS_Comp_MappageClient::CLmapTBClient::Update(void) {
 }
 System::String^ NS_Comp_MappageClient::CLmapTBClient::Delete(void) {
 	return  "DELETE FROM [Paiement] " +
-		"WHERE [id_commande] IN (SELECT [id_commande] FROM [Commande] WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [Numéro_Client] = '" + this->numero_client + "')); " +
+		"WHERE [id_commande] IN (SELECT [id_commande] FROM [Commande] WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [NumÃ©ro_Client] = '" + this->numero_client + "')); " +
 		"DELETE FROM [Commande_Article] " +
-		"WHERE [id_commande] IN (SELECT [id_commande] FROM [Commande] WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [Numéro_Client] = '" + this->numero_client + "')); " +
+		"WHERE [id_commande] IN (SELECT [id_commande] FROM [Commande] WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [NumÃ©ro_Client] = '" + this->numero_client + "')); " +
 		"DELETE FROM [Commande] " +
-		"WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [Numéro_Client] = '" + this->numero_client + "'); " +
+		"WHERE [id_client] IN (SELECT [id_client] FROM [Client] WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [NumÃ©ro_Client] = '" + this->numero_client + "'); " +
 		"DELETE FROM [Client] " +
-		"WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [Numéro_Client] = '" + this->numero_client + "'; " +
+		"WHERE [nom_client] = '" + this->nom_client + "' AND [prenom_client]='" + this->prenom_client + "' AND [DNN_client] = '" + this->DNN_client + "' AND [NumÃ©ro_Client] = '" + this->numero_client + "'; " +
 		"DELETE a FROM [Adresse] a " +
 		"WHERE EXISTS (SELECT 1 FROM [Client] c WHERE ([c].[adresse_F]=[a].[id_adresse] OR [c].[adresse_L] = [a].[id_adresse]) " +
-		"AND [c].[nom_client] = '" + this->nom_client + "' AND [c].[prenom_client] = '" + this->prenom_client + "' AND [c].[DNN_client] = '" + this->DNN_client + "' AND [c].[Numéro_Client] = '" + this->numero_client + "');";
+		"AND [c].[nom_client] = '" + this->nom_client + "' AND [c].[prenom_client] = '" + this->prenom_client + "' AND [c].[DNN_client] = '" + this->DNN_client + "' AND [c].[NumÃ©ro_Client] = '" + this->numero_client + "');";
 }
 
 
@@ -70,3 +69,4 @@ void NS_Comp_MappageClient::CLmapTBClient::setAP_L_client(System::String^a){				
 void NS_Comp_MappageClient::CLmapTBClient::setAP_F_client(System::String^a){				this->AP_F_client = a;}
 void NS_Comp_MappageClient::CLmapTBClient::setCP_L_client(int a){							this->CP_L_client = a;}
 void NS_Comp_MappageClient::CLmapTBClient::setCP_F_client(int a){							this->CP_F_client = a;}
+
