@@ -4,9 +4,6 @@
 #include "CLserviceStock.h"
 #include "CLcad.h"
 #include "CLmapClient.h"
-#include "CLserviceStats.h"
-#include <iostream>
-#include <string>
 namespace ProjetPOOG3 {
 
 	int b;
@@ -47,7 +44,6 @@ namespace ProjetPOOG3 {
 	private: NS_Comp_SvcCommande::CLservicesCommande^ osvcCommande;
 	private: System::Data::DataSet^ oDs;
 	private: NS_SvcStock::CLserviceStock^ oSvc;
-  private: NS_SvcStats::CLserviceStats^ oSvcStats;
 
 	protected:
 
@@ -57,7 +53,6 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ btn_GestionStock;
 	private: System::Windows::Forms::Button^ btn_GestionStatistique;
 	private: System::Windows::Forms::TextBox^ nom;
-
 
 	private: System::Windows::Forms::TextBox^ prenom;
 	private: System::Windows::Forms::TextBox^ DNN;
@@ -187,11 +182,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 	private: System::Windows::Forms::TextBox^ seuil_reapprovisionnement_stock;
 	private: System::Windows::Forms::Label^ txt_couleur_article;
 	private: System::Windows::Forms::TextBox^ couleur_article_stock;
-  private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
-
-
-
-
 
 
 
@@ -325,9 +315,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->seuil_reapprovisionnement_stock = (gcnew System::Windows::Forms::TextBox());
 			this->txt_couleur_article = (gcnew System::Windows::Forms::Label());
 			this->couleur_article_stock = (gcnew System::Windows::Forms::TextBox());
-
-
-			this->btn_montant_achat_client_stats = (gcnew System::Windows::Forms::Button());
 
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -806,7 +793,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->ville_personnel->Multiline = true;
 			this->ville_personnel->Name = L"ville_personnel";
 			this->ville_personnel->Size = System::Drawing::Size(300, 30);
-			this->ville_personnel->TabIndex = 0;
 			// 
 			// id_superieur
 			// 
@@ -1056,7 +1042,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->valeur_achat_stock_stats->UseVisualStyleBackColor = true;
 			this->valeur_achat_stock_stats->Click += gcnew System::EventHandler(this, &MyForm::valeur_achat_stock_Click);
 			// 
-			// nom_client_stats // = NUMERO CLIENT
+			// nom_client_stats
 			// 
 			this->nom_client_stats->Location = System::Drawing::Point(830, 430);
 			this->nom_client_stats->Name = L"nom_client_stats";
@@ -1072,7 +1058,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->label_nom_client_stats->Name = L"label_nom_client_stats";
 			this->label_nom_client_stats->Size = System::Drawing::Size(180, 60);
 			this->label_nom_client_stats->TabIndex = 11;
-			this->label_nom_client_stats->Text = L"N� du client";
+			this->label_nom_client_stats->Text = L"Nom du client";
 			this->label_nom_client_stats->Click += gcnew System::EventHandler(this, &MyForm::lab_nom_client_stats_Click);
 			// 
 			// prenom_client_stats
@@ -1107,7 +1093,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 				static_cast<System::Byte>(0)));
 			this->lab_ddn_client_stats->Location = System::Drawing::Point(830, 515);
 			this->lab_ddn_client_stats->Name = L"lab_ddn_client_stats";
-			this->lab_ddn_client_stats->Size = System::Drawing::Size(130, 60);
+			this->lab_ddn_client_stats->Size = System::Drawing::Size(180, 60);
 			this->lab_ddn_client_stats->TabIndex = 11;
 			this->lab_ddn_client_stats->Text = L"Date de naissance du client \r\n(AAAA-MM-JJ)";
 			// 
@@ -1315,9 +1301,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->afficher_commandepaiement->UseVisualStyleBackColor = false;
 			this->afficher_commandepaiement->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_commande);
 			// 
-
-
-
 			// supp_commande
 			// 
 			this->supp_commande->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(75)),
@@ -1376,7 +1359,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->txt_moyen_paiement1->Text = L"Moyen paiement 1";
 			// 
 			// moyen_paiement1
-
 			// 
 			this->moyen_paiement1->Location = System::Drawing::Point(897, 483);
 			this->moyen_paiement1->Multiline = true;
@@ -1384,9 +1366,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->moyen_paiement1->Size = System::Drawing::Size(294, 31);
 			this->moyen_paiement1->TabIndex = 48;
 			// 
-
-
-
 			// label2
 			// 
 			this->label2->AutoSize = true;
@@ -1405,12 +1384,9 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->Date_paiement1->Name = L"Date_paiement1";
 			this->Date_paiement1->Size = System::Drawing::Size(294, 31);
 			this->Date_paiement1->TabIndex = 50;
-
 			// 
 			// txt_Date_S1
 			// 
-
-
 			this->txt_Date_S1->AutoSize = true;
 			this->txt_Date_S1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1497,19 +1473,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 			this->afficher_commandearticle->UseVisualStyleBackColor = false;
 			this->afficher_commandearticle->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_commandearticle);
 			// 
-
-			// 
-			// btn_montant_achat_client_stats
-			// 
-			this->btn_montant_achat_client_stats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_montant_achat_client_stats->Location = System::Drawing::Point(1050, 400);
-			this->btn_montant_achat_client_stats->Name = L"btn_montant_achat_client_stats";
-			this->btn_montant_achat_client_stats->Size = System::Drawing::Size(160, 190);
-			this->btn_montant_achat_client_stats->TabIndex = 11;
-			this->btn_montant_achat_client_stats->Text = L"Montant Total des Achats pour un client";
-			this->btn_montant_achat_client_stats->UseVisualStyleBackColor = true;
-			this->btn_montant_achat_client_stats->Click += gcnew System::EventHandler(this, &MyForm::btn_montant_client_stats_Click);
 			// 
 			// MyForm
 			// 
@@ -1576,7 +1539,7 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 		windformaffiche(0);
 		this->dataGridView1->Refresh();
 		windformaffiche(b);
-		
+
 	}
 	private: System::Void bouton_simulations_Click(System::Object^ sender, System::EventArgs^ e) {
 		b = 6;
@@ -1714,8 +1677,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 				   this->Controls->Remove(this->id_article_stock);
 				   this->Controls->Remove(this->txt_id_article);
 
-				   this->Controls->Remove(this->btn_montant_achat_client_stats);
-
 				   break;
 
 			   case 1:
@@ -1837,8 +1798,6 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 				   this->Controls->Add(this->prenom_client_stats);
 				   this->Controls->Add(this->lab_ddn_client_stats);
 				   this->Controls->Add(this->ddn_client_stats);
-				   this->Controls->Add(this->btn_montant_achat_client_stats);
-				   this->oSvcStats = gcnew NS_SvcStats::CLserviceStats();
 				   break;
 			   case 6:
 				   break;
@@ -2028,91 +1987,61 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 
 
 	private: System::Void panier_moyen_stats_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherPanierMoyen("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void liste_mois_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		int mois = -1;
 		if (this->liste_mois_stats->Text == L"Janvier") {
-			mois = 1;
+
 		}
 		if (this->liste_mois_stats->Text == L"Fevrier") {
-			mois = 2;
+
 		}
 		if (this->liste_mois_stats->Text == L"Mars") {
-			mois = 3;
+
 		}
 		if (this->liste_mois_stats->Text == L"Avril") {
-			mois = 4;
+
 		}
 		if (this->liste_mois_stats->Text == L"Mai") {
-			mois = 5;
+
 		}
 		if (this->liste_mois_stats->Text == L"Juin") {
-			mois = 6;
+
 		}
 		if (this->liste_mois_stats->Text == L"Juillet") {
-			mois = 7;
+
 		}
 		if (this->liste_mois_stats->Text == L"Aout") {
-			mois = 8;
+
 		}
 		if (this->liste_mois_stats->Text == L"Septembre") {
-			mois = 9;
+
 		}
 		if (this->liste_mois_stats->Text == L"Octobre") {
-			mois = 10;
+
 		}
 		if (this->liste_mois_stats->Text == L"Novembre") {
-			mois = 11;
+
 		}
 		if (this->liste_mois_stats->Text == L"Decembre") {
-			mois = 12;
+
 		}
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherCAMois("Rsl", mois);
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void label_mois_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void produits_reapprovision_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->ClearSelection();
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherProduitsStockBas("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 
 
 
 	private: System::Void articles_plus_vendus_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherArticlesPlusVendus("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void articles_moins_vendus_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherArticlesMoinsVendus("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void valeur_commerciale_stock_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherValeurCommercialeStock("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void valeur_achat_stock_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherValeurAchatStock("Rsl");
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void lab_nom_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -2146,11 +2075,5 @@ private: System::Windows::Forms::Button^ afficher_commandearticle;
 	}
 
 
-	private: System::Void btn_montant_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->dataGridView1->Refresh();
-		this->oDs = this->oSvcStats->AfficherMontantTotalClient("Rsl", this->nom_client_stats->Text);
-		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
-	}
-};
+	};
 }
