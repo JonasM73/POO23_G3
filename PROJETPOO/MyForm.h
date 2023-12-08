@@ -1,5 +1,6 @@
 #pragma once
 #include "CLserviceClient.h"
+#include "CLservicePersonnel.h"
 
 namespace ProjetPOOG3 {
 
@@ -38,6 +39,7 @@ namespace ProjetPOOG3 {
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: NS_Comp_SvcClient::CLservices^ oSvc;
+	private: NS_Comp_SvcPersonnel::CLservicesPersonnel^ oSvc2;
 	private: System::Data::DataSet^ oDs;
 
 	protected:
@@ -1109,6 +1111,7 @@ namespace ProjetPOOG3 {
 		private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 		{
 			this->oSvc = gcnew NS_Comp_SvcClient::CLservices();
+			this->oSvc2 = gcnew NS_Comp_SvcPersonnel::CLservicesPersonnel();
 		}
 
 
@@ -1353,6 +1356,14 @@ namespace ProjetPOOG3 {
 
 	private: System::Void btn_afficher_click(System::Object^ sender, System::EventArgs^ e) {
 		//affichage personnel
+		if (b == 1) {
+			this->dataGridView1->Refresh();
+			this->oDs = this->oSvc2->selectionnerTousLesPersonnels("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+
+		}
+
 		if (b == 2) {
 			this->dataGridView1->Refresh();
 			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
@@ -1360,9 +1371,32 @@ namespace ProjetPOOG3 {
 			this->dataGridView1->DataMember = "Rsl";
 			
 		}
+
 	}
 	private: System::Void btn_add_click(System::Object^ sender, System::EventArgs^ e) {
 		//affichage personnel
+		if (b == 1) {
+			this->dataGridView1->Refresh();
+			DateTime DateNN, DatePahat;
+			int codePostalL, codePostalF;
+			if (!DateTime::TryParse(DNN->Text, DateNN) || !DateTime::TryParse(Date_Pachat_client->Text, DatePahat)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (!Int32::TryParse(CP_L->Text, codePostalL) || !Int32::TryParse(CP_F->Text, codePostalF)) {
+				MessageBox::Show("Erreur dans les Codes postaux", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
+				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvc->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
+		 
 		if (b == 2) {
 		this->dataGridView1->Refresh();
 		DateTime DateNN, DatePahat;
@@ -1384,6 +1418,22 @@ namespace ProjetPOOG3 {
 		}
 	}
 	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {
+		if (b == 1) {
+			DateTime DateNN;
+			if (!DateTime::TryParse(DNN->Text, DateNN)) {
+				MessageBox::Show("Erreur dans les Dates ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text)) {
+				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvc->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
+			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
+
 		if (b == 2) {
 			DateTime DateNN;
 			if (!DateTime::TryParse(DNN->Text, DateNN)) {
@@ -1401,6 +1451,22 @@ namespace ProjetPOOG3 {
 		}
 	}
 	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+		if (b == 1) {
+			DateTime DateNN;
+			if (!DateTime::TryParse(DNN->Text, DateNN)) {
+				MessageBox::Show("Erreur dans les Dates ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text)) {
+				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvc->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
+			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
+
 		if (b == 2) {
 			this->dataGridView1->Refresh();
 			DateTime DateNN, DatePahat;

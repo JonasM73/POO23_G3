@@ -6,7 +6,7 @@ NS_Comp_Data::CLcad::CLcad(void)
 	this->sCnx = "Server=PC_DE_ALEXIS\\SQL_SERV_A; Database=Projet_POO; User ID=alexis_user; Password=azerty";
 
 
-	this->sSql = "";
+	this->sSql = "Rien";
 
 	this->oCnx = gcnew System::Data::SqlClient::SqlConnection(this->sCnx);
 	this->oCmd = gcnew System::Data::SqlClient::SqlCommand(this->sSql, this->oCnx);
