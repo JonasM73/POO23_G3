@@ -14,13 +14,18 @@ System::Data::DataSet^ NS_Comp_SvcPersonnel::CLservicesPersonnel::selectionnerTo
 	sql = this->servicePersonnel->Select();
 	return this->oCad->getRows(sql, dataTableName);
 }
-void NS_Comp_SvcPersonnel::CLservicesPersonnel::AjouterUnPersonnel(System::String^ nom, System::String^ prenom,System::DateTime^ DNN, System::DateTime^ DNN_embauche, System::String^ id_sup)
+void NS_Comp_SvcPersonnel::CLservicesPersonnel::AjouterUnPersonnel(System::String^ nom, System::String^ prenom,System::DateTime^ DNN, System::DateTime^ date_embauche_personnel, System::String^ AP_adresse,int CP_adresse,System::String^ id_ville)
 {
 	System::String^ sql = "";
 	this->servicePersonnel->setnom_personnel(nom);
 	this->servicePersonnel->setprenom_personnel(prenom);
 	this->servicePersonnel->setDNN_personnel(DNN);
-	this->servicePersonnel->setDate_embauche_personnel(DNN_embauche);
+	this->servicePersonnel->setDate_embauche_personnel(date_embauche_personnel);
+	this->servicePersonnel->setAP_adresse(AP_adresse);
+	this->servicePersonnel->setCP_adresse(CP_adresse);
+	this->servicePersonnel->setid_ville(id_ville);
+
+
 	//this->servicePersonnel->setid_superieur(id_sup);
 
 	
@@ -41,8 +46,8 @@ void NS_Comp_SvcPersonnel::CLservicesPersonnel::DeleteUnePersonne(System::String
 
 	sql = this->servicePersonnel->Delete();
 	this->oCad->actionRows(sql);
-}
-void NS_Comp_SvcPersonnel::CLservicesPersonnel::UpdateUnePersonne(System::String^ nom, System::String^ prenom, System::DateTime^ DNN, System::DateTime^ DNN_embauche)
+}*/
+//void NS_Comp_SvcPersonnel::CLservicesPersonnel::UpdateUnePersonne(System::String^ nom, System::String^ prenom, System::DateTime^ DNN, System::DateTime^ DNN_embauche)
 {
 	System::String^ sql;
 	this->servicePersonnel->setnom_personnel(nom);
@@ -55,4 +60,4 @@ void NS_Comp_SvcPersonnel::CLservicesPersonnel::UpdateUnePersonne(System::String
 	sql = this->servicePersonnel->Update();
 	this->oCad->actionRows(sql);
 }
-	*/
+	
