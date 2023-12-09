@@ -67,10 +67,12 @@ namespace ProjetPOOG3 {
 
 	private: System::Windows::Forms::TextBox^ AP_F;
 	private: System::Windows::Forms::TextBox^ CP_F;
-	private: System::Windows::Forms::TextBox^ ville_F;
+
+
 	private: System::Windows::Forms::TextBox^ AP_L;
 	private: System::Windows::Forms::TextBox^ CP_L;
-	private: System::Windows::Forms::TextBox^ ville_L;
+
+
 	private: System::Windows::Forms::Label^ txt_AdresseF;
 	private: System::Windows::Forms::Label^ txt_adresseL;
 
@@ -200,6 +202,8 @@ private: System::Windows::Forms::ComboBox^ marge_commerciale_simu;
 private: System::Windows::Forms::ComboBox^ remise_commerciale_simu;
 private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
 private: System::Windows::Forms::Button^ btn_simuler;
+private: System::Windows::Forms::ComboBox^ Ville_L;
+private: System::Windows::Forms::ComboBox^ Ville_F;
 
 
 
@@ -247,10 +251,8 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->Date_Pachat_client = (gcnew System::Windows::Forms::TextBox());
 			this->AP_F = (gcnew System::Windows::Forms::TextBox());
 			this->CP_F = (gcnew System::Windows::Forms::TextBox());
-			this->ville_F = (gcnew System::Windows::Forms::TextBox());
 			this->AP_L = (gcnew System::Windows::Forms::TextBox());
 			this->CP_L = (gcnew System::Windows::Forms::TextBox());
-			this->ville_L = (gcnew System::Windows::Forms::TextBox());
 			this->txt_AdresseF = (gcnew System::Windows::Forms::Label());
 			this->txt_adresseL = (gcnew System::Windows::Forms::Label());
 			this->txt_nom = (gcnew System::Windows::Forms::Label());
@@ -347,6 +349,8 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->remise_commerciale_simu = (gcnew System::Windows::Forms::ComboBox());
 			this->demarque_inconnue_simu = (gcnew System::Windows::Forms::ComboBox());
 			this->btn_simuler = (gcnew System::Windows::Forms::Button());
+			this->Ville_L = (gcnew System::Windows::Forms::ComboBox());
+			this->Ville_F = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -542,16 +546,6 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->CP_F->TabIndex = 17;
 			this->CP_F->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// ville_F
-			// 
-			this->ville_F->Location = System::Drawing::Point(1000, 710);
-			this->ville_F->Multiline = true;
-			this->ville_F->Name = L"ville_F";
-			this->ville_F->Size = System::Drawing::Size(300, 30);
-			this->ville_F->TabIndex = 18;
-			this->ville_F->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->ville_F->UseSystemPasswordChar = true;
-			// 
 			// AP_L
 			// 
 			this->AP_L->Location = System::Drawing::Point(1005, 420);
@@ -569,15 +563,6 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->CP_L->Size = System::Drawing::Size(300, 30);
 			this->CP_L->TabIndex = 20;
 			this->CP_L->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// ville_L
-			// 
-			this->ville_L->Location = System::Drawing::Point(1005, 510);
-			this->ville_L->Multiline = true;
-			this->ville_L->Name = L"ville_L";
-			this->ville_L->Size = System::Drawing::Size(300, 30);
-			this->ville_L->TabIndex = 21;
-			this->ville_L->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// txt_AdresseF
 			// 
@@ -710,7 +695,7 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				static_cast<System::Byte>(0)));
 			this->txt_ville_L->Location = System::Drawing::Point(1005, 490);
 			this->txt_ville_L->Name = L"txt_ville_L";
-			this->txt_ville_L->Size = System::Drawing::Size(200, 20);
+			this->txt_ville_L->Size = System::Drawing::Size(149, 20);
 			this->txt_ville_L->TabIndex = 40;
 			this->txt_ville_L->Text = L"Ville de livraison";
 			// 
@@ -721,7 +706,7 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				static_cast<System::Byte>(0)));
 			this->txt_ville_F->Location = System::Drawing::Point(1005, 690);
 			this->txt_ville_F->Name = L"txt_ville_F";
-			this->txt_ville_F->Size = System::Drawing::Size(200, 20);
+			this->txt_ville_F->Size = System::Drawing::Size(168, 20);
 			this->txt_ville_F->TabIndex = 41;
 			this->txt_ville_F->Text = L"Ville de facturation";
 			// 
@@ -1580,6 +1565,38 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->btn_simuler->UseVisualStyleBackColor = false;
 			this->btn_simuler->Click += gcnew System::EventHandler(this, &MyForm::btn_simuler_Click);
 			// 
+			// Ville_L
+			// 
+			this->Ville_L->FormattingEnabled = true;
+			this->Ville_L->Items->AddRange(gcnew cli::array< System::Object^  >(49) {
+				L"Paris", L"Marseille", L"Lyon", L"Toulouse", L"Nice",
+					L"Nantes", L"Montpellier", L"Strasbourg", L"Bordeaux", L"Lille", L"Rennes", L"Reims", L"Le Havre", L"Cergy", L"Saint-Étienne",
+					L"Toulon", L"Angers", L"Grenoble", L"Dijon", L"Nîmes", L"Saint-Denis", L"Villeurbanne", L"Clermont-Ferrand", L"Le Mans", L"Aix-en-Provence",
+					L"Brest", L"Tours", L"Limoges", L"Amiens", L"Annecy", L"Perpignan", L"Boulogne-Billancourt", L"Metz", L"Besançon", L"Orléans",
+					L"Saint-Denis", L"Argenteuil", L"Rouen", L"Montreuil", L"Mulhouse", L"Caen", L"Nancy", L"Saint-Paul", L"Nouméa", L"Tourcoing",
+					L"Avignon", L"Vitry-sur-Seine", L"Créteil", L"Poitiers"
+			});
+			this->Ville_L->Location = System::Drawing::Point(1009, 513);
+			this->Ville_L->Name = L"Ville_L";
+			this->Ville_L->Size = System::Drawing::Size(300, 24);
+			this->Ville_L->TabIndex = 43;
+			// 
+			// Ville_F
+			// 
+			this->Ville_F->FormattingEnabled = true;
+			this->Ville_F->Items->AddRange(gcnew cli::array< System::Object^  >(49) {
+				L"Paris", L"Marseille", L"Lyon", L"Toulouse", L"Nice",
+					L"Nantes", L"Montpellier", L"Strasbourg", L"Bordeaux", L"Lille", L"Rennes", L"Reims", L"Le Havre", L"Cergy", L"Saint-Étienne",
+					L"Toulon", L"Angers", L"Grenoble", L"Dijon", L"Nîmes", L"Saint-Denis", L"Villeurbanne", L"Clermont-Ferrand", L"Le Mans", L"Aix-en-Provence",
+					L"Brest", L"Tours", L"Limoges", L"Amiens", L"Annecy", L"Perpignan", L"Boulogne-Billancourt", L"Metz", L"Besançon", L"Orléans",
+					L"Saint-Denis", L"Argenteuil", L"Rouen", L"Montreuil", L"Mulhouse", L"Caen", L"Nancy", L"Saint-Paul", L"Nouméa", L"Tourcoing",
+					L"Avignon", L"Vitry-sur-Seine", L"Créteil", L"Poitiers"
+			});
+			this->Ville_F->Location = System::Drawing::Point(1009, 713);
+			this->Ville_F->Name = L"Ville_F";
+			this->Ville_F->Size = System::Drawing::Size(300, 24);
+			this->Ville_F->TabIndex = 44;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -1596,6 +1613,7 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->Text = L"MyForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -1692,10 +1710,10 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				   this->Controls->Remove(this->txt_nom);
 				   this->Controls->Remove(this->txt_adresseL);
 				   this->Controls->Remove(this->txt_AdresseF);
-				   this->Controls->Remove(this->ville_L);
+				   this->Controls->Remove(this->Ville_L);
 				   this->Controls->Remove(this->CP_L);
 				   this->Controls->Remove(this->AP_L);
-				   this->Controls->Remove(this->ville_F);
+				   this->Controls->Remove(this->Ville_F);
 				   this->Controls->Remove(this->CP_F);
 				   this->Controls->Remove(this->AP_F);
 				   this->Controls->Remove(this->Date_Pachat_client);
@@ -1829,10 +1847,10 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				   this->Controls->Add(this->txt_nom);
 				   this->Controls->Add(this->txt_adresseL);
 				   this->Controls->Add(this->txt_AdresseF);
-				   this->Controls->Add(this->ville_L);
+				   this->Controls->Add(this->Ville_L);
 				   this->Controls->Add(this->CP_L);
 				   this->Controls->Add(this->AP_L);
-				   this->Controls->Add(this->ville_F);
+				   this->Controls->Add(this->Ville_F);
 				   this->Controls->Add(this->CP_F);
 				   this->Controls->Add(this->AP_F);
 				   this->Controls->Add(this->Date_Pachat_client);
@@ -1960,11 +1978,11 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				MessageBox::Show("Erreur dans les Codes postaux", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(Ville_F->Text) || String::IsNullOrWhiteSpace(Ville_L->Text)) {
 				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			this->oSvcClient->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+			this->oSvcClient->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->Ville_L->Text, this->Ville_F->Text);
 			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
@@ -2002,11 +2020,11 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				MessageBox::Show("Erreur dans le code postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
+			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(Ville_F->Text) || String::IsNullOrWhiteSpace(Ville_L->Text)) {
 				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			this->oSvcClient->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->ville_L->Text, this->ville_F->Text);
+			this->oSvcClient->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->Ville_L->Text, this->Ville_F->Text);
 			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
@@ -2017,17 +2035,16 @@ private: System::Windows::Forms::Button^ btn_simuler;
 
 	private: System::Void btn_afficher_commande(System::Object^ sender, System::EventArgs^ e) {
 
-		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Rsl");
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("SQl");
 		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
+		this->dataGridView1->DataMember = "SQl";
 	}
 	private: System::Void btn_afficher_commandearticle(System::Object^ sender, System::EventArgs^ e) {
 
-		this->oDs = this->osvcCommande->selectionnerToutesLesCommandesArticle("Rsl");
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandesArticle("del");
 		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
+		this->dataGridView1->DataMember = "del";
 	}
-
 	private: System::Void btn_add_commande(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
 		int idclient, idarticle, qtt_article, qtt_paiement;
@@ -2055,7 +2072,6 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			MessageBox::Show("YO", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande2(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, Dpaiement2, this->moyen_paiement1->Text, this->moyen_paiement2->Text, D_E_S1, D_E_S2, idarticle, qtt_article);
 		}
 		else {
@@ -2096,9 +2112,9 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				return;
 			}
 			this->osvcCommande->UpdateUneCommandeArticle(this->ref_commande->Text, id_article, qtt_article);
-			this->oDs = this->osvcCommande->selectionnerToutesLesCommandesArticle("Rsl");
+			this->oDs = this->osvcCommande->selectionnerToutesLesCommandesArticle("del");
 			this->dataGridView1->DataSource = this->oDs;
-			this->dataGridView1->DataMember = "Rsl";
+			this->dataGridView1->DataMember = "del";
 		}
 
 		else {
@@ -2214,20 +2230,34 @@ private: System::Windows::Forms::Button^ btn_simuler;
 	}
 	private: System::Void btn_ajouter_article_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
+		if (String::IsNullOrWhiteSpace(nom_article_stock->Text) || String::IsNullOrWhiteSpace(valeur_en_stock->Text) || String::IsNullOrWhiteSpace(taux_tva_article_stock->Text) || String::IsNullOrWhiteSpace(prix_ht_article_stock->Text) || String::IsNullOrWhiteSpace(seuil_reapprovisionnement_stock->Text) || String::IsNullOrWhiteSpace(couleur_article_stock->Text)) {
+			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 		this->oSvc->InsererUnArticle(this->nom_article_stock->Text, this->valeur_en_stock->Text, this->taux_tva_article_stock->Text, this->prix_ht_article_stock->Text, this->seuil_reapprovisionnement_stock->Text, this->couleur_article_stock->Text);
+		this->oDs = this->oSvc->ChargerTousArticles("Rsl");
 		this->dataGridView1->DataSource = this->oDs;
 		this->dataGridView1->DataMember = "Rsl";
-
 	}
 	private: System::Void btn_maj_article_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
+		if (String::IsNullOrWhiteSpace(nom_article_stock->Text) || String::IsNullOrWhiteSpace(valeur_en_stock->Text) || String::IsNullOrWhiteSpace(taux_tva_article_stock->Text) || String::IsNullOrWhiteSpace(prix_ht_article_stock->Text) || String::IsNullOrWhiteSpace(seuil_reapprovisionnement_stock->Text)) {
+			MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 		this->oSvc->ModifierUnArticle(this->nom_article_stock->Text, this->valeur_en_stock->Text, this->taux_tva_article_stock->Text, this->prix_ht_article_stock->Text, this->seuil_reapprovisionnement_stock->Text);
+		this->oDs = this->oSvc->ChargerTousArticles("Rsl");
 		this->dataGridView1->DataSource = this->oDs;
 		this->dataGridView1->DataMember = "Rsl";
 	}
 	private: System::Void btn_sup_article_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
+		if (String::IsNullOrWhiteSpace(nom_article_stock->Text)) {
+			MessageBox::Show("Veuillez remplir le nom de l'article pour le suprimer ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 		this->oSvc->SupprimerUnArticle(this->nom_article_stock->Text);
+		this->oDs = this->oSvc->ChargerTousArticles("Rsl");
 		this->dataGridView1->DataSource = this->oDs;
 		this->dataGridView1->DataMember = "Rsl";
 	}
