@@ -13,7 +13,7 @@ namespace NS_Comp_SvcPersonnel
 	public:
 		CLservicesPersonnel(void);
 		System::Data::DataSet^ selectionnerTousLesPersonnels(System::String^);
-		void AjouterUnPersonnel(System::String^, System::String^, System::DateTime^, System::DateTime^, System::String^,int, System::String^);
+		void AjouterUnPersonnel(System::String^ nom, System::String^ prenom, System::DateTime^ DN_Personnel, System::DateTime^ date_embauche_personnel, System::String^ AP_adresse, int CP_adresse, System::String^ ville, int id_superieur);
 		//void DeleteUnPersonnel(System::String^, System::String^, System::DateTime^, System::DateTime^, System::String^, int, System::String^);
 		//void UpdateUnePersonne(System::String^, System::String^, System::DateTime^, System::DateTime^, System::String^, int, System::String^);
 		

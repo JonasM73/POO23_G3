@@ -3,7 +3,8 @@
 
 NS_Comp_Data::CLcad::CLcad(void)
 {
-	this->sCnx = "Server=PC_DE_ALEXIS\\SQL_SERV_A; Database=PROJET_POO; User ID=alexis_utilisateur; Password=azer12345";
+
+	this->sCnx = "Server=PC_DE_ALEXIS\\SQL_SERV_A;" +		"Initial Catalog =PROJET_POO;" +		"Persist Security Info=True;" +		"User ID =alexis_utilisateur;" +		"Password =azer;";
 
 
 	this->sSql = "Rien";
