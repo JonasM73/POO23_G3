@@ -25,7 +25,7 @@ void NS_SvcStock::CLserviceStock::InsererUnArticle(System::String^ nom, System::
 }
 void NS_SvcStock::CLserviceStock::ModifierUnArticle(System::String^ nom, System::String^ val, System::String^ tva, System::String^ prix, System::String^ seuil) {
 	this->oMapStock->setNomart(nom);
-	System::String^ sql = "";
+	System::String^ sql;
 	this->oMapStock->setNomart(nom);
 	this->oMapStock->setValeurstock(val);
 	this->oMapStock->setTauxTVA(tva);
@@ -36,7 +36,7 @@ void NS_SvcStock::CLserviceStock::ModifierUnArticle(System::String^ nom, System:
 }
 void NS_SvcStock::CLserviceStock::SupprimerUnArticle(System::String^ nom) {
 	this->oMapStock->setNomart(nom);
-	System::String^ sql = "";
+	System::String^ sql ;
 	sql = this->oMapStock->Delete();
 	this->oCad->actionRows(sql);
 }

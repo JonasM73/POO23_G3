@@ -24,8 +24,8 @@ System::String^ NS_Comp_MappageClient::CLmapTBClient::Insert(void) {
 		"SET @NomVilleL = '" + this->villeL_client + "' " +
 		"DECLARE @IDVilleL INT " +
 		"SELECT TOP 1 @IDVilleL = id_ville FROM Ville WHERE ville = @NomVilleL " +
-		"INSERT INTO [PooG3].[dbo].[Adresse] (AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_F_client + "', " + this->CP_F_client + ", @IDVilleF),('" + this->AP_L_client + "', " + this->CP_L_client + ", @IDVilleL); " +
-		"INSERT INTO [PooG3].[dbo].[Client] (Numero_Client, nom_client, prenom_client, DNN_client, Date_Pachat_client, adresse_F, adresse_L) VALUES ('" + this->numero_client + "', '" + this->nom_client + "', '" + this->prenom_client + "', '" + this->DNN_client + "', '" + this->Date_Pchat_client + "', " +
+		"INSERT INTO [Projet_POOG3].[dbo].[Adresse] (AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_F_client + "', " + this->CP_F_client + ", @IDVilleF),('" + this->AP_L_client + "', " + this->CP_L_client + ", @IDVilleL); " +
+		"INSERT INTO [Projet_POOG3].[dbo].[Client] (Numero_Client, nom_client, prenom_client, DNN_client, Date_Pachat_client, adresse_F, adresse_L) VALUES ('" + this->numero_client + "', '" + this->nom_client + "', '" + this->prenom_client + "', '" + this->DNN_client + "', '" + this->Date_Pchat_client + "', " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_F_client + " AND AP_adresse = '" + this->AP_F_client + "'), " +
 		"(SELECT TOP 1 id_adresse FROM [Adresse] WHERE CP_adresse = " + this->CP_L_client + " AND AP_adresse = '" + this->AP_L_client + "'))";
 }
