@@ -22,10 +22,24 @@ System::String^ NS_Comp_MappagePersonnel::CLmapPersonnel::Select(void)
 }
 System::String^ NS_Comp_MappagePersonnel::CLmapPersonnel::Insert(void) {
 
-	return"";
+	System::String^ toto = "DECLARE @IDVillePersonnel INT " +
+		"SELECT TOP 1 @IDVillePersonnel = id_ville FROM [Ville] WHERE ville = @IDVillePersonnel;" +
+		"INSERT INTO [Adresse](AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_adresse + "', '" + this->CP_adresse + "', @IDVillePersonnel);" +
+		"DECLARE @id_nouvelle_adresse INT SET @id_nouvelle_adresse = SCOPE_IDENTITY();" +
+		"INSERT INTO [Personnel](nom_personnel, prenom_personnel, DNN_personnel, Date_embauche_personnel, id_superieur, id_adresse) " +
+		"VALUES ('" + this->nom_personnel + "', '" + this->prenom_personnel + "', '" + this->DN_personnel + "', '" + this->Date_embauche_personnel + "', '" + this->id_superieur + "', @id_nouvelle_adresse);";
 
 
+	System::Windows::Forms::MessageBox::Show(toto, "Erreur");
 
+	return 
+		"DECLARE @IDVillePersonnel INT " +
+		"SELECT TOP 1 @IDVillePersonnel = id_ville FROM [Ville] WHERE ville = '" + this->ville + "';" +
+		"INSERT INTO [Adresse](AP_adresse, CP_adresse, id_ville) VALUES ('" + this->AP_adresse + "', '" + this->CP_adresse + "', @IDVillePersonnel);" +
+		"DECLARE @id_nouvelle_adresse INT SET @id_nouvelle_adresse = SCOPE_IDENTITY();" +
+		"INSERT INTO [Personnel](nom_personnel, prenom_personnel, DNN_personnel, Date_embauche_personnel, id_superieur, id_adresse) " +
+		"VALUES ('" + this->nom_personnel + "', '" + this->prenom_personnel + "', '" + this->DN_personnel + "', '" + this->Date_embauche_personnel + "', '" + this->id_superieur + "', @id_nouvelle_adresse);";
+	
 		
 }
 System::String^ NS_Comp_MappagePersonnel::CLmapPersonnel::Update(void) {

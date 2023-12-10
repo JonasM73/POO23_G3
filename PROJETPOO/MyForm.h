@@ -1466,13 +1466,10 @@ namespace ProjetPOOG3 {
 				MessageBox::Show("Erreur dans le Codes postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(ville_F->Text) || String::IsNullOrWhiteSpace(ville_L->Text)) {
-				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
-				return;
-			}
+			
 
 			this->oSvPersonnel->AjouterUnPersonnel(this->nom_personnel->Text, this->prenom_personnel->Text, DN_Personnel, date_embauche_Personnel, this->AP_personnel->Text, CP_personnel, this->ville_personnel->Text, Int32::Parse(this->id_superieur->Text));
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
 			
