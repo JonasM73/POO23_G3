@@ -4,14 +4,18 @@ namespace NS_Comp_MappageSimu {
 	{
 	private:
 		System::String^ sSQL;
-		float TVA;
+		System::String^ TVA;
 		System::String^ margeC;
-		float remiseC;
-		float demarqueInconnue;
+		System::String^ remiseC;
+		System::String^ demarqueInconnue;
+
+
 	public:
 		System::String^ margeCommerciale(void);
-		void setMargeC(System::String^);
-
+		void setRemiseC(System::String^ r);
+		void setMargeC(System::String^ m);
+		void setDemarqueI(System::String^ d);
+		void setTVA1(System::String^ td);
 	};
 
 }
