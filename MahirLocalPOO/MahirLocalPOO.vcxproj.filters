@@ -45,6 +45,12 @@
     <ClCompile Include="CLmapStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CLmapSimulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLserviceSimulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -75,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CLmapStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLmapSimulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLserviceSimulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
