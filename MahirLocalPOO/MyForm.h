@@ -2048,7 +2048,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 
 		//verif des infos pour un paiement
 		if (qtt_paiement == 1) {
-			MessageBox::Show("ajouterunecommande", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande1(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, this->moyen_paiement1->Text, D_E_S1, idarticle, qtt_article);
 		}		//verif des infos pour 2 paiement
 		else if (qtt_paiement == 2) {
@@ -2056,7 +2055,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			MessageBox::Show("ajouterunecommande2", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande2(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, Dpaiement2, this->moyen_paiement1->Text, this->moyen_paiement2->Text, D_E_S1, D_E_S2, idarticle, qtt_article);
 		}
 		else {
@@ -2257,9 +2255,9 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 
 private: System::Void btn_simuler_Click(System::Object^ sender, System::EventArgs^ e) {
 	
-	int margecommerciale = 0;
-	int remisecommerciale = 0;
-	int demarqueinconnue = 0;
+	int margecommerciale;
+	int remisecommerciale;
+	int demarqueinconnue;
 	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 0%") { margecommerciale = 0; }
 	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 5%") { margecommerciale = 5; }
 	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 10%") { margecommerciale = 10; }

@@ -25,16 +25,17 @@ System::String^ NS_Comp_MappageStats::CLmapStats::MontantTotalClient(void) {
 }
 
 System::String^ NS_Comp_MappageStats::CLmapStats::ArticlesPlusVendus(void) {
-	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantite_article_commande) AS total_quantity_sold " +
+	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantite_article_commande) AS 'quantite_d''article_vendu' " +
 		"FROM Article A JOIN Commande_Article CA ON A.id_article = CA.id_article " +
-		"GROUP BY A.id_article, A.nom_article ORDER BY total_quantity_sold DESC";
-
+		"GROUP BY A.id_article, A.nom_article " +
+		"ORDER BY 'quantite_d''article_vendu' DESC";
 }
 
 System::String^ NS_Comp_MappageStats::CLmapStats::ArticlesMoinsVendus(void) {
-	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantite_article_commande) AS total_quantity_sold " +
+	return "SELECT TOP 10 A.id_article, A.nom_article, SUM(CA.quantite_article_commande) AS quantite_d_article_vendu " +
 		"FROM Article A JOIN Commande_Article CA ON A.id_article = CA.id_article " +
-		"GROUP BY A.id_article, A.nom_article ORDER BY total_quantity_sold ASC; ";
+		"GROUP BY A.id_article, A.nom_article " +
+		"ORDER BY SUM(CA.quantite_article_commande) ASC";
 }
 
 System::String^ NS_Comp_MappageStats::CLmapStats::ValeurCommercialeStock(void) {

@@ -2,8 +2,8 @@
 using namespace System;
 NS_Comp_Data::CLcad::CLcad(void)
 {
-	this->sCnx = "Data Source = PCMAHIR\\MSSQL_POO;" +
-		"Initial Catalog =Projet_PooG3;" +
+	this->sCnx = "Data Source = DESKTOP-5908F3E\\MSSQL_JONAS;" +
+		"Initial Catalog =PROJET_POOG3;" +
 		"Persist Security Info=True;" +
 		"User ID =jonas_admin;" +
 		"Password =cesi;";
