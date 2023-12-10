@@ -6,6 +6,7 @@
 #include "CLmapClient.h"
 #include "CLserviceStats.h"
 #include "CLserviceSimulation.h"
+#include "CLservicePersonnel.h"
 #include <iostream>
 #include <string>
 namespace ProjetPOOG3 {
@@ -50,9 +51,12 @@ namespace ProjetPOOG3 {
 	private: NS_SvcStock::CLserviceStock^ oSvc;
 	private: NS_SvcStats::CLserviceStats^ oSvcStats;
 	private: NS_Svc_Simu::CLserviceSimulation^ oSvcSimu;
+	private: NS_Comp_SvcPersonnel::CLservicesPersonnel^ oSvPersonnel;
 
 	protected:
 
+	private: System::Windows::Forms::TextBox^ date_embauche_personnel;
+	private: System::Windows::Forms::Label^ txt_date_embauche_personnel;
 	private: System::Windows::Forms::Button^ btn_GestionPersonnel;
 	private: System::Windows::Forms::Button^ btn_GestionClient;
 	private: System::Windows::Forms::Button^ btn_GestionCommande;
@@ -62,6 +66,8 @@ namespace ProjetPOOG3 {
 
 
 	private: System::Windows::Forms::TextBox^ prenom;
+	private: System::Windows::Forms::Label^ txt_DN_Personnel;
+	private: System::Windows::Forms::TextBox^ DN_Personnel;
 	private: System::Windows::Forms::TextBox^ DNN;
 	private: System::Windows::Forms::TextBox^ Date_Pachat_client;
 
@@ -188,18 +194,18 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Label^ txt_couleur_article;
 	private: System::Windows::Forms::TextBox^ couleur_article_stock;
 	private: System::Windows::Forms::Button^ btn_montant_achat_client_stats;
-private: System::Windows::Forms::TextBox^ TVA1_simulations;
-private: System::Windows::Forms::Label^ txt_TVA1;
-private: System::Windows::Forms::Label^ txt_TVA2;
-private: System::Windows::Forms::TextBox^ TVA2_simu;
-private: System::Windows::Forms::Label^ txt_TVA3;
-private: System::Windows::Forms::TextBox^ TVA3_simu;
-private: System::Windows::Forms::ComboBox^ marge_commerciale_simu;
-private: System::Windows::Forms::ComboBox^ remise_commerciale_simu;
-private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
-private: System::Windows::Forms::Button^ btn_simuler;
-private: System::Windows::Forms::ComboBox^ Ville_L;
-private: System::Windows::Forms::ComboBox^ Ville_F;
+	private: System::Windows::Forms::TextBox^ TVA1_simulations;
+	private: System::Windows::Forms::Label^ txt_TVA1;
+	private: System::Windows::Forms::Label^ txt_TVA2;
+	private: System::Windows::Forms::TextBox^ TVA2_simu;
+	private: System::Windows::Forms::Label^ txt_TVA3;
+	private: System::Windows::Forms::TextBox^ TVA3_simu;
+	private: System::Windows::Forms::ComboBox^ marge_commerciale_simu;
+	private: System::Windows::Forms::ComboBox^ remise_commerciale_simu;
+	private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
+	private: System::Windows::Forms::Button^ btn_simuler;
+	private: System::Windows::Forms::ComboBox^ Ville_L;
+	private: System::Windows::Forms::ComboBox^ Ville_F;
 
 
 
@@ -230,6 +236,10 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->date_embauche_personnel = (gcnew System::Windows::Forms::TextBox());
+			this->txt_date_embauche_personnel = (gcnew System::Windows::Forms::Label());
+			this->DN_Personnel = (gcnew System::Windows::Forms::TextBox());
+			this->txt_DN_Personnel = (gcnew System::Windows::Forms::Label());
 			this->btn_GestionPersonnel = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->btn_GestionClient = (gcnew System::Windows::Forms::Button());
@@ -801,24 +811,63 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			this->ville_personnel->Size = System::Drawing::Size(300, 30);
 			this->ville_personnel->TabIndex = 0;
 			// 
-			// id_superieur
+			// txt_naissance_personnel
 			// 
-			this->id_superieur->Location = System::Drawing::Point(1169, 524);
-			this->id_superieur->Multiline = true;
-			this->id_superieur->Name = L"id_superieur";
-			this->id_superieur->Size = System::Drawing::Size(300, 30);
-			this->id_superieur->TabIndex = 39;
+			this->txt_DN_Personnel->AutoSize = true;
+			this->txt_DN_Personnel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_DN_Personnel->Location = System::Drawing::Point(1169, 400);
+			this->txt_DN_Personnel->Name = L"txt_DN_Personnel";
+			this->txt_DN_Personnel->Size = System::Drawing::Size(94, 16);
+			this->txt_DN_Personnel->TabIndex = 49;
+			this->txt_DN_Personnel->Text = L"date naissance personnel";
+			//
+			// naissance_personnel
+			// 
+			this->DN_Personnel->Location = System::Drawing::Point(1169, 420);
+			this->DN_Personnel->Multiline = true;
+			this->DN_Personnel->Name = L"DN_Personnel";
+			this->DN_Personnel->Size = System::Drawing::Size(371, 43);
+			this->DN_Personnel->TabIndex = 48;
+
+			// 
+			// txt_Date_embauche_personnel
+			// 
+			this->txt_date_embauche_personnel->AutoSize = true;
+			this->txt_date_embauche_personnel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_date_embauche_personnel->Location = System::Drawing::Point(1169, 500);
+			this->txt_date_embauche_personnel->Name = L"txt_Date_embauche_personnel";
+			this->txt_date_embauche_personnel->Size = System::Drawing::Size(94, 16);
+			this->txt_date_embauche_personnel->TabIndex = 38;
+			this->txt_date_embauche_personnel->Text = L"date embauche personnel";
+			// 
+			// Date_embauche_personnel
+			//
+			this->date_embauche_personnel->Location = System::Drawing::Point(1169, 520);
+			this->date_embauche_personnel->Multiline = true;
+			this->date_embauche_personnel->Name = L"Date_embauche_personnel";
+			this->date_embauche_personnel->Size = System::Drawing::Size(371, 43);
+			this->date_embauche_personnel->TabIndex = 37;
 			// 
 			// txt_id_superieur
 			// 
 			this->txt_id_superieur->AutoSize = true;
 			this->txt_id_superieur->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_id_superieur->Location = System::Drawing::Point(1166, 515);
+			this->txt_id_superieur->Location = System::Drawing::Point(1169, 600);
 			this->txt_id_superieur->Name = L"txt_id_superieur";
-			this->txt_id_superieur->Size = System::Drawing::Size(200, 20);
+			this->txt_id_superieur->Size = System::Drawing::Size(122, 16);
 			this->txt_id_superieur->TabIndex = 40;
 			this->txt_id_superieur->Text = L"identifiant superieur";
+			// 
+			// id_superieur
+			// 
+			this->id_superieur->Location = System::Drawing::Point(1169, 620);
+			this->id_superieur->Multiline = true;
+			this->id_superieur->Name = L"id_superieur";
+			this->id_superieur->Size = System::Drawing::Size(371, 43);
+			this->id_superieur->TabIndex = 39;
 			// 
 			// ref_commande
 			// 
@@ -1713,7 +1762,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Remove(this->nom);
 				   this->Controls->Remove(this->txt_id_superieur);
 				   this->Controls->Remove(this->id_superieur);
-				   this->Controls->Remove(this->txt_ville_personnel);
 				   this->Controls->Remove(this->ville_personnel);
 				   this->Controls->Remove(this->txt_CP_personnel);
 				   this->Controls->Remove(this->CP_personnel);
@@ -1722,6 +1770,11 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Remove(this->txt_prenom_personnel);
 				   this->Controls->Remove(this->prenom_personnel);
 				   this->Controls->Remove(this->txt_nom_personnel);
+				   this->Controls->Remove(this->nom_personnel);
+				   this->Controls->Remove(this->DN_Personnel);
+				   this->Controls->Remove(this->txt_DN_Personnel);
+				   this->Controls->Remove(this->date_embauche_personnel);
+				   this->Controls->Remove(this->txt_date_embauche_personnel);
 				   this->Controls->Remove(this->nom_personnel);
 				   this->Controls->Remove(this->btn_afficher);
 				   this->Controls->Remove(this->btn_upd);
@@ -1794,6 +1847,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Remove(this->txt_TVA1);
 				   this->Controls->Remove(this->TVA1_simulations);
 				   this->Controls->Remove(this->btn_simuler);
+				   this->Controls->Remove(this->txt_ville_personnel);
 
 				   break;
 
@@ -1814,6 +1868,11 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Add(this->prenom_personnel);
 				   this->Controls->Add(this->txt_nom_personnel);
 				   this->Controls->Add(this->nom_personnel);
+				   this->Controls->Add(this->txt_DN_Personnel);
+				   this->Controls->Add(this->DN_Personnel);
+				   this->Controls->Add(this->date_embauche_personnel);
+				   this->Controls->Add(this->txt_date_embauche_personnel);
+				   this->oSvPersonnel = gcnew NS_Comp_SvcPersonnel::CLservicesPersonnel();
 				   break;
 			   case 2:
 				   this->Controls->Add(this->btn_afficher);
@@ -1932,6 +1991,10 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 	private: System::Void btn_afficher_click(System::Object^ sender, System::EventArgs^ e) {
 		//affichage personnel
 		if (b == 1) {
+			this->dataGridView1->Refresh();
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
 
 		}
 
@@ -1945,6 +2008,25 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 		}
 	}
 	private: System::Void btn_add_click(System::Object^ sender, System::EventArgs^ e) {
+		if (b == 1) {
+			this->dataGridView1->Refresh();
+			DateTime DN_Personnel, date_embauche_Personnel;
+			int CP_personnel;
+			if (!DateTime::TryParse(this->DN_Personnel->Text, DN_Personnel) || !DateTime::TryParse(this->date_embauche_personnel->Text, date_embauche_Personnel)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (!Int32::TryParse(this->CP_personnel->Text, CP_personnel)) {
+				MessageBox::Show("Erreur dans le Codes postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvPersonnel->AjouterUnPersonnel(this->nom_personnel->Text, this->prenom_personnel->Text, DN_Personnel, date_embauche_Personnel, this->AP_personnel->Text, CP_personnel, this->ville_personnel->Text, Int32::Parse(this->id_superieur->Text));
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+
+		}
+
 		//add client
 		if (b == 2) {
 			this->dataGridView1->Refresh();
@@ -1961,7 +2043,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(Ville_F->Text) || String::IsNullOrWhiteSpace(Ville_L->Text)) {
 				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
-			}			
+			}
 			this->oSvcClient->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->Ville_L->Text, this->Ville_F->Text);
 			this->dataGridView1->Refresh();
 			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
@@ -1970,6 +2052,19 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 		}
 	}
 	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {
+		if (b == 1) {
+			this->dataGridView1->Refresh();
+			DateTime DN_Personnel, date_embauche_Personnel;
+			int CP_personnel;
+			if (!DateTime::TryParse(this->date_embauche_personnel->Text, date_embauche_Personnel)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			this->oSvPersonnel->DeleteUnPersonnel(this->nom_personnel->Text, this->prenom_personnel->Text, date_embauche_Personnel);
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
 		//del client
 		if (b == 2) {
 			DateTime DateNN;
@@ -1989,6 +2084,26 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 		}
 	}
 	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+		if (b == 1) {
+
+			this->dataGridView1->Refresh();
+			DateTime DN_Personnel, date_embauche_Personnel;
+			int CP_personnel;
+
+			if (!DateTime::TryParse(this->DN_Personnel->Text, DN_Personnel) || !DateTime::TryParse(this->date_embauche_personnel->Text, date_embauche_Personnel)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			if (!Int32::TryParse(this->CP_personnel->Text, CP_personnel)) {
+				MessageBox::Show("Erreur dans le Codes postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			this->oSvPersonnel->UpdateUnPersonnel(this->nom_personnel->Text, this->prenom_personnel->Text, DN_Personnel, date_embauche_Personnel, this->AP_personnel->Text, CP_personnel, this->ville_personnel->Text, Int32::Parse(this->id_superieur->Text));
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+		}
 		//add client
 		if (b == 2) {
 			this->dataGridView1->Refresh();
@@ -2048,6 +2163,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 
 		//verif des infos pour un paiement
 		if (qtt_paiement == 1) {
+			MessageBox::Show("ajouterunecommande", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande1(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, this->moyen_paiement1->Text, D_E_S1, idarticle, qtt_article);
 		}		//verif des infos pour 2 paiement
 		else if (qtt_paiement == 2) {
@@ -2055,6 +2171,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
+			MessageBox::Show("ajouterunecommande2", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande2(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, Dpaiement2, this->moyen_paiement1->Text, this->moyen_paiement2->Text, D_E_S1, D_E_S2, idarticle, qtt_article);
 		}
 		else {
@@ -2124,6 +2241,10 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 	}
 	private: System::Void liste_mois_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		int mois = -1;
+		if (String::IsNullOrWhiteSpace(liste_mois_stats->Text)) {
+			MessageBox::Show("Veuillez remplir la liste de mois ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 		if (this->liste_mois_stats->Text == L"Janvier") {
 			mois = 1;
 		}
@@ -2248,31 +2369,35 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 
 	private: System::Void btn_montant_client_stats_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
+		if (String::IsNullOrWhiteSpace(nom_client_stats->Text)) {
+			MessageBox::Show("Veuillez remplir le nom du Client ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			return;
+		}
 		this->oDs = this->oSvcStats->AfficherMontantTotalClient("Rsl", this->nom_client_stats->Text);
 		this->dataGridView1->DataSource = this->oDs;
 		this->dataGridView1->DataMember = "Rsl";
 	}
 
-private: System::Void btn_simuler_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-	int margecommerciale;
-	int remisecommerciale;
-	int demarqueinconnue;
-	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 0%") { margecommerciale = 0; }
-	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 5%") { margecommerciale = 5; }
-	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 10%") { margecommerciale = 10; }
-	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 15%") { margecommerciale = 15; }
-	if (this->remise_commerciale_simu->Text == L"Remise commerciale * 0%") { remisecommerciale = 0; }
-	if (this->remise_commerciale_simu->Text == L"Remise commerciale * 5%") { remisecommerciale = 5; }
-	if (this->remise_commerciale_simu->Text == L"Remise commerciale * 6%") { remisecommerciale = 6; }
-	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 0%") { demarqueinconnue = 0; }
-	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 2%") { demarqueinconnue = 2; }
-	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 3%") { demarqueinconnue = 3; }
-	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 5%") { demarqueinconnue = 5; }
-	this->dataGridView1->Refresh();
-	this->oDs = this->oSvcSimu->MargeCommerciale5("Rsl",this->TVA1_simulations->Text, margecommerciale, remisecommerciale, demarqueinconnue);
-	this->dataGridView1->DataSource = this->oDs;
-	this->dataGridView1->DataMember = "Rsl";
-}
-};
+	private: System::Void btn_simuler_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		int margecommerciale = 0;
+		int remisecommerciale = 0;
+		int demarqueinconnue = 0;
+		if (this->marge_commerciale_simu->Text == L"Marge commerciale * 0%") { margecommerciale = 0; }
+		if (this->marge_commerciale_simu->Text == L"Marge commerciale * 5%") { margecommerciale = 5; }
+		if (this->marge_commerciale_simu->Text == L"Marge commerciale * 10%") { margecommerciale = 10; }
+		if (this->marge_commerciale_simu->Text == L"Marge commerciale * 15%") { margecommerciale = 15; }
+		if (this->remise_commerciale_simu->Text == L"Remise commerciale * 0%") { remisecommerciale = 0; }
+		if (this->remise_commerciale_simu->Text == L"Remise commerciale * 5%") { remisecommerciale = 5; }
+		if (this->remise_commerciale_simu->Text == L"Remise commerciale * 6%") { remisecommerciale = 6; }
+		if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 0%") { demarqueinconnue = 0; }
+		if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 2%") { demarqueinconnue = 2; }
+		if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 3%") { demarqueinconnue = 3; }
+		if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 5%") { demarqueinconnue = 5; }
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvcSimu->MargeCommerciale5("Rsl", this->TVA1_simulations->Text, margecommerciale, remisecommerciale, demarqueinconnue);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	};
 }

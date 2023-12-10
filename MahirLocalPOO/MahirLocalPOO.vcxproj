@@ -124,11 +124,13 @@
     <ClCompile Include="CLcad.cpp" />
     <ClCompile Include="CLmapClient.cpp" />
     <ClCompile Include="CLmapCommande.cpp" />
+    <ClCompile Include="CLmapPersonnel.cpp" />
     <ClCompile Include="CLmapSimulation.cpp" />
     <ClCompile Include="CLmapStats.cpp" />
     <ClCompile Include="CLmapStock.cpp" />
     <ClCompile Include="CLserviceClient.cpp" />
     <ClCompile Include="CLserviceCommande.cpp" />
+    <ClCompile Include="ClservicePersonnel.cpp" />
     <ClCompile Include="CLserviceSimulation.cpp" />
     <ClCompile Include="CLserviceStats.cpp" />
     <ClCompile Include="CLserviceStock.cpp" />
@@ -138,11 +140,17 @@
     <ClInclude Include="CLcad.h" />
     <ClInclude Include="CLmapClient.h" />
     <ClInclude Include="CLmapCommande.h" />
+    <ClInclude Include="CLmapPersonnel.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CLmapSimulation.h" />
     <ClInclude Include="CLmapStats.h" />
     <ClInclude Include="CLmapStock.h" />
     <ClInclude Include="CLserviceClient.h" />
     <ClInclude Include="CLserviceCommande.h" />
+    <ClInclude Include="ClservicePersonnel.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CLserviceSimulation.h" />
     <ClInclude Include="CLserviceStats.h" />
     <ClInclude Include="CLserviceStock.h" />
