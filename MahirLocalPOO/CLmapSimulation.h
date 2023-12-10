@@ -4,10 +4,10 @@ namespace NS_Comp_MappageSimu {
 	{
 	private:
 		System::String^ sSQL;
-		System::String^ TVA;
-		System::String^ margeC;
-		System::String^ remiseC;
-		System::String^ demarqueInconnue;
+		System::String^ TVA= "0";
+		System::String^ margeC = "0";
+		System::String^ remiseC = "0";
+		System::String^ demarqueInconnue = "0";
 
 
 	public:
