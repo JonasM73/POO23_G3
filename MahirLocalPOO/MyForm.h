@@ -343,10 +343,6 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->btn_montant_achat_client_stats = (gcnew System::Windows::Forms::Button());
 			this->TVA1_simulations = (gcnew System::Windows::Forms::TextBox());
 			this->txt_TVA1 = (gcnew System::Windows::Forms::Label());
-			this->txt_TVA2 = (gcnew System::Windows::Forms::Label());
-			this->TVA2_simu = (gcnew System::Windows::Forms::TextBox());
-			this->txt_TVA3 = (gcnew System::Windows::Forms::Label());
-			this->TVA3_simu = (gcnew System::Windows::Forms::TextBox());
 			this->marge_commerciale_simu = (gcnew System::Windows::Forms::ComboBox());
 			this->remise_commerciale_simu = (gcnew System::Windows::Forms::ComboBox());
 			this->demarque_inconnue_simu = (gcnew System::Windows::Forms::ComboBox());
@@ -1526,54 +1522,18 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			this->txt_TVA1->AutoSize = true;
 			this->txt_TVA1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_TVA1->Location = System::Drawing::Point(250, 442);
+			this->txt_TVA1->Location = System::Drawing::Point(250, 430);
 			this->txt_TVA1->Name = L"txt_TVA1";
 			this->txt_TVA1->Size = System::Drawing::Size(115, 25);
 			this->txt_TVA1->TabIndex = 12;
-			this->txt_TVA1->Text = L"TVA 1 (%)";
-			// 
-			// txt_TVA2
-			// 
-			this->txt_TVA2->AutoSize = true;
-			this->txt_TVA2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txt_TVA2->Location = System::Drawing::Point(250, 525);
-			this->txt_TVA2->Name = L"txt_TVA2";
-			this->txt_TVA2->Size = System::Drawing::Size(115, 25);
-			this->txt_TVA2->TabIndex = 13;
-			this->txt_TVA2->Text = L"TVA 2 (%)";
-			// 
-			// TVA2_simu
-			// 
-			this->TVA2_simu->Location = System::Drawing::Point(250, 553);
-			this->TVA2_simu->Name = L"TVA2_simu";
-			this->TVA2_simu->Size = System::Drawing::Size(100, 22);
-			this->TVA2_simu->TabIndex = 14;
-			// 
-			// txt_TVA3
-			// 
-			this->txt_TVA3->AutoSize = true;
-			this->txt_TVA3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txt_TVA3->Location = System::Drawing::Point(250, 605);
-			this->txt_TVA3->Name = L"txt_TVA3";
-			this->txt_TVA3->Size = System::Drawing::Size(115, 25);
-			this->txt_TVA3->TabIndex = 15;
-			this->txt_TVA3->Text = L"TVA 3 (%)";
-			// 
-			// TVA3_simu
-			// 
-			this->TVA3_simu->Location = System::Drawing::Point(250, 633);
-			this->TVA3_simu->Name = L"TVA3_simu";
-			this->TVA3_simu->Size = System::Drawing::Size(100, 22);
-			this->TVA3_simu->TabIndex = 16;
+			this->txt_TVA1->Text = L"TVA 1 \r\n(Entre 0 et 1)";
 			// 
 			// marge_commerciale_simu
 			// 
 			this->marge_commerciale_simu->FormattingEnabled = true;
-			this->marge_commerciale_simu->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				L"Marge commerciale * 5%", L"Marge commerciale * 10%",
-					L"Marge commerciale * 15%"
+			this->marge_commerciale_simu->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"Marge commerciale * 0%", L"Marge commerciale * 5%",
+					L"Marge commerciale * 10%", L"Marge commerciale * 15%"
 			});
 			this->marge_commerciale_simu->Location = System::Drawing::Point(400, 468);
 			this->marge_commerciale_simu->Name = L"marge_commerciale_simu";
@@ -1584,7 +1544,10 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			// remise_commerciale_simu
 			// 
 			this->remise_commerciale_simu->FormattingEnabled = true;
-			this->remise_commerciale_simu->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Remise commerciale * 5%", L"Remise commerciale * 6%" });
+			this->remise_commerciale_simu->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
+				L"Remise commerciale * 0%", L"Remise commerciale * 5%",
+					L"Remise commerciale * 6%"
+			});
 			this->remise_commerciale_simu->Location = System::Drawing::Point(600, 468);
 			this->remise_commerciale_simu->Name = L"remise_commerciale_simu";
 			this->remise_commerciale_simu->Size = System::Drawing::Size(178, 25);
@@ -1594,9 +1557,9 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			// demarque_inconnue_simu
 			// 
 			this->demarque_inconnue_simu->FormattingEnabled = true;
-			this->demarque_inconnue_simu->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				L"Demarque inconnue * 2%", L"Demarque inconnue * 3%",
-					L"Demarque inconnue * 5%"
+			this->demarque_inconnue_simu->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"Demarque inconnue * 0%", L"Demarque inconnue * 2%",
+					L"Demarque inconnue * 3%", L"Demarque inconnue * 5%"
 			});
 			this->demarque_inconnue_simu->Location = System::Drawing::Point(800, 470);
 			this->demarque_inconnue_simu->Name = L"demarque_inconnue_simu";
@@ -1824,10 +1787,6 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				   this->Controls->Remove(this->demarque_inconnue_simu);
 				   this->Controls->Remove(this->remise_commerciale_simu);
 				   this->Controls->Remove(this->marge_commerciale_simu);
-				   this->Controls->Remove(this->TVA3_simu);
-				   this->Controls->Remove(this->txt_TVA3);
-				   this->Controls->Remove(this->TVA2_simu);
-				   this->Controls->Remove(this->txt_TVA2);
 				   this->Controls->Remove(this->txt_TVA1);
 				   this->Controls->Remove(this->TVA1_simulations);
 				   this->Controls->Remove(this->btn_simuler);
@@ -1959,11 +1918,7 @@ private: System::Windows::Forms::Button^ btn_simuler;
 			   case 6:
 				   this->Controls->Add(this->demarque_inconnue_simu);
 				   this->Controls->Add(this->remise_commerciale_simu);
-				   this->Controls->Add(this->marge_commerciale_simu);
-				   this->Controls->Add(this->TVA3_simu);
-				   this->Controls->Add(this->txt_TVA3);
-				   this->Controls->Add(this->TVA2_simu);
-				   this->Controls->Add(this->txt_TVA2);
+				   this->Controls->Add(this->marge_commerciale_simu);;
 				   this->Controls->Add(this->txt_TVA1);
 				   this->Controls->Add(this->TVA1_simulations);
 				   this->Controls->Add(this->btn_simuler);
@@ -2287,12 +2242,22 @@ private: System::Windows::Forms::Button^ btn_simuler;
 
 private: System::Void btn_simuler_Click(System::Object^ sender, System::EventArgs^ e) {
 	
-	int margecommerciale;
+	int margecommerciale = 0;
+	int remisecommerciale = 0;
+	int demarqueinconnue = 0;
+	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 0%") { margecommerciale = 0; }
 	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 5%") { margecommerciale = 5; }
 	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 10%") { margecommerciale = 10; }
 	if (this->marge_commerciale_simu->Text == L"Marge commerciale * 15%") { margecommerciale = 15; }
+	if (this->remise_commerciale_simu->Text == L"Remise commerciale * 0%") { remisecommerciale = 0; }
+	if (this->remise_commerciale_simu->Text == L"Remise commerciale * 5%") { remisecommerciale = 5; }
+	if (this->remise_commerciale_simu->Text == L"Remise commerciale * 6%") { remisecommerciale = 6; }
+	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 0%") { demarqueinconnue = 0; }
+	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 2%") { demarqueinconnue = 2; }
+	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 3%") { demarqueinconnue = 3; }
+	if (this->demarque_inconnue_simu->Text == L"Demarque inconnue * 5%") { demarqueinconnue = 5; }
 	this->dataGridView1->Refresh();
-	this->oDs = this->oSvcSimu->MargeCommerciale5("Rsl", margecommerciale);
+	this->oDs = this->oSvcSimu->MargeCommerciale5("Rsl",this->TVA1_simulations->Text, margecommerciale, remisecommerciale, demarqueinconnue);
 	this->dataGridView1->DataSource = this->oDs;
 	this->dataGridView1->DataMember = "Rsl";
 }

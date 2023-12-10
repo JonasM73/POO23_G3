@@ -9,6 +9,6 @@ namespace NS_Svc_Simu {
 		NS_Comp_MappageSimu::CLmapSimulation^ oMapSimu;
 	public:
 		CLserviceSimulation(void);
-		System::Data::DataSet^ MargeCommerciale5(System::String^ dataTableName, int m);
+		System::Data::DataSet^ MargeCommerciale5(System::String^ dataTableName, System::String^ TVA1, int m, int r, int d);
 	};
 }
