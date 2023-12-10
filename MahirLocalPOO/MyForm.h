@@ -148,10 +148,6 @@ namespace ProjetPOOG3 {
 	private: System::Windows::Forms::Button^ valeur_achat_stock_stats;
 	private: System::Windows::Forms::TextBox^ nom_client_stats;
 	private: System::Windows::Forms::Label^ label_nom_client_stats;
-	private: System::Windows::Forms::TextBox^ prenom_client_stats;
-	private: System::Windows::Forms::Label^ lab_prenom_client_stats;
-	private: System::Windows::Forms::TextBox^ ddn_client_stats;
-	private: System::Windows::Forms::Label^ lab_ddn_client_stats;
 	private: System::Windows::Forms::Button^ bouton_simulations;
 	private: System::Windows::Forms::Button^ btn_ajouter_article_stock;
 	private: System::Windows::Forms::Button^ btn_maj_article_stock;
@@ -301,10 +297,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			this->valeur_achat_stock_stats = (gcnew System::Windows::Forms::Button());
 			this->nom_client_stats = (gcnew System::Windows::Forms::TextBox());
 			this->label_nom_client_stats = (gcnew System::Windows::Forms::Label());
-			this->prenom_client_stats = (gcnew System::Windows::Forms::TextBox());
-			this->lab_prenom_client_stats = (gcnew System::Windows::Forms::Label());
-			this->ddn_client_stats = (gcnew System::Windows::Forms::TextBox());
-			this->lab_ddn_client_stats = (gcnew System::Windows::Forms::Label());
 			this->bouton_simulations = (gcnew System::Windows::Forms::Button());
 			this->btn_ajouter_article_stock = (gcnew System::Windows::Forms::Button());
 			this->btn_maj_article_stock = (gcnew System::Windows::Forms::Button());
@@ -1069,44 +1061,8 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			this->label_nom_client_stats->Name = L"label_nom_client_stats";
 			this->label_nom_client_stats->Size = System::Drawing::Size(180, 60);
 			this->label_nom_client_stats->TabIndex = 11;
-			this->label_nom_client_stats->Text = L"Nom du client";
+			this->label_nom_client_stats->Text = L"Numéro de client";
 			this->label_nom_client_stats->Click += gcnew System::EventHandler(this, &MyForm::lab_nom_client_stats_Click);
-			// 
-			// prenom_client_stats
-			// 
-			this->prenom_client_stats->Location = System::Drawing::Point(830, 490);
-			this->prenom_client_stats->Name = L"prenom_client_stats";
-			this->prenom_client_stats->Size = System::Drawing::Size(200, 22);
-			this->prenom_client_stats->TabIndex = 10;
-			// 
-			// lab_prenom_client_stats
-			// 
-			this->lab_prenom_client_stats->AutoSize = true;
-			this->lab_prenom_client_stats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lab_prenom_client_stats->Location = System::Drawing::Point(830, 470);
-			this->lab_prenom_client_stats->Name = L"lab_prenom_client_stats";
-			this->lab_prenom_client_stats->Size = System::Drawing::Size(180, 60);
-			this->lab_prenom_client_stats->TabIndex = 11;
-			this->lab_prenom_client_stats->Text = L"Prenom du client";
-			// 
-			// ddn_client_stats
-			// 
-			this->ddn_client_stats->Location = System::Drawing::Point(830, 550);
-			this->ddn_client_stats->Name = L"ddn_client_stats";
-			this->ddn_client_stats->Size = System::Drawing::Size(200, 22);
-			this->ddn_client_stats->TabIndex = 10;
-			// 
-			// lab_ddn_client_stats
-			// 
-			this->lab_ddn_client_stats->AutoSize = true;
-			this->lab_ddn_client_stats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lab_ddn_client_stats->Location = System::Drawing::Point(830, 515);
-			this->lab_ddn_client_stats->Name = L"lab_ddn_client_stats";
-			this->lab_ddn_client_stats->Size = System::Drawing::Size(130, 60);
-			this->lab_ddn_client_stats->TabIndex = 11;
-			this->lab_ddn_client_stats->Text = L"Date de naissance du client \r\n(AAAA-MM-JJ)";
 			// 
 			// bouton_simulations
 			// 
@@ -1779,10 +1735,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Remove(this->valeur_achat_stock_stats);
 				   this->Controls->Remove(this->label_nom_client_stats);
 				   this->Controls->Remove(this->nom_client_stats);
-				   this->Controls->Remove(this->lab_prenom_client_stats);
-				   this->Controls->Remove(this->prenom_client_stats);
-				   this->Controls->Remove(this->lab_ddn_client_stats);
-				   this->Controls->Remove(this->ddn_client_stats);
 				   this->Controls->Remove(this->btn_afficher_article_stock);
 				   this->Controls->Remove(this->btn_sup_article_stock);
 				   this->Controls->Remove(this->btn_maj_article_stock);
@@ -1956,10 +1908,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Add(this->valeur_achat_stock_stats);
 				   this->Controls->Add(this->label_nom_client_stats);
 				   this->Controls->Add(this->nom_client_stats);
-				   this->Controls->Add(this->lab_prenom_client_stats);
-				   this->Controls->Add(this->prenom_client_stats);
-				   this->Controls->Add(this->lab_ddn_client_stats);
-				   this->Controls->Add(this->ddn_client_stats);
 				   this->Controls->Add(this->btn_montant_achat_client_stats);
 				   this->oSvcStats = gcnew NS_SvcStats::CLserviceStats();
 				   break;
