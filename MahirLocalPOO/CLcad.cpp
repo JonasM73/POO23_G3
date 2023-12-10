@@ -1,5 +1,5 @@
 #include "CLcad.h"
-
+using namespace System;
 NS_Comp_Data::CLcad::CLcad(void)
 {
 	this->sCnx = "Data Source = DESKTOP-5908F3E\\MSSQL_JONAS;" +
