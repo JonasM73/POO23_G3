@@ -5,8 +5,8 @@ NS_Comp_Data::CLcad::CLcad(void)
 	this->sCnx = "Data Source = PCMAHIR\\MSSQL_POO;" +
 		"Initial Catalog =Projet_PooG3;" +
 		"Persist Security Info=True;" +
-		"User ID =sa;" +
-		"Password =0506;";
+		"User ID =jonas_admin;" +
+		"Password =cesi;";
 
 	this->sSql = "Rien";
 
