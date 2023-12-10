@@ -644,25 +644,27 @@ namespace ProjetPOOG3 {
 			this->txt_ville_F->Size = System::Drawing::Size(33, 16);
 			this->txt_ville_F->TabIndex = 41;
 			this->txt_ville_F->Text = L"Ville";
-			// 
-			// nom_personnel
-			// 
-			this->nom_personnel->Location = System::Drawing::Point(764, 403);
-			this->nom_personnel->Multiline = true;
-			this->nom_personnel->Name = L"nom_personnel";
-			this->nom_personnel->Size = System::Drawing::Size(371, 59);
-			this->nom_personnel->TabIndex = 29;
-			// 
+
 			// txt_nom_personnel
 			// 
 			this->txt_nom_personnel->AutoSize = true;
 			this->txt_nom_personnel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_nom_personnel->Location = System::Drawing::Point(761, 394);
+			this->txt_nom_personnel->Location = System::Drawing::Point(761, 390);
 			this->txt_nom_personnel->Name = L"txt_nom_personnel";
-			this->txt_nom_personnel->Size = System::Drawing::Size(96, 16);
+			this->txt_nom_personnel->Size = System::Drawing::Size(116, 16);
 			this->txt_nom_personnel->TabIndex = 30;
 			this->txt_nom_personnel->Text = L"nom personnel";
+			// 
+			// nom_personnel
+			// 
+			this->nom_personnel->Location = System::Drawing::Point(764, 410);
+			this->nom_personnel->Multiline = true;
+			this->nom_personnel->Name = L"nom_personnel";
+			this->nom_personnel->Size = System::Drawing::Size(371, 40);
+			this->nom_personnel->TabIndex = 29;
+
+			// 
 			// 
 			// txt_prenom_personnel
 			// 
@@ -677,12 +679,10 @@ namespace ProjetPOOG3 {
 			// 
 			// prenom_personnel
 			// 
-			this->prenom_personnel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->prenom_personnel->Location = System::Drawing::Point(764, 474);
+			this->prenom_personnel->Location = System::Drawing::Point(764, 485);
 			this->prenom_personnel->Multiline = true;
 			this->prenom_personnel->Name = L"prenom_personnel";
-			this->prenom_personnel->Size = System::Drawing::Size(371, 57);
+			this->prenom_personnel->Size = System::Drawing::Size(371, 40);
 			this->prenom_personnel->TabIndex = 31;
 			// 
 			// txt_AP_personnel
@@ -690,7 +690,7 @@ namespace ProjetPOOG3 {
 			this->txt_AP_personnel->AutoSize = true;
 			this->txt_AP_personnel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txt_AP_personnel->Location = System::Drawing::Point(761, 536);
+			this->txt_AP_personnel->Location = System::Drawing::Point(761, 535);
 			this->txt_AP_personnel->Name = L"txt_AP_personnel";
 			this->txt_AP_personnel->Size = System::Drawing::Size(102, 16);
 			this->txt_AP_personnel->TabIndex = 34;
@@ -698,7 +698,7 @@ namespace ProjetPOOG3 {
 			// 
 			// AP_personnel
 			// 
-			this->AP_personnel->Location = System::Drawing::Point(764, 545);
+			this->AP_personnel->Location = System::Drawing::Point(764, 555);
 			this->AP_personnel->Multiline = true;
 			this->AP_personnel->Name = L"AP_personnel";
 			this->AP_personnel->Size = System::Drawing::Size(371, 50);
@@ -717,7 +717,7 @@ namespace ProjetPOOG3 {
 			// 
 			// CP_personnel
 			// 
-			this->CP_personnel->Location = System::Drawing::Point(764, 623);
+			this->CP_personnel->Location = System::Drawing::Point(764, 634);
 			this->CP_personnel->Multiline = true;
 			this->CP_personnel->Name = L"CP_personnel";
 			this->CP_personnel->Size = System::Drawing::Size(371, 55);
@@ -737,7 +737,7 @@ namespace ProjetPOOG3 {
 			// 
 			// ville_personnel
 			// 
-			this->ville_personnel->Location = System::Drawing::Point(764, 709);
+			this->ville_personnel->Location = System::Drawing::Point(764, 720);
 			this->ville_personnel->Multiline = true;
 			this->ville_personnel->Name = L"ville_personnel";
 			this->ville_personnel->Size = System::Drawing::Size(371, 43);
@@ -1496,19 +1496,21 @@ namespace ProjetPOOG3 {
 		}
 	}
 
+
 	private: System::Void btn_del_click(System::Object^ sender, System::EventArgs^ e) {
 		if (b == 1) {
-			DateTime DateNN;
-			if (!DateTime::TryParse(DNN->Text, DateNN)) {
-				MessageBox::Show("Erreur dans les Dates ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			this->dataGridView1->Refresh();
+			DateTime DN_Personnel, date_embauche_Personnel;
+			int CP_personnel;
+			if (!DateTime::TryParse(this->date_embauche_personnel->Text, date_embauche_Personnel)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text)) {
-				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
-				return;
-			}
-			this->oSvc->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			
+
+
+			this->oSvPersonnel->DeleteUnPersonnel(this->nom_personnel->Text, this->prenom_personnel->Text, date_embauche_Personnel);
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
 		}
@@ -1529,19 +1531,25 @@ namespace ProjetPOOG3 {
 			this->dataGridView1->DataMember = "Rsl";
 		}
 	}
-	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+
+private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
 		if (b == 1) {
-			DateTime DateNN;
-			if (!DateTime::TryParse(DNN->Text, DateNN)) {
-				MessageBox::Show("Erreur dans les Dates ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			
+			this->dataGridView1->Refresh();
+			DateTime DN_Personnel, date_embauche_Personnel;
+			int CP_personnel;
+
+			if (!DateTime::TryParse(this->DN_Personnel->Text, DN_Personnel) || !DateTime::TryParse(this->date_embauche_personnel->Text, date_embauche_Personnel)) {
+				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text)) {
-				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			if (!Int32::TryParse(this->CP_personnel->Text, CP_personnel)) {
+				MessageBox::Show("Erreur dans le Codes postal", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
-			this->oSvc->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
-			this->oDs = this->oSvc->selectionnerToutesLesPersonnes("Rsl");
+			
+			this->oSvPersonnel->UpdateUnPersonnel(this->nom_personnel->Text, this->prenom_personnel->Text, DN_Personnel, date_embauche_Personnel,this->AP_personnel->Text, CP_personnel, this->ville_personnel->Text, Int32::Parse(this->id_superieur->Text));
+			this->oDs = this->oSvPersonnel->selectionnerTousLesPersonnels("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
 		}
