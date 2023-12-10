@@ -200,8 +200,6 @@ private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
 private: System::Windows::Forms::Button^ btn_simuler;
 private: System::Windows::Forms::ComboBox^ Ville_L;
 private: System::Windows::Forms::ComboBox^ Ville_F;
-	private: System::Windows::Forms::ComboBox^ Ville_L;
-	private: System::Windows::Forms::ComboBox^ Ville_F;
 
 
 
@@ -1317,7 +1315,72 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			this->afficher_commandearticle->UseVisualStyleBackColor = false;
 			this->afficher_commandearticle->Click += gcnew System::EventHandler(this, &MyForm::btn_afficher_commandearticle);
 			// 
-
+			// txt_id_article
+			// 
+			this->txt_id_article->AutoSize = true;
+			this->txt_id_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_id_article->Location = System::Drawing::Point(785, 407);
+			this->txt_id_article->Name = L"txt_id_article";
+			this->txt_id_article->Size = System::Drawing::Size(180, 60);
+			this->txt_id_article->TabIndex = 11;
+			this->txt_id_article->Text = L"ID de l\'article";
+			// 
+			// id_article_stock
+			// 
+			this->id_article_stock->Location = System::Drawing::Point(790, 430);
+			this->id_article_stock->Name = L"id_article_stock";
+			this->id_article_stock->Size = System::Drawing::Size(293, 22);
+			this->id_article_stock->TabIndex = 12;
+			// 
+			// txt_nom_article
+			// 
+			this->txt_nom_article->AutoSize = true;
+			this->txt_nom_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_nom_article->Location = System::Drawing::Point(785, 460);
+			this->txt_nom_article->Name = L"txt_nom_article";
+			this->txt_nom_article->Size = System::Drawing::Size(180, 60);
+			this->txt_nom_article->TabIndex = 13;
+			this->txt_nom_article->Text = L"Nom de l\'article";
+			// 
+			// nom_article_stock
+			// 
+			this->nom_article_stock->Location = System::Drawing::Point(790, 480);
+			this->nom_article_stock->Name = L"nom_article_stock";
+			this->nom_article_stock->Size = System::Drawing::Size(293, 22);
+			this->nom_article_stock->TabIndex = 14;
+			// 
+			// txt_stock_article
+			// 
+			this->txt_stock_article->AutoSize = true;
+			this->txt_stock_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_stock_article->Location = System::Drawing::Point(785, 510);
+			this->txt_stock_article->Name = L"txt_stock_article";
+			this->txt_stock_article->Size = System::Drawing::Size(180, 60);
+			this->txt_stock_article->TabIndex = 15;
+			this->txt_stock_article->Text = L"Valeur du stock de l\'article";
+			// 
+			// valeur_en_stock
+			// 
+			this->valeur_en_stock->Location = System::Drawing::Point(790, 530);
+			this->valeur_en_stock->Name = L"valeur_en_stock";
+			this->valeur_en_stock->Size = System::Drawing::Size(293, 22);
+			this->valeur_en_stock->TabIndex = 16;
+			// 
+			// txt_taux_tva_article
+			// 
+			this->txt_taux_tva_article->AutoSize = true;
+			this->txt_taux_tva_article->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_taux_tva_article->Location = System::Drawing::Point(785, 560);
+			this->txt_taux_tva_article->Name = L"txt_taux_tva_article";
+			this->txt_taux_tva_article->Size = System::Drawing::Size(180, 60);
+			this->txt_taux_tva_article->TabIndex = 17;
+			this->txt_taux_tva_article->Text = L"Taux de TVA de l\'article";
+			// 
+			// taux_tva_article_stock
 			// 
 			this->taux_tva_article_stock->Location = System::Drawing::Point(790, 580);
 			this->taux_tva_article_stock->Name = L"taux_tva_article_stock";
