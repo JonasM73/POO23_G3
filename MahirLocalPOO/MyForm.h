@@ -202,8 +202,8 @@ private: System::Windows::Forms::ComboBox^ marge_commerciale_simu;
 private: System::Windows::Forms::ComboBox^ remise_commerciale_simu;
 private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
 private: System::Windows::Forms::Button^ btn_simuler;
-	private: System::Windows::Forms::ComboBox^ Ville_L;
-	private: System::Windows::Forms::ComboBox^ Ville_F;
+private: System::Windows::Forms::ComboBox^ Ville_L;
+private: System::Windows::Forms::ComboBox^ Ville_F;
 
 
 
@@ -1506,7 +1506,7 @@ private: System::Windows::Forms::Button^ btn_simuler;
 					L"Saint-Denis", L"Argenteuil", L"Rouen", L"Montreuil", L"Mulhouse", L"Caen", L"Nancy", L"Saint-Paul", L"Nouméa", L"Tourcoing",
 					L"Avignon", L"Vitry-sur-Seine", L"Créteil", L"Poitiers"
 			});
-			this->Ville_L->Location = System::Drawing::Point(1009, 513);
+			this->Ville_L->Location = System::Drawing::Point(100, 513);
 			this->Ville_L->Name = L"Ville_L";
 			this->Ville_L->Size = System::Drawing::Size(300, 24);
 			this->Ville_L->TabIndex = 43;
@@ -1522,7 +1522,7 @@ private: System::Windows::Forms::Button^ btn_simuler;
 					L"Saint-Denis", L"Argenteuil", L"Rouen", L"Montreuil", L"Mulhouse", L"Caen", L"Nancy", L"Saint-Paul", L"Nouméa", L"Tourcoing",
 					L"Avignon", L"Vitry-sur-Seine", L"Créteil", L"Poitiers"
 			});
-			this->Ville_F->Location = System::Drawing::Point(1009, 713);
+			this->Ville_F->Location = System::Drawing::Point(1000, 713);
 			this->Ville_F->Name = L"Ville_F";
 			this->Ville_F->Size = System::Drawing::Size(300, 24);
 			this->Ville_F->TabIndex = 44;
@@ -1911,8 +1911,6 @@ private: System::Windows::Forms::Button^ btn_simuler;
 				   this->Controls->Add(this->txt_stock_article);
 				   this->Controls->Add(this->nom_article_stock);
 				   this->Controls->Add(this->txt_nom_article);
-				   this->Controls->Add(this->id_article_stock);
-				   this->Controls->Add(this->txt_id_article);
 				   this->oSvc = gcnew NS_SvcStock::CLserviceStock();
 				   break;
 			   case 5:

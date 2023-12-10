@@ -38,9 +38,8 @@ System::String^ NS_Comp_MappageStats::CLmapStats::ArticlesMoinsVendus(void) {
 }
 
 System::String^ NS_Comp_MappageStats::CLmapStats::ValeurCommercialeStock(void) {
-	return "SELECT SUM(prix_HT_article * (1 + taux_tva_article*prix_HT_article)) AS prix_avec_taxe " +
-		"FROM Article " +
-		"WHERE stock_article > 0; ";
+	return "SELECT SUM(stock_article * prix_HT_article * (1 + taux_TVA_article)) AS Valeur_Commerciale_stock " +
+		"FROM Article; ";
 }
 System::String^ NS_Comp_MappageStats::CLmapStats::ValeurAchatStock(void) {
 	return "SELECT SUM(prix_HT_article * stock_article) AS prix_achat " +
