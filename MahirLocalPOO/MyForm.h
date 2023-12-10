@@ -204,8 +204,6 @@ private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
 private: System::Windows::Forms::Button^ btn_simuler;
 private: System::Windows::Forms::ComboBox^ Ville_L;
 private: System::Windows::Forms::ComboBox^ Ville_F;
-	private: System::Windows::Forms::ComboBox^ Ville_L;
-	private: System::Windows::Forms::ComboBox^ Ville_F;
 
 
 
@@ -1497,6 +1495,38 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			this->btn_montant_achat_client_stats->UseVisualStyleBackColor = true;
 			this->btn_montant_achat_client_stats->Click += gcnew System::EventHandler(this, &MyForm::btn_montant_client_stats_Click);
 			// 
+			// Ville_L
+			// 
+			this->Ville_L->FormattingEnabled = true;
+			this->Ville_L->Items->AddRange(gcnew cli::array< System::Object^  >(49) {
+				L"Paris", L"Marseille", L"Lyon", L"Toulouse", L"Nice",
+					L"Nantes", L"Montpellier", L"Strasbourg", L"Bordeaux", L"Lille", L"Rennes", L"Reims", L"Le Havre", L"Cergy", L"Saint-Étienne",
+					L"Toulon", L"Angers", L"Grenoble", L"Dijon", L"Nîmes", L"Saint-Denis", L"Villeurbanne", L"Clermont-Ferrand", L"Le Mans", L"Aix-en-Provence",
+					L"Brest", L"Tours", L"Limoges", L"Amiens", L"Annecy", L"Perpignan", L"Boulogne-Billancourt", L"Metz", L"Besançon", L"Orléans",
+					L"Saint-Denis", L"Argenteuil", L"Rouen", L"Montreuil", L"Mulhouse", L"Caen", L"Nancy", L"Saint-Paul", L"Nouméa", L"Tourcoing",
+					L"Avignon", L"Vitry-sur-Seine", L"Créteil", L"Poitiers"
+			});
+			this->Ville_L->Location = System::Drawing::Point(100, 513);
+			this->Ville_L->Name = L"Ville_L";
+			this->Ville_L->Size = System::Drawing::Size(300, 24);
+			this->Ville_L->TabIndex = 43;
+			// 
+			// Ville_F
+			// 
+			this->Ville_F->FormattingEnabled = true;
+			this->Ville_F->Items->AddRange(gcnew cli::array< System::Object^  >(49) {
+				L"Paris", L"Marseille", L"Lyon", L"Toulouse", L"Nice",
+					L"Nantes", L"Montpellier", L"Strasbourg", L"Bordeaux", L"Lille", L"Rennes", L"Reims", L"Le Havre", L"Cergy", L"Saint-Étienne",
+					L"Toulon", L"Angers", L"Grenoble", L"Dijon", L"Nîmes", L"Saint-Denis", L"Villeurbanne", L"Clermont-Ferrand", L"Le Mans", L"Aix-en-Provence",
+					L"Brest", L"Tours", L"Limoges", L"Amiens", L"Annecy", L"Perpignan", L"Boulogne-Billancourt", L"Metz", L"Besançon", L"Orléans",
+					L"Saint-Denis", L"Argenteuil", L"Rouen", L"Montreuil", L"Mulhouse", L"Caen", L"Nancy", L"Saint-Paul", L"Nouméa", L"Tourcoing",
+					L"Avignon", L"Vitry-sur-Seine", L"Créteil", L"Poitiers"
+			});
+			this->Ville_F->Location = System::Drawing::Point(1000, 713);
+			this->Ville_F->Name = L"Ville_F";
+			this->Ville_F->Size = System::Drawing::Size(300, 24);
+			this->Ville_F->TabIndex = 44;
+			// 
 			// TVA1_simulations
 			// 
 			this->TVA1_simulations->Location = System::Drawing::Point(250, 470);
@@ -1913,8 +1943,6 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				   this->Controls->Add(this->txt_stock_article);
 				   this->Controls->Add(this->nom_article_stock);
 				   this->Controls->Add(this->txt_nom_article);
-				   this->Controls->Add(this->id_article_stock);
-				   this->Controls->Add(this->txt_id_article);
 				   this->oSvc = gcnew NS_SvcStock::CLserviceStock();
 				   break;
 			   case 5:
