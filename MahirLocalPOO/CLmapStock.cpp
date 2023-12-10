@@ -1,16 +1,6 @@
 #include "CLmapStock.h"
 
 
-/*System::String^ NS_Comp_MappageStock::CLmapStock::Select(void)
-{
-	return "SELECT * FROM Article;";
-}*/
-/*
-	"INSERT INTO Article (nom_article, stock_article, " +
-		"taux_tva_article, prix_HT_article, seuille_reapprovisionnement, id_couleur, id_nature, id_catalogue) " +
-		"VALUES ('" + this->nom_article + "', " + this->valeur_stock_art + ", " + this->taux_tva_art + ", " +
-		this->prix_ht_art + ", " + this->seuil_reappro_art + ", " + this->id_couleur_art + ", 9, 2);";
-*/
 
 System::String^ NS_Comp_MappageStock::CLmapStock::Select(void) {
 	return"SELECT * FROM Article ;";
@@ -23,13 +13,26 @@ System::String^ NS_Comp_MappageStock::CLmapStock::Insert(void) {
 }
 
 System::String^ NS_Comp_MappageStock::CLmapStock::Delete(void) {
-	return "DELETE FROM Article WHERE nom_article='" + this->nom_article + "';";
+	return "DELETE FROM Commande_Article WHERE id_article = (SELECT id_article FROM Article WHERE nom_article = '" + this->nom_article + "');" +
+		"DELETE FROM Article WHERE nom_article = '" + this->nom_article + "';";
+
 }
-System::String^ NS_Comp_MappageStock::CLmapStock::Update(void) {
-	return "UPDATE Article SET stock_article=" + this->valeur_stock_art + ", taux_tva_article =" + this->taux_tva_art +
-		", prix_HT_article =" + this->prix_ht_art + ", seuille_reapprovisionnement =" + this->seuil_reappro_art + " " +
-		"WHERE nom_article = '" + this->nom_article + "';";
+System::String^ NS_Comp_MappageStock::CLmapStock::Update() {
+	return "UPDATE Article SET stock_article = " + this->valeur_stock_art + ", taux_tva_article = " + this->taux_tva_art + ", seuille_reapprovisionnement = " + this->seuil_reappro_art + " WHERE nom_article = '" + this->nom_article + "';" +
+		"UPDATE Commande_Article SET Tva_commande = (SELECT taux_tva_article FROM Article WHERE nom_article = '" + this->nom_article + "') * " +
+		"(SELECT prix_ht_article FROM Article WHERE nom_article = '" + this->nom_article + "') * (SELECT quantite_article_commande FROM Commande_Article " +
+		"WHERE id_article = (SELECT id_article FROM Article WHERE nom_article = '" + this->nom_article + "')), " +
+		"TTC_commande = ((SELECT prix_HT_article FROM Article WHERE nom_article = '" + this->nom_article + "') + " +
+		"(SELECT taux_tva_article FROM Article WHERE nom_article = '" + this->nom_article + "') * " +
+		"(SELECT prix_ht_article FROM Article WHERE nom_article = '" + this->nom_article + "')) * " +
+		"(SELECT quantite_article_commande FROM Commande_Article " +
+		"WHERE id_article = (SELECT id_article FROM Article WHERE nom_article = '" + this->nom_article + "')), " +
+		"HT_commande = (SELECT prix_HT_article FROM Article WHERE nom_article = '" + this->nom_article + "') * " +
+		"(SELECT quantite_article_commande FROM Commande_Article " +
+		"WHERE id_article = (SELECT id_article FROM Article WHERE nom_article = '" + this->nom_article + "')) " +
+		"WHERE id_article = (SELECT id_article FROM Article WHERE nom_article = '" + this->nom_article + "');";
 }
+
 void NS_Comp_MappageStock::CLmapStock::setNomart(System::String^ n) { this->nom_article = n; }
 void NS_Comp_MappageStock::CLmapStock::setValeurstock(System::String^ v) { this->valeur_stock_art = v; }
 void NS_Comp_MappageStock::CLmapStock::setTauxTVA(System::String^ t) { this->taux_tva_art = t; }
