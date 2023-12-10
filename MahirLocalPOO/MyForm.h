@@ -204,6 +204,8 @@ private: System::Windows::Forms::ComboBox^ demarque_inconnue_simu;
 private: System::Windows::Forms::Button^ btn_simuler;
 private: System::Windows::Forms::ComboBox^ Ville_L;
 private: System::Windows::Forms::ComboBox^ Ville_F;
+	private: System::Windows::Forms::ComboBox^ Ville_L;
+	private: System::Windows::Forms::ComboBox^ Ville_F;
 
 
 
@@ -1981,8 +1983,9 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 			if (String::IsNullOrWhiteSpace(numero_client->Text) || String::IsNullOrWhiteSpace(prenom->Text) || String::IsNullOrWhiteSpace(nom->Text) || String::IsNullOrWhiteSpace(AP_L->Text) || String::IsNullOrWhiteSpace(AP_F->Text) || String::IsNullOrWhiteSpace(Ville_F->Text) || String::IsNullOrWhiteSpace(Ville_L->Text)) {
 				MessageBox::Show("Veuillez remplir tous les champs ", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
-			}
+			}			
 			this->oSvcClient->AjouterUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->Ville_L->Text, this->Ville_F->Text);
+			this->dataGridView1->Refresh();
 			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
@@ -2001,6 +2004,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				return;
 			}
 			this->oSvcClient->DeleteUnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN);
+			this->dataGridView1->Refresh();
 			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
@@ -2025,6 +2029,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				return;
 			}
 			this->oSvcClient->UpdateUnnePersonne(this->numero_client->Text, this->nom->Text, this->prenom->Text, DateNN, DatePahat, this->AP_L->Text, this->AP_F->Text, codePostalL, codePostalF, this->Ville_L->Text, this->Ville_F->Text);
+			this->dataGridView1->Refresh();
 			this->oDs = this->oSvcClient->selectionnerToutesLesPersonnes("Rsl");
 			this->dataGridView1->DataSource = this->oDs;
 			this->dataGridView1->DataMember = "Rsl";
@@ -2065,6 +2070,7 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 
 		//verif des infos pour un paiement
 		if (qtt_paiement == 1) {
+			MessageBox::Show("ajouterunecommande", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande1(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, this->moyen_paiement1->Text, D_E_S1, idarticle, qtt_article);
 		}		//verif des infos pour 2 paiement
 		else if (qtt_paiement == 2) {
@@ -2072,15 +2078,16 @@ private: System::Windows::Forms::ComboBox^ Ville_F;
 				MessageBox::Show("Erreur dans les Dates", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
+			MessageBox::Show("ajouterunecommande2", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			this->osvcCommande->AjouterUneCommande2(this->ref_commande->Text, Demission, Dlivraison, idclient, Dpaiement1, Dpaiement2, this->moyen_paiement1->Text, this->moyen_paiement2->Text, D_E_S1, D_E_S2, idarticle, qtt_article);
 		}
 		else {
 			MessageBox::Show("vous avez saisie un nombre de paiement incorrect", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			return;
 		}
-		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Rsl");
+		this->oDs = this->osvcCommande->selectionnerToutesLesCommandes("Sql");
 		this->dataGridView1->DataSource = this->oDs;
-		this->dataGridView1->DataMember = "Rsl";
+		this->dataGridView1->DataMember = "Sql";
 
 
 	}

@@ -39,7 +39,8 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert1(void) {
         "VALUES " +
         "('" + this->date_payement1 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
         "'" + this->moyen_paiement1 + "', '" + this->date_enregistrement_solde1 + "', " +
-        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));";
+        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'))" +
+        "UPDATE Article SET stock_article = stock_article - " + this->quantite_article_commande + " WHERE id_article = '" + this->id_article + "'";
 }
 
 
@@ -60,7 +61,9 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Insert2(void) {
         "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'))," +
         "('" + this->date_payement2 + "', (SELECT SUM(HT_commande) FROM Commande_Article WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "')), " +
         "'" + this->moyen_paiement2 + "', '" + this->date_enregistrement_solde2 + "', " +
-        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));";
+        "(SELECT id_commande FROM Commande WHERE ref_commande = '" + this->ref_commande + "'));" +
+        "UPDATE Article SET stock_article = stock_article - " + this->quantite_article_commande + " WHERE id_article = '" + this->id_article + "'";
+
 }
 
 
@@ -87,7 +90,9 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Update1(void) {
         "@nouvelle_quantite, " +
         "(SELECT taux_tva_article * prix_HT_article * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier), " +
         "(SELECT (prix_HT_article + (taux_tva_article * prix_HT_article)) * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier), " +
-        "(SELECT prix_HT_article * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier));";
+        "(SELECT prix_HT_article * @nouvelle_quantite FROM Article WHERE id_article = @id_article_a_modifier));" +
+        "UPDATE Article SET stock_article = stock_article - " + this->quantite_article_commande + " WHERE id_article = '" + this->id_article + "'";
+
 }
 
 
@@ -99,18 +104,27 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Update2(void) {
 
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Delete(void) {
 
-    return "DECLARE @ref_commande VARCHAR(100); " +
-        "SET @ref_commande = '" + this->ref_commande + "'; " +
-        "DECLARE @D_E DATE; " +
-        "SET @D_E = '" + this->date_emission_commande + "'; " +
-        "DECLARE @D_L DATE; " +
-        "SET @D_L = '" + this->date_livraison_commande + "'; " +
-        "DECLARE @Id_commande_a_supp INT; " +
-        "SET @Id_commande_a_supp = (SELECT id_commande FROM Commande WHERE ref_commande = @ref_commande AND date_livraison_commande = @D_L AND date_emission_commande = @D_E); " +
-        "DELETE FROM Paiement WHERE id_commande = @Id_commande_a_supp; " +
-        "DELETE FROM Commande_Article WHERE id_commande = @Id_commande_a_supp; " +
-        "DELETE FROM Commande WHERE ref_commande = @ref_commande AND date_livraison_commande = @D_L AND date_emission_commande = @D_E;";
-
+    return "DECLARE @ref_commande VARCHAR(100);" +
+        "SET @ref_commande = 'CMD001';" +
+        " MERGE INTO Article AS target" +
+        " USING(" +
+        "SELECT" +
+        " ca.id_article," +
+        " ca.quantite_article_commande" +
+        " FROM" +
+        " Commande_Article ca" +
+        " JOIN Commande c ON ca.id_commande = c.id_commande" +
+        " WHERE" +
+        " c.ref_commande = @ref_commande" +
+        " ) AS source" +
+        " ON target.id_article = source.id_article" +
+        " WHEN MATCHED THEN" +
+        " UPDATE SET target.stock_article = target.stock_article + source.quantite_article_commande;" +
+        " DELETE FROM Paiement WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = @ref_commande);" +
+        " DELETE FROM Commande_Article" +
+        " WHERE id_commande = (SELECT id_commande FROM Commande WHERE ref_commande = @ref_commande);" +
+        " DELETE FROM Commande" +
+        " WHERE ref_commande = @ref_commande";
 }
 
 
