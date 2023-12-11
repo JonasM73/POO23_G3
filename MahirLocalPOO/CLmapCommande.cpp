@@ -105,7 +105,7 @@ System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Update2(void) {
 System::String^ NS_Comp_MappageCommande::CLmapTBCommande::Delete(void) {
 
     return "DECLARE @ref_commande VARCHAR(100);" +
-        "SET @ref_commande = 'CMD001';" +
+        "SET @ref_commande = '"+ this->ref_commande +"';" +
         " MERGE INTO Article AS target" +
         " USING(" +
         "SELECT" +
